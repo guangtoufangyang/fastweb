@@ -40,4 +40,15 @@ function DisplayNew($k)
 
 }
 
+function DisplayMenuH($k)
+{
+	if(!DataGetByKey($k, $data))
+	{
+		return;
+	}
+	
+	AddMenuH($data);
+
+}
+
 ?>

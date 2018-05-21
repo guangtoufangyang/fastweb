@@ -8,8 +8,22 @@ function AddSpan($t, $c = '', $s = ''){
 	echo '<span class="'.$c.'" style="'.$s.'">'.$t.'</span>';
 }
 
+
+
 function AddLink($link, $text){
 	echo ' <a href ="'.$link.'"><span>'.$text.'</span></a><br>';
+}
+
+function AddLiWithLink($link, $text, $c = '', $s = ''){
+	echo ' <li class="'.$c.'" style="'.$s.'"><a href ="'.$link.'">'.$text.'</a></li>';
+}
+
+function LiStartWithLink($link, $text, $c = '', $s = ''){
+	echo ' <li class="'.$c.'" style="'.$s.'"><a href ="'.$link.'">'.$text.'</a>';
+}
+
+function LiEnd(){
+	echo '</li>';
 }
 
 function AddHtml($path){
@@ -20,6 +34,7 @@ function ClearFloat()
 {
 	echo '<div style="clear:both"></div>';
 }
+
 
 
 class CHead
@@ -145,6 +160,17 @@ class CSimpleDiv
 		echo '</div>';
 	}
 }
+
+class CUl
+{
+	function __construct($c = '', $s = ''){
+		echo '<ul class="'.$c.'" style="'.$s.'">';
+	}
+	function __destruct(){
+		echo '</ul>';
+	}
+}
+
 
 class CDocument
 {

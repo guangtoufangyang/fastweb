@@ -24,6 +24,12 @@ $divInside = new CDiv("fastweb_div_middle");
 	ClearFloat();
 	
 unset($divInside);
+
+$divInside = new CDiv("fastweb_div_middle");
+	DisplayMenuH("liH");
+	ClearFloat();	
+unset($divInside);
+
 unset($frame);
 
 

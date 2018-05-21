@@ -51,4 +51,24 @@ function AddNew($data)
 	
 }
 
+function AddMenuH($data)
+{
+	
+	foreach ($data as $val)
+	{
+		$div_dropdown = new CDiv("fastweb_div_dropdown", "float:left;");
+		AddLink("#", $val["name"], "fastweb_span_menu");
+		$div_dropdown_content = new CDiv("fastweb_div_dropdown_content");
+		foreach ($val["list"] as $lis)
+		{
+			AddLink($lis["link"], $lis["name"]);
+		}
+		
+		unset($div_dropdown_content);
+		unset($div_dropdown);
+	}
+	
+	
+}
+
 ?>
