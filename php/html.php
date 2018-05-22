@@ -26,6 +26,40 @@ function LiEnd(){
 	echo '</li>';
 }
 
+function NavStart($c = '', $s = ''){
+	echo '<nav';
+	if(!empty($c))
+	{
+		echo ' class ="'.$c.'"'; 
+	}
+	if(!empty($s))
+	{
+		echo ' style ="'.$s.'"'; 
+	}
+	echo '>';
+}
+
+function NavEnd(){
+	echo '</nav>';
+}
+
+function UlStart($c = '', $s = ''){
+	echo '<ul';
+	if(!empty($c))
+	{
+		echo ' class ="'.$c.'"'; 
+	}
+	if(!empty($s))
+	{
+		echo ' style ="'.$s.'"'; 
+	}
+	echo '>';
+}
+
+function UlEnd(){
+	echo '</ul>';
+}
+
 function AddHtml($path){
 	include GLOBAL_HTML.$path;
 }
@@ -160,7 +194,7 @@ class CSimpleDiv
 		echo '</div>';
 	}
 }
-
+/*
 class CUl
 {
 	function __construct($c = '', $s = ''){
@@ -170,6 +204,7 @@ class CUl
 		echo '</ul>';
 	}
 }
+*/
 
 
 class CDocument

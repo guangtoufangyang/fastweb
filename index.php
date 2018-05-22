@@ -30,6 +30,11 @@ $divInside = new CDiv("fastweb_div_middle");
 	ClearFloat();	
 unset($divInside);
 
+$divInside = new CDiv("fastweb_div_middle");
+	DisplayMenuV("liH");
+	ClearFloat();	
+unset($divInside);
+
 unset($frame);
 
 

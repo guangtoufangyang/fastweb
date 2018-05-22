@@ -127,3 +127,100 @@ div.fastweb_div_dropdown:hover div.fastweb_div_dropdown_content {
 div.fastweb_div_dropdown:hover div.fastweb_div_dropdown_content>a:hover{
 	background-color:red;
 }
+
+
+nav.fastweb_menu_h
+{
+	height: 35px;
+	width: 100%;
+	margin: 0 auto;
+	background-color: #2f3e45;
+}
+nav.fastweb_menu_h ul li
+{
+	list-style-type:none;
+	float: left;
+}
+nav.fastweb_menu_h ul li a
+{
+	text-decoration: none;
+	display: block;
+	width: 130px;
+	line-height: 35px;
+	text-align: center;
+	color:white;
+	font-fimily:微软雅黑;
+}
+nav.fastweb_menu_h ul li ul li
+{
+	float: none;
+}
+nav.fastweb_menu_h ul li ul li:hover
+{
+	background-color:red;
+}
+
+nav.fastweb_menu_h ul li ul li a
+{
+	color:black;
+}
+nav.fastweb_menu_h ul li ul
+{
+	display: none;
+	background-color: #2f3e45;
+	margin: 0;
+	padding: 0;
+}
+nav.fastweb_menu_h ul li:hover ul
+{
+	display: block;
+}
+
+nav.fastweb_menu_v
+{
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	background-color: #2f3e45;
+	float: left;
+}
+nav.fastweb_menu_v ul li
+{
+	list-style-type:none;
+	float: left;
+}
+nav.fastweb_menu_v ul li a
+{
+	text-decoration: none;
+	display: block;
+	width: 130px;
+	line-height: 35px;
+	text-align: center;
+	color:white;
+	font-fimily:微软雅黑;
+}
+nav.fastweb_menu_v ul li ul li
+{
+	float: none;
+}
+nav.fastweb_menu_v ul li ul li:hover
+{
+	background-color:red;
+}
+
+nav.fastweb_menu_v ul li ul li a
+{
+	color:black;
+}
+nav.fastweb_menu_v ul li ul
+{
+	display: none;
+	background-color: #2f3e45;
+	margin: 0;
+	padding: 0;
+}
+nav.fastweb_menu_v ul li:hover ul
+{
+	display: block;
+}

@@ -53,7 +53,46 @@ function AddNew($data)
 
 function AddMenuH($data)
 {
-	
+	NavStart("fastweb_menu_h");
+	UlStart();
+	foreach ($data as $val)
+	{
+		LiStartWithLink("#", $val["name"]);
+		foreach ($val["list"] as $lis)
+		{
+			UlStart();
+			AddLiWithLink($lis["link"], $lis["name"]);
+			UlEnd();
+		}
+		LiEnd();
+	}
+	UlEnd();
+	NavEnd();
+}
+
+function AddMenuV($data)
+{
+	$frame = new CSimpleDiv();
+	NavStart("fastweb_menu_v");
+	UlStart();
+	foreach ($data as $val)
+	{
+		LiStartWithLink("#", $val["name"], "", "width:100%;");
+		foreach ($val["list"] as $lis)
+		{
+			UlStart();
+			AddLiWithLink($lis["link"], $lis["name"]);
+			UlEnd();
+		}
+		LiEnd();
+	}
+	UlEnd();
+	NavEnd();
+	unset($frame);
+}
+
+function AddMenuH2($data)
+{
 	foreach ($data as $val)
 	{
 		$div_dropdown = new CDiv("fastweb_div_dropdown", "float:left;");
@@ -67,8 +106,6 @@ function AddMenuH($data)
 		unset($div_dropdown_content);
 		unset($div_dropdown);
 	}
-	
-	
 }
 
 ?>

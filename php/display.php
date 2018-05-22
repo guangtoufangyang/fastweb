@@ -51,4 +51,15 @@ function DisplayMenuH($k)
 
 }
 
+function DisplayMenuV($k)
+{
+	if(!DataGetByKey($k, $data))
+	{
+		return;
+	}
+	
+	AddMenuV($data);
+
+}
+
 ?>
