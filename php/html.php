@@ -1,6 +1,6 @@
 <?php
 
-define("SITE_URL","http://localhost/",TRUE);
+define("SITE_URL","http://localhost/fastweb/",TRUE);
 define("ROOT_PATH",rtrim($_SERVER['DOCUMENT_ROOT'],'/'),true);
 define("GLOBAL_HTML",ROOT_PATH.'/fastweb/html/',TRUE);
 
@@ -16,6 +16,28 @@ function AddLink($link, $text){
 
 function AddLiWithLink($link, $text, $c = '', $s = ''){
 	echo ' <li class="'.$c.'" style="'.$s.'"><a href ="'.$link.'">'.$text.'</a></li>';
+}
+
+function AddRadio($checked = false, $name = '', $c = '', $id = ''){
+	echo '<input type="radio" name="'.$name.'" class="'.$c.'" id="'.$id.'"';
+	if($checked)
+	{
+		echo 'checked';
+	}
+	echo '>';
+}
+
+function AddLabel($text, $c = '', $for = ''){
+	echo '<lable ';
+	if(!empty($for))
+	{
+		echo 'for="'.$for.'"';
+	}
+	if(!empty($c))
+	{
+		echo 'class="'.$c.'"';
+	}
+	echo '>'.$text.'</lable>';
 }
 
 function LiStartWithLink($link, $text, $c = '', $s = ''){
@@ -130,8 +152,8 @@ class CHead
 			echo '<base target="_blank" />';
 		}
 		
-		echo '<script type="text/javascript" src="'.SITE_URL.'fastweb/js/fastweb.js"></script>';
-		echo '<link href="'.SITE_URL.'fastweb/css/fastweb.css" rel="stylesheet" type="text/css" />';
+		echo '<script type="text/javascript" src="'.SITE_URL.'/js/fastweb.js"></script>';
+		echo '<link href="'.SITE_URL.'/css/fastweb.css" rel="stylesheet" type="text/css" />';
 		
 		if(isset($config["css"]))
 		{
@@ -244,6 +266,46 @@ class CDocument
 }
 
 
-
+class CTab
+{
+	private $id;
+	private $divContainer;
+	private $divWrapper;
+	private $divContent;
+	
+	function __construct()
+	{
+		$this->id = 1;
+		$this->divContainer = new CDiv("fastweb_tab_container");
+		$this->divWrapper = new CDiv("fastweb_tab_wrapper");
+	}
+	
+	function TabStart($name)
+	{
+		
+		echo '<input type="radio" name="fastweb_tab_radio" class="fastweb_tab_radio" id="fastweb_tab_radio_'.$this->id.'" ';
+			
+		if(1 == $this->id)
+		{
+			echo 'checked';
+		}	
+		echo '>';		
+		echo '<label for="fastweb_tab_radio_'.$this->id.'" class="fastweb_tab_handler fastweb_tab_handler_'.$this->id.'">'.$name.'</label>';
+			
+		$this->divContent = new CDiv("tab-content tab-content-1");
+	}
+	
+	function TabEnd()
+	{
+		unset($this->divContent);
+		++$this->id;
+	}
+	
+	function __destruct()
+	{
+		unset($this->divWrapper);
+		unset($this->divContainer);
+	}
+}
 
 ?>

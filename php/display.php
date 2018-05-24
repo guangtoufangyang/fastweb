@@ -59,7 +59,7 @@ function DisplayMenuV($k)
 	}
 	
 	AddMenuV($data);
-
+	ClearFloat();
 }
 
 ?>

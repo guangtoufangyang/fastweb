@@ -31,10 +31,27 @@ $divInside = new CDiv("fastweb_div_middle");
 unset($divInside);
 
 $divInside = new CDiv("fastweb_div_middle");
-	DisplayMenuV("liH");
-	ClearFloat();	
+	DisplayMenuV("liH");	
 unset($divInside);
 
+/*
+$divInside = new CDiv("fastweb_div_middle");
+	$tab = new CTab();
+	$tab->TabStart("tab1");
+		
+	$tab->TabEnd();
+	
+	$tab->TabStart("tab2");
+
+	$tab->TabEnd();
+	
+	$tab->TabStart("tab3");
+
+	$tab->TabEnd();
+	unset($tab);
+	ClearFloat();	
+unset($divInside);
+*/
 unset($frame);
 
 

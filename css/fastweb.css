@@ -133,7 +133,8 @@ nav.fastweb_menu_h
 {
 	height: 35px;
 	width: 100%;
-	margin: 0 auto;
+	margin: 0px;
+	padding: 0px;
 	background-color: #2f3e45;
 }
 nav.fastweb_menu_h ul li
@@ -223,4 +224,61 @@ nav.fastweb_menu_v ul li ul
 nav.fastweb_menu_v ul li:hover ul
 {
 	display: block;
+}
+
+
+
+.fastweb_tab_container{
+  width: 800px;
+  height: 400px;
+  margin: 100px auto;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,.1);
+}
+.fastweb_tab_wrapper{
+  position: relative;
+  width: 800px;
+  height: 60px;
+  background-color: #33344a;
+}
+.fastweb_tab_wrapper .fastweb_tab_radio{
+  display: none;
+}
+.fastweb_tab_handler{
+  position: relative;
+  z-index: 2;
+  display: block;
+  float: left;
+  height: 60px;
+  padding: 0 40px;
+  color: #717181;
+  font-size: 16px;
+  line-height: 60px;
+  transition: .3s;
+  transform: scale(.9);
+}
+.fastweb_tab_radio:checked + .fastweb_tab_handler{
+  color: #fff;
+  background-color: #e74c3c;
+  transform: scale(1);
+}
+.fastweb_tab_radio:checked + .fastweb_tab_handler + .fastweb_tab_content{
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1);
+}
+.fastweb_tab_wrapper .fastweb_tab_content{
+  visibility: hidden;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 740px;
+  padding: 30px;
+  color: #999;
+  font-size: 14px;
+  line-height: 1.618em;
+  background-color: #fff;
+  opacity: 0;
+  transition: transform .5s, opacity .7s;
+  transform: translateY(20px);
 }
