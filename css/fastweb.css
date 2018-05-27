@@ -50,6 +50,7 @@ div.fastweb_new_module_title{
 	line-height:30px;
 	vertical-align:middle;
 	text-align:left;
+	border-radius: 25px;
 }
 div.fastweb_new_module_title,div.fastweb_new_module_content{	
 	width : 100% - 20px;
