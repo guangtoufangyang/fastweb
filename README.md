@@ -18,3 +18,6 @@ Create a simple website.
 存在对应结束标签的标签函数以Start开头，如StartDiv，StartUl
 不存在对应结束标签的标签函数以Add开头，如AddSpan，AddLink
 为方便了解参数含义大、升级及扩展，标签相关的函数参数为数组，key即为属性名称。
+
+4. 演示地址：
+http://www.100pian.com/fastweb/

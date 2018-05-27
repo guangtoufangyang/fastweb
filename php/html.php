@@ -5,7 +5,34 @@ define("ROOT_PATH",rtrim($_SERVER['DOCUMENT_ROOT'],'/'),true);
 define("GLOBAL_HTML",ROOT_PATH.'/fastweb/html/',TRUE);
 
 
-
+function AddSelect($arrAttr = array())
+{
+	if(!is_array($arrAttr)) return;
+	echo '<select';
+	if(array_key_exists("name", $arrAttr))
+	{
+		echo ' name="'.$arrAttr["name"].'"';
+	}
+	if(array_key_exists("id", $arrAttr))
+	{
+		echo ' id="'.$arrAttr["id"].'"';
+	}
+	if(array_key_exists("class", $arrAttr))
+	{
+		echo ' class="'.$arrAttr["class"].'"';
+	}
+	echo '/> ';
+	
+	if(array_key_exists("options", $arrAttr))
+	{
+		foreach ($arrAttr["options"] as $val)
+		{
+			echo '<option value="'.$val["value"].'">'.$val["text"].'</option>';
+		}
+	}
+	
+	echo '</select>';
+}
 
 function AddCheckBox($arrAttr = array())
 {
@@ -177,12 +204,7 @@ function AddLiWithLink($arrAttr = array()){
 	echo '</li>';
 
 }
-/*
-function AddLiWithLink($link, $text, $c = '', $s = ''){
-	echo ' <li class="'.$c.'" style="'.$s.'"><a href ="'.$link.'">'.$text.'</a></li>';
-}
-*/
-//function AddRadio($checked = false, $name = '', $c = '', $id = ''){
+
 function AddRadio($arrAttr = array()){
 	echo '<input type="radio"';
 	
@@ -209,8 +231,6 @@ function AddRadio($arrAttr = array()){
 }
 
 
-
-//function AddLabel($text, $c = '', $for = ''){
 function AddLabel($arrAttr = array()){
 	echo '<lable ';
 	
@@ -232,7 +252,6 @@ function AddLabel($arrAttr = array()){
 	echo '</lable>';
 }
 
-//function StartLiWithLink($link, $text, $c = '', $s = ''){
 function StartLiWithLink($arrAttr = array()){
 	echo ' <li';
 	if(array_key_exists("class", $arrAttr))
@@ -272,7 +291,6 @@ function EndBody()
 	echo '</body></html>';
 }
 
-//function StartLi($c = '', $s = ''){
 function StartLi($arrAttr = array()){
 	echo '<li ';
 	if(array_key_exists("class", $arrAttr))
@@ -292,7 +310,6 @@ function EndLi(){
 	echo '</li>';
 }
 
-//function StartNav($c = '', $s = ''){
 function StartNav($arrAttr = array()){
 	echo '<nav';
 	if(array_key_exists("class", $arrAttr))
@@ -498,119 +515,12 @@ class CDocument
 
 class CTab
 {
-	private $id;
-	
-	function __construct()
-	{
-		$this->id = 1;
-		StartDiv(array("class" => "fastweb_tab_container"));
-		StartDiv(array("class" => "fastweb_tab_wrapper"));
-	}
-	
-	function StartTab($name)
-	{
-		
-		echo '<input type="radio" name="fastweb_tab_radio" class="fastweb_tab_radio" id="fastweb_tab_radio_'.$this->id.'" ';
-			
-		if(1 == $this->id)
-		{
-			echo 'checked';
-		}	
-		echo '>';		
-		echo '<label for="fastweb_tab_radio_'.$this->id.'" class="fastweb_tab_handler fastweb_tab_handler_'.$this->id.'">'.$name.'</label>';
-		
-		StartDiv(array("class" => "tab-content tab-content-1"));
-	}
-	
-	function EndTab()
-	{
-		EndDiv();
-		++$this->id;
-	}
-	
-	function __destruct()
-	{
-		EndDiv();
-		EndDiv();
-	}
-}
-
-
-class CDivTab
-{
 	private $iMax;
 	private $iCur;
 	
 	function __construct($arr)
 	{
 		$this->id = count($arr);
-		if($this->id > 10)
-		{
-			$this->id = 10;
-		}
-		$this->iCur = 1;
-		$this->Init($arr);
-	}
-	
-	function Init($arr)
-	{
-		StartDiv(array("class" => "fastweb_tab_widget_tab"));
-		AddRadio(array("checked" => true, "name" => "fastweb_tab_widget_tab", "id" => "fastweb_tab_widget_tab1"));
-		AddRadio(array("name" => "fastweb_tab_widget_tab", "id" => "fastweb_tab_widget_tab2"));
-		AddRadio(array("name" => "fastweb_tab_widget_tab", "id" => "fastweb_tab_widget_tab3"));
-		//for($i = 2; $i<= $this->id; ++$i)
-		//{
-		//	AddRadio(array("name" => "fastweb_tab_widget_tab", "id" => "fastweb_tab_widget_tab".(string)$i));
-		//}
-		
-		StartDiv(array("class" => "fastweb_tab_widget_title fastweb_tab_inline_ul"));
-		StartUl();
-		for($i = 1; $i<= $this->id; ++$i)
-		{
-			StartLi(array("class" => "fastweb_tab_widget_tab".(string)$i));
-			//DivStart("fastweb_tab_widget_tab".(string)$i);
-			AddLabel(array("text" => $arr[$i - 1], "for" => "fastweb_tab_widget_tab".(string)$i));
-			//DivEnd();
-			EndLi();
-		}
-		
-		EndUl();
-		EndDiv();
-		StartDiv(array("class" => "fastweb_tab_widget_box"));
-	}
-	
-	function StartTab()
-	{
-		StartUl(array("class" => "fastweb_tab_widget_tab".(string)$this->iCur."_list"));
-		StartSimpleDiv();
-		++$this->iCur;
-	}
-	
-	function EndTab()
-	{
-		EndDiv();
-		EndUl();
-	}
-	
-	function __destruct()
-	{
-		EndDiv();
-		EndDiv();
-	}
-}
-
-class CDivTabBox
-{
-	private $iMax;
-	private $iCur;
-	
-	function __construct($arr)
-	{
-		$this->id = count($arr);
-		if($this->id > 10)
-		{
-			$this->id = 10;
-		}
 		$this->iCur = 1;
 		$this->Init($arr);
 	}

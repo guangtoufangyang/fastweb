@@ -62,4 +62,27 @@ function DisplayMenuV($k)
 	ClearFloat();
 }
 
+function DisplayOptions($k)
+{
+	if(!DataGetByKey($k, $data))
+	{
+		return;
+	}
+	
+	AddSelect($data);
+}
+
+function DisplayCheckbox($k)
+{
+	if(!DataGetByKey($k, $data))
+	{
+		return;
+	}
+	
+	foreach ($data as $val)
+	{
+		AddCheckBox($val);
+	}
+}
+
 ?>

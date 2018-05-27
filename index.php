@@ -63,24 +63,34 @@ StartDiv(array("class" => "fastweb_div_middle"));
 EndDiv();
 
 StartDiv(array("class" => "fastweb_div_middle"));
-	//$tab = new CTab();
-	$tab = new CDivTabBox(array("水平菜单", "新闻", "垂直菜单"));
-	$tab->StartTab("tab1");
+	$tab = new CTab(array("水平菜单", "新闻", "垂直菜单", "单选框", "多选框"));
+	$tab->StartTab();
 	DisplayMenuH("liH");
 	$tab->EndTab();
 	
-	$tab->StartTab("tab2");
+	$tab->StartTab();
 	DisplayNew("fastweb");
 	$tab->EndTab();
 	
-	$tab->StartTab("tab3");
+	$tab->StartTab();
 	DisplayMenuV("liH");
 	$tab->EndTab();
+	
+	$tab->StartTab();
+	DisplayOptions("option");
+	$tab->EndTab();
+	
+	$tab->StartTab();
+	DisplayCheckbox("checkbox");
+	$tab->EndTab();
+	
 	unset($tab);
 	ClearFloat();	
 EndDiv();
 
-
+StartDiv(array("class" => "fastweb_div_middle"));
+		
+EndDiv();
 
 StartDiv(array("class" => "fastweb_div_frame"));
 	AddHtml("Bottom.html");
