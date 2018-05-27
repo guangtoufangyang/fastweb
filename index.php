@@ -11,53 +11,62 @@ DisplayHead();
 DisplayTop();
 
 
-$frame = new CDiv("fastweb_div_frame");
-$divInside = new CDiv("fastweb_div_middle");
-	$textDiv = new CDiv('', 'width:40%;border:1px solid red;float:left;');
+StartDiv(array("class" => "fastweb_div_frame"));
+
+	StartDiv(array("class" => "fastweb_div_middle"));
+	StartDiv(array("style" => "width:40%;border:1px solid red;float:left;"));
 	DisplayText("libai");
-	unset($textDiv);
+	EndDiv();
 	
-	$textDiv = new CDiv('', 'width:40%;border:1px solid red;float:right;');
+	StartDiv(array("style" => "width:40%;border:1px solid red;float:right;"));
 	DisplayNew("fastweb");
-	unset($textDiv);
+	EndDiv();
 	
 	ClearFloat();
 	
-unset($divInside);
+EndDiv();
 
-$divInside = new CDiv("fastweb_div_middle");
+StartDiv(array("class" => "fastweb_div_middle"));
 	DisplayMenuH("liH");
 	ClearFloat();	
-unset($divInside);
+EndDiv();
 
-$divInside = new CDiv("fastweb_div_middle");
+StartDiv(array("class" => "fastweb_div_middle"));
 	DisplayMenuV("liH");	
-unset($divInside);
+EndDiv();
 
-/*
-$divInside = new CDiv("fastweb_div_middle");
+
+StartDiv(array("class" => "fastweb_div_middle"));
+	StartDiv(array("stye" => "width:30%;"));
+	
+	EndDiv();
+	
+	StartDiv(array("class" => "width:60%;"));
+	
 	$tab = new CTab();
-	$tab->TabStart("tab1");
-		
-	$tab->TabEnd();
+	$tab->StartTab("tab1");
 	
-	$tab->TabStart("tab2");
-
-	$tab->TabEnd();
+	$tab->EndTab();
 	
-	$tab->TabStart("tab3");
+	$tab->StartTab("tab2");
 
-	$tab->TabEnd();
+	$tab->EndTab();
+	
+	$tab->StartTab("tab3");
+	$tab->EndTab();
 	unset($tab);
+	ClearFloat();
+	
+	EndDiv();
 	ClearFloat();	
-unset($divInside);
-*/
-unset($frame);
+EndDiv();
+
+EndDiv();
 
 
-$frame = new CDiv("fastweb_div_frame");
+StartDiv(array("class" => "fastweb_div_frame"));
 	AddHtml("Bottom.html");
-unset($frame);
+EndDiv();
 
 ?>
 

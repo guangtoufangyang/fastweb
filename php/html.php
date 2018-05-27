@@ -4,81 +4,362 @@ define("SITE_URL","http://localhost/fastweb/",TRUE);
 define("ROOT_PATH",rtrim($_SERVER['DOCUMENT_ROOT'],'/'),true);
 define("GLOBAL_HTML",ROOT_PATH.'/fastweb/html/',TRUE);
 
+
+
+
+function AddCheckBox($arrAttr = array())
+{
+	if(!is_array($arrAttr)) return;
+	echo '<input type="checkbox"';
+	if(array_key_exists("name", $arrAttr))
+	{
+		echo ' name="'.$arrAttr["name"].'"';
+	}
+	if(array_key_exists("id", $arrAttr))
+	{
+		echo ' id="'.$arrAttr["id"].'"';
+	}
+	if(array_key_exists("value", $arrAttr))
+	{
+		echo ' value="'.$arrAttr["value"].'"';
+	}
+	if(array_key_exists("class", $arrAttr))
+	{
+		echo ' class="'.$arrAttr["class"].'"';
+	}
+	if(array_key_exists("checked", $arrAttr) && $arrAttr["checked"])
+	{
+		echo ' checked';
+	}
+	echo '/> ';
+	if(array_key_exists("text", $arrAttr))
+	{
+		echo $arrAttr["text"];
+	}
+}
+
+function StartFieldset($arrAttr = array())
+{
+	if(!is_array($arrAttr)) return;
+	echo '<fieldset';
+	if(array_key_exists("name", $arrAttr))
+	{
+		echo ' name="'.$arrAttr["name"].'"';
+	}
+	if(array_key_exists("id", $arrAttr))
+	{
+		echo ' id="'.$arrAttr["id"].'"';
+	}
+	if(array_key_exists("class", $arrAttr))
+	{
+		echo ' class="'.$arrAttr["class"].'"';
+	}
+	echo '> ';
+	if(array_key_exists("text", $arrAttr))
+	{
+		echo '<legend>'.$arrAttr["text"].'</legend>';
+	}
+}
+
+function EndFieldset()
+{
+	echo '</fieldset>';
+}
+
+function AddSpan($arrAttr = array()){
+	if(!is_array($arrAttr))
+	{
+		return;
+	}
+	echo '<span ';
+	if(array_key_exists("class", $arrAttr))
+	{
+		echo ' class="'.$arrAttr["class"].'"';
+	}
+	
+	if(array_key_exists("style", $arrAttr))
+	{
+		echo ' style="'.$arrAttr["style"].'"';
+	}
+	
+	echo '>';
+	if(array_key_exists("text", $arrAttr))
+	{
+		echo $arrAttr["text"];
+	}
+	echo '</span>';
+}
+
+
+
+
+/*
 function AddSpan($t, $c = '', $s = ''){
 	echo '<span class="'.$c.'" style="'.$s.'">'.$t.'</span>';
 }
+*/
 
-
-
-function AddLink($link, $text){
-	echo ' <a href ="'.$link.'"><span>'.$text.'</span></a><br>';
+function AddLink($arrAttr = array()){
+	if(!is_array($arrAttr))
+	{
+		return;
+	}
+	echo '<a ';
+	if(array_key_exists("href", $arrAttr))
+	{
+		echo ' href="'.$arrAttr["href"].'"';
+	}
+	echo '>';
+	if(array_key_exists("text", $arrAttr))
+	{
+		echo $arrAttr["text"];
+	}
+	echo '</a>';
 }
 
+function AddLineLink($arrAttr = array()){
+	if(!is_array($arrAttr))
+	{
+		return;
+	}
+	echo '<a ';
+	if(array_key_exists("href", $arrAttr))
+	{
+		echo ' href="'.$arrAttr["href"].'"';
+	}
+	echo '>';
+	if(array_key_exists("text", $arrAttr))
+	{
+		echo $arrAttr["text"];
+	}
+	echo '</a><br>';
+}
+
+
+function AddImg($arrAttr = array()){
+	if(!is_array($arrAttr))
+	{
+		return;
+	}
+	
+	echo '<img';
+	if(array_key_exists("src", $arrAttr))
+	{
+		echo ' src="'.$arrAttr["src"].'"';
+	}
+	
+	if(array_key_exists("width", $arrAttr))
+	{
+		echo ' width="'.$arrAttr["width"].'"';
+	}
+	
+	if(array_key_exists("height", $arrAttr))
+	{
+		echo ' height="'.$arrAttr["height"].'"';
+	}
+	
+	echo ' />';
+}
+
+function AddLiWithLink($arrAttr = array()){
+	if(!is_array($arrAttr))
+	{
+		return;
+	}
+	
+	echo '<li';
+	if(array_key_exists("class", $arrAttr))
+	{
+		echo ' class="'.$arrAttr["class"].'"';
+	}
+	
+	if(array_key_exists("style", $arrAttr))
+	{
+		echo ' style="'.$arrAttr["style"].'"';
+	}
+	echo '>';
+	AddLink($arrAttr);
+	echo '</li>';
+
+}
+/*
 function AddLiWithLink($link, $text, $c = '', $s = ''){
 	echo ' <li class="'.$c.'" style="'.$s.'"><a href ="'.$link.'">'.$text.'</a></li>';
 }
-
-function AddRadio($checked = false, $name = '', $c = '', $id = ''){
-	echo '<input type="radio" name="'.$name.'" class="'.$c.'" id="'.$id.'"';
-	if($checked)
+*/
+//function AddRadio($checked = false, $name = '', $c = '', $id = ''){
+function AddRadio($arrAttr = array()){
+	echo '<input type="radio"';
+	
+	if(array_key_exists("class", $arrAttr))
 	{
-		echo 'checked';
+		echo ' class="'.$arrAttr["class"].'"';
+	}
+	
+	if(array_key_exists("name", $arrAttr))
+	{
+		echo ' name="'.$arrAttr["name"].'"';
+	}
+	
+	if(array_key_exists("id", $arrAttr))
+	{
+		echo ' id="'.$arrAttr["id"].'"';
+	}
+	
+	if(array_key_exists("checked", $arrAttr) && $arrAttr["checked"])
+	{
+		echo ' checked="checked"';
+	}
+	echo '/>';
+}
+
+
+
+//function AddLabel($text, $c = '', $for = ''){
+function AddLabel($arrAttr = array()){
+	echo '<lable ';
+	
+	if(array_key_exists("class", $arrAttr))
+	{
+		echo ' class="'.$arrAttr["class"].'"';
+	}
+	
+	if(array_key_exists("for", $arrAttr))
+	{
+		echo ' for="'.$arrAttr["for"].'"';
+	}
+	
+	echo '>';
+	if(array_key_exists("text", $arrAttr))
+	{
+		echo $arrAttr["text"];
+	}
+	echo '</lable>';
+}
+
+//function StartLiWithLink($link, $text, $c = '', $s = ''){
+function StartLiWithLink($arrAttr = array()){
+	echo ' <li';
+	if(array_key_exists("class", $arrAttr))
+	{
+		echo ' class="'.$arrAttr["class"].'"';
+	}
+	
+	if(array_key_exists("style", $arrAttr))
+	{
+		echo ' style="'.$arrAttr["style"].'"';
+	}
+	echo '>';
+	
+	if(array_key_exists("href", $arrAttr))
+	{
+		echo '<a href ="'.$arrAttr["href"].'">';
+		if(array_key_exists("text", $arrAttr))
+		{
+			echo $arrAttr["text"];
+		}
+		echo '</a>';
+	}
+}
+
+function StartBody($arrAttr = array())
+{
+	echo '<body';
+	if(array_key_exists("class", $arrAttr))
+	{
+		echo ' class="'.$arrAttr["class"].'"';
+	}
+	echo ' topMargin=0 leftMargin=0 rightMargin=0>';
+}
+
+function EndBody()
+{
+	echo '</body></html>';
+}
+
+//function StartLi($c = '', $s = ''){
+function StartLi($arrAttr = array()){
+	echo '<li ';
+	if(array_key_exists("class", $arrAttr))
+	{
+		echo ' class="'.$arrAttr["class"].'"';
+	}
+	
+	if(array_key_exists("style", $arrAttr))
+	{
+		echo ' style="'.$arrAttr["style"].'"';
 	}
 	echo '>';
 }
 
-function AddLabel($text, $c = '', $for = ''){
-	echo '<lable ';
-	if(!empty($for))
-	{
-		echo 'for="'.$for.'"';
-	}
-	if(!empty($c))
-	{
-		echo 'class="'.$c.'"';
-	}
-	echo '>'.$text.'</lable>';
-}
-
-function LiStartWithLink($link, $text, $c = '', $s = ''){
-	echo ' <li class="'.$c.'" style="'.$s.'"><a href ="'.$link.'">'.$text.'</a>';
-}
-
-function LiEnd(){
+function EndLi(){
 	echo '</li>';
 }
 
-function NavStart($c = '', $s = ''){
+//function StartNav($c = '', $s = ''){
+function StartNav($arrAttr = array()){
 	echo '<nav';
-	if(!empty($c))
+	if(array_key_exists("class", $arrAttr))
 	{
-		echo ' class ="'.$c.'"'; 
+		echo ' class="'.$arrAttr["class"].'"';
 	}
-	if(!empty($s))
+	
+	if(array_key_exists("style", $arrAttr))
 	{
-		echo ' style ="'.$s.'"'; 
+		echo ' style="'.$arrAttr["style"].'"';
 	}
 	echo '>';
 }
 
-function NavEnd(){
+function EndNav(){
 	echo '</nav>';
 }
 
-function UlStart($c = '', $s = ''){
-	echo '<ul';
-	if(!empty($c))
+function StartSimpleDiv($arrAttr = array()){
+	echo '<div class="fastweb_div_simple"';
+	if(array_key_exists("style", $arrAttr))
 	{
-		echo ' class ="'.$c.'"'; 
-	}
-	if(!empty($s))
-	{
-		echo ' style ="'.$s.'"'; 
+		echo ' style="'.$arrAttr["style"].'"';
 	}
 	echo '>';
 }
 
-function UlEnd(){
+function StartDiv($arrAttr = array()){
+	echo '<div';
+	if(array_key_exists("class", $arrAttr))
+	{
+		echo ' class="'.$arrAttr["class"].'"';
+	}
+	
+	if(array_key_exists("style", $arrAttr))
+	{
+		echo ' style="'.$arrAttr["style"].'"';
+	}
+	echo '>';
+}
+
+function EndDiv(){
+	echo '</div>';
+}
+
+
+function StartUl($arrAttr = array()){
+	echo '<ul';
+	if(array_key_exists("class", $arrAttr))
+	{
+		echo ' class="'.$arrAttr["class"].'"';
+	}
+	
+	if(array_key_exists("style", $arrAttr))
+	{
+		echo ' style="'.$arrAttr["style"].'"';
+	}
+	echo '>';
+}
+
+
+
+function EndUl(){
 	echo '</ul>';
 }
 
@@ -96,7 +377,7 @@ function ClearFloat()
 class CHead
 {
 	function __construct(){
-		echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">';
+		echo '<!DOCTYPE html>';
 		echo '<html>';
 		echo '<head>';
 	}
@@ -172,66 +453,10 @@ class CHead
 		}
 	}
 }
-class CHtmlBody
-{
-	function __construct($c){
-		echo '<body class ="'.$c.'" topMargin=0 leftMargin=0 rightMargin=0>';
-	}
-	function __destruct(){
-		echo '</body>';
-	}
-}
-class CDiv
-{
-	function __construct($c = '', $s = ''){
-		echo '<div';
-		if(!empty($c))
-		{
-			echo ' class ="'.$c.'"'; 
-		}
-		if(!empty($s))
-		{
-			echo ' style ="'.$s.'"'; 
-		}
-		echo '>';
-	}
-	function __destruct(){
-		echo '</div>';
-	}
-}
-
-class CSimpleDiv
-{
-	function __construct($s = '')
-	{
-		echo '<div class="fastweb_div_simple"';
-		if(!empty($s))
-		{
-			echo ' style="'.$s;
-		}
-		echo '">';
-	}
-	
-	function __destruct(){
-		echo '</div>';
-	}
-}
-/*
-class CUl
-{
-	function __construct($c = '', $s = ''){
-		echo '<ul class="'.$c.'" style="'.$s.'">';
-	}
-	function __destruct(){
-		echo '</ul>';
-	}
-}
-*/
 
 
 class CDocument
 {
-	public $paragraphDiv;
 	function __construct()
 	{
 	}
@@ -242,26 +467,26 @@ class CDocument
 	
 	function AddTitle($t, $s = '')
 	{
-		$d = new CSimpleDiv("fastweb_p_title", $s);
-		AddSpan($t);
-		unset($d);
+		StartDiv(array("class" => "fastweb_p_title", "style" => $s));
+		AddSpan(array("text" => $t));
+		EndDiv();
 	}
 	
 	function AddAuthor($t)
 	{
-		$d = new CSimpleDiv("fastweb_p_author");
-		AddSpan($t);
-		unset($d);
+		StartDiv(array("class" => "fastweb_p_author"));
+		AddSpan(array("text" => $t));
+		EndDiv();
 	}
 
-	function ParagraphStart()
+	function StartParagraph()
 	{
-		$this->paragraphDiv = new CSimpleDiv("fastweb_p_text");
+		StartDiv(array("class" => "fastweb_p_text"));
 	}
 	
-	function ParagraphEnd()
+	function EndParagraph()
 	{
-		unset($this->paragraphDiv);
+		EndDiv();
 	}
 }
 
@@ -269,18 +494,15 @@ class CDocument
 class CTab
 {
 	private $id;
-	private $divContainer;
-	private $divWrapper;
-	private $divContent;
 	
 	function __construct()
 	{
 		$this->id = 1;
-		$this->divContainer = new CDiv("fastweb_tab_container");
-		$this->divWrapper = new CDiv("fastweb_tab_wrapper");
+		StartDiv(array("class" => "fastweb_tab_container"));
+		StartDiv(array("class" => "fastweb_tab_wrapper"));
 	}
 	
-	function TabStart($name)
+	function StartTab($name)
 	{
 		
 		echo '<input type="radio" name="fastweb_tab_radio" class="fastweb_tab_radio" id="fastweb_tab_radio_'.$this->id.'" ';
@@ -291,20 +513,84 @@ class CTab
 		}	
 		echo '>';		
 		echo '<label for="fastweb_tab_radio_'.$this->id.'" class="fastweb_tab_handler fastweb_tab_handler_'.$this->id.'">'.$name.'</label>';
-			
-		$this->divContent = new CDiv("tab-content tab-content-1");
+		
+		StartDiv(array("class" => "tab-content tab-content-1"));
 	}
 	
-	function TabEnd()
+	function EndTab()
 	{
-		unset($this->divContent);
+		EndDiv();
 		++$this->id;
 	}
 	
 	function __destruct()
 	{
-		unset($this->divWrapper);
-		unset($this->divContainer);
+		EndDiv();
+		EndDiv();
+	}
+}
+
+
+class CDivTab
+{
+	private $iMax;
+	private $iCur;
+	
+	function __construct($arr)
+	{
+		$this->id = count($arr);
+		if($this->id > 10)
+		{
+			$this->id = 10;
+		}
+		$this->iCur = 1;
+		$this->Init($arr);
+	}
+	
+	function Init($arr)
+	{
+		StartDiv(array("class" => "fastweb_tab_widget_tab"));
+		AddRadio(array("checked" => true, "name" => "fastweb_tab_widget_tab", "id" => "fastweb_tab_widget_tab1"));
+		AddRadio(array("name" => "fastweb_tab_widget_tab", "id" => "fastweb_tab_widget_tab2"));
+		AddRadio(array("name" => "fastweb_tab_widget_tab", "id" => "fastweb_tab_widget_tab3"));
+		//for($i = 2; $i<= $this->id; ++$i)
+		//{
+		//	AddRadio(array("name" => "fastweb_tab_widget_tab", "id" => "fastweb_tab_widget_tab".(string)$i));
+		//}
+		
+		StartDiv(array("class" => "fastweb_tab_widget_title fastweb_tab_inline_ul"));
+		StartUl();
+		for($i = 1; $i<= $this->id; ++$i)
+		{
+			StartLi(array("class" => "fastweb_tab_widget_tab".(string)$i));
+			//DivStart("fastweb_tab_widget_tab".(string)$i);
+			AddLabel(array("text" => $arr[$i - 1], "for" => "fastweb_tab_widget_tab".(string)$i));
+			//DivEnd();
+			EndLi();
+		}
+		
+		EndUl();
+		EndDiv();
+		StartDiv(array("class" => "fastweb_tab_widget_box"));
+	}
+	
+	function StartTab()
+	{
+		StartUl(array("class" => "fastweb_tab_widget_tab".(string)$this->iCur."_list"));
+		StartSimpleDiv();
+		++$this->iCur;
+	}
+	
+	function EndTab()
+	{
+		EndDiv();
+		EndUl();
+	}
+	
+	function __destruct()
+	{
+		EndDiv();
+		EndDiv();
 	}
 }
 

@@ -12,11 +12,11 @@ function DisplayHead($para = array())
 
 function DisplayTop()
 {
-	$divExt = new CDiv("fastweb_div_top_frame", "width:100%;");
-	$divInside = new CDiv("fastweb_div_top_middle", "width:1300px;");
-		AddSpan("fastweb真是简单啊！");
-	unset($divInside);
-	unset($divExt);
+	StartDiv(array("class" => "fastweb_div_frame", "style" => "background-color:#2f3e45;"));
+	StartDiv(array("class" => "fastweb_div_middle", "style" => "background-color:#2f3e45;line-height:50px;"));
+		AddSpan(array("text" => "fastweb真是简单啊！"));
+	EndDiv();
+	EndDiv();
 }
 
 function DisplayText($k)

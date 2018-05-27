@@ -4,6 +4,25 @@
 require_once rtrim($_SERVER['DOCUMENT_ROOT'],'/').'/fastweb/php/html.php';
 require_once rtrim($_SERVER['DOCUMENT_ROOT'],'/').'/fastweb/php/pdo.php';
 
+function AddMultiCheckBox($name, $info)
+{
+	$attr = array();
+	$attr["name"] = $name;
+	foreach ($info as $val)
+	{
+		$attr["value"] = $val["value"];
+		$attr["text"] = $val["text"];
+		$attr["checked"] = $val["checked"];
+		AddCheckBox($attr);
+	}
+}
+
+function AddMultiCheckBoxWithFieldset($fieldInfo, $boxName, $boxInfo)
+{
+	StartFieldset($fieldInfo);
+	AddMultiCheckBox($boxName, $boxInfo);
+	EndFieldset();
+}
 
 function AddDoc($data)
 {
@@ -23,9 +42,9 @@ function AddDoc($data)
 	{
 		foreach ($data["paragraph"] as $val)
 		{
-			$oDoc->ParagraphStart();
-			AddSpan($val);
-			$oDoc->ParagraphEnd();
+			$oDoc->StartParagraph();
+			AddSpan(array("text" => $val));
+			$oDoc->EndParagraph();
 		}
 	}
 	
@@ -36,75 +55,74 @@ function AddDoc($data)
 
 function AddNew($data)
 {
-	$frame = new CSimpleDiv();
+	StartSimpleDiv();
 		if(!empty($data["title"]))
-		$title = new CDiv("fastweb_new_module_title");
-		AddSpan($data["title"]);
-		unset($title);
-		
-		$content = new CDiv("fastweb_new_module_content");
+		StartDiv(array("class" => "fastweb_new_module_title"));
+		AddSpan(array("text" => $data["title"]));
+		EndDiv();
+
+		StartDiv(array("class" => "fastweb_new_module_content"));
 		foreach($data["info"] as $val){
-			AddLink($val["link"],$val["text"]);
+			AddLineLink(array("href" => $val["link"], "text" => $val["text"]));
 		}
-		unset($content);
-	unset($frame);
-	
+		EndDiv();
+	EndDiv();
 }
 
 function AddMenuH($data)
 {
-	NavStart("fastweb_menu_h");
-	UlStart();
+	StartNav(array("class" => "fastweb_menu_h"));
+	StartUl();
 	foreach ($data as $val)
 	{
-		LiStartWithLink("#", $val["name"]);
+		StartLiWithLink(array("href" => "#", "text" => $val["name"]));
 		foreach ($val["list"] as $lis)
 		{
-			UlStart();
-			AddLiWithLink($lis["link"], $lis["name"]);
-			UlEnd();
+			StartUl();
+			AddLiWithLink(array("href" => $lis["link"], "text" => $lis["name"]));
+			EndUl();
 		}
-		LiEnd();
+		EndLi();
 	}
-	UlEnd();
-	NavEnd();
+	EndUl();
+	EndNav();
 }
 
 function AddMenuV($data)
 {
-	$frame = new CSimpleDiv();
-	NavStart("fastweb_menu_v");
-	UlStart();
+	StartSimpleDiv();
+	StartNav(array("class" => "fastweb_menu_v"));
+	StartUl();
 	foreach ($data as $val)
 	{
-		LiStartWithLink("#", $val["name"], "", "width:100%;");
+		StartLiWithLink(array("href" => "#", "text" => $val["name"], "style" => "width:100%;"));
 		foreach ($val["list"] as $lis)
 		{
-			UlStart();
-			AddLiWithLink($lis["link"], $lis["name"]);
-			UlEnd();
+			StartUl();
+			AddLiWithLink(array("href" => $lis["link"], "text" => $lis["name"]));
+			EndUl();
 		}
-		LiEnd();
+		EndLi();
 	}
-	UlEnd();
-	NavEnd();
-	unset($frame);
+	EndUl();
+	EndNav();
+	EndDiv();
 }
 
 function AddMenuH2($data)
 {
 	foreach ($data as $val)
 	{
-		$div_dropdown = new CDiv("fastweb_div_dropdown", "float:left;");
-		AddLink("#", $val["name"], "fastweb_span_menu");
-		$div_dropdown_content = new CDiv("fastweb_div_dropdown_content");
+		StartDiv(array("class" => "fastweb_div_dropdown", "style" => "float:left;"));
+		AddLink(array("href" => "#", "text" => $val["name"], "class" => "fastweb_span_menu"));
+		StartDiv(array("class" => "fastweb_div_dropdown_content"));
 		foreach ($val["list"] as $lis)
 		{
-			AddLink($lis["link"], $lis["name"]);
+			AddLink(array("href" => $lis["link"], "text" => $lis["name"]));
 		}
 		
-		unset($div_dropdown_content);
-		unset($div_dropdown);
+		EndDiv();
+		EndDiv();
 	}
 }
 
