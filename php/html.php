@@ -90,15 +90,6 @@ function AddSpan($arrAttr = array()){
 	echo '</span>';
 }
 
-
-
-
-/*
-function AddSpan($t, $c = '', $s = ''){
-	echo '<span class="'.$c.'" style="'.$s.'">'.$t.'</span>';
-}
-*/
-
 function AddLink($arrAttr = array()){
 	if(!is_array($arrAttr))
 	{
@@ -108,6 +99,10 @@ function AddLink($arrAttr = array()){
 	if(array_key_exists("href", $arrAttr))
 	{
 		echo ' href="'.$arrAttr["href"].'"';
+	}
+	if(array_key_exists("target", $arrAttr))
+	{
+		echo ' target="'.$arrAttr["target"].'"';
 	}
 	echo '>';
 	if(array_key_exists("text", $arrAttr))
@@ -292,6 +287,7 @@ function StartLi($arrAttr = array()){
 	echo '>';
 }
 
+
 function EndLi(){
 	echo '</li>';
 }
@@ -335,6 +331,10 @@ function StartDiv($arrAttr = array()){
 	{
 		echo ' style="'.$arrAttr["style"].'"';
 	}
+	if(array_key_exists("id", $arrAttr))
+	{
+		echo ' id="'.$arrAttr["id"].'"';
+	}
 	echo '>';
 }
 
@@ -353,6 +353,11 @@ function StartUl($arrAttr = array()){
 	if(array_key_exists("style", $arrAttr))
 	{
 		echo ' style="'.$arrAttr["style"].'"';
+	}
+	
+	if(array_key_exists("id", $arrAttr))
+	{
+		echo ' id="'.$arrAttr["id"].'"';
 	}
 	echo '>';
 }
@@ -585,6 +590,54 @@ class CDivTab
 	{
 		EndDiv();
 		EndUl();
+	}
+	
+	function __destruct()
+	{
+		EndDiv();
+		EndDiv();
+	}
+}
+
+class CDivTabBox
+{
+	private $iMax;
+	private $iCur;
+	
+	function __construct($arr)
+	{
+		$this->id = count($arr);
+		if($this->id > 10)
+		{
+			$this->id = 10;
+		}
+		$this->iCur = 1;
+		$this->Init($arr);
+	}
+	
+	function Init($arr)
+	{
+		StartDiv(array("id" => "fastweb_tab_box"));
+		StartUl(array("id" => "fastweb_tab_box_nav"));
+		for($i = 1; $i<= $this->id; ++$i)
+		{
+			StartLi();
+			AddLink(array("text" => $arr[$i - 1], "href" => "#fastweb_tab_box_tab".(string)$i, "target" => "_self"));
+			EndLi();
+		}
+		EndUl();
+		StartDiv(array("id" => "fastweb_tab_box_content"));
+	}
+	
+	function StartTab()
+	{
+		StartDiv(array("id" => "fastweb_tab_box_tab".(string)$this->iCur));
+		++$this->iCur;
+	}
+	
+	function EndTab()
+	{
+		EndDiv();
 	}
 	
 	function __destruct()

@@ -63,16 +63,18 @@ StartDiv(array("class" => "fastweb_div_middle"));
 EndDiv();
 
 StartDiv(array("class" => "fastweb_div_middle"));
-	$tab = new CTab();
+	//$tab = new CTab();
+	$tab = new CDivTabBox(array("水平菜单", "新闻", "垂直菜单"));
 	$tab->StartTab("tab1");
-	
+	DisplayMenuH("liH");
 	$tab->EndTab();
 	
 	$tab->StartTab("tab2");
-
+	DisplayNew("fastweb");
 	$tab->EndTab();
 	
 	$tab->StartTab("tab3");
+	DisplayMenuV("liH");
 	$tab->EndTab();
 	unset($tab);
 	ClearFloat();	
