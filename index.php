@@ -7,14 +7,10 @@ StartBody();
 
 DisplayTop();
 
-StartDiv(array("class" => "fastweb_div_middle"));
-	DisplayMenuH("liH");
-	ClearFloat();	
-EndDiv();
-
-
 StartDiv(array("class" => "fastweb_div_frame"));
-
+	StartDiv(array("class" => "fastweb_div_middle"));
+		DisplayMenuH("liH");
+	EndDiv();
 	StartDiv(array("class" => "fastweb_div_middle"));
 	
 		StartDiv(array("style" => "width:78%;float:left;"));
