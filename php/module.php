@@ -126,4 +126,40 @@ function AddMenuH2($data)
 	}
 }
 
+
+function AddTree($data, $branchTag = "fastweb_tree_branch_tag")
+{
+	$tree = new CTree($branchTag);
+	$tree->AddTreeData($data);
+	unset($tree);
+}
+
+function AddRollPlay($data)
+{
+	StartDiv(array("id" => "fast_web_roll_play_frame"));
+	$max = count($data);
+	for($i = 1; $i<= $max; ++$i)
+	{
+		AddLink(array("text" => (string)$i, "id" => "fast_web_roll_play_pic_id".(string)$i, "class" => "fast_web_roll_play_target"));
+	}
+	
+	StartDiv(array("id" => "fast_web_roll_play_photos", "class" => "fast_web_roll_play_target"));
+	
+	for($i = 1; $i<= $max; ++$i)
+	{
+		AddImg(array("src" => $data[$i - 1]["src"]));
+	}
+	
+	StartUl(array("id" => "fast_web_roll_play_text"));
+	for($i = 1; $i<= $max; ++$i)
+	{
+		AddLi(array("text" => $data[$i - 1]["text"]));
+	}
+	
+	EndUl();
+	EndDiv();
+	EndDiv();
+	ClearFloat();
+}
+
 ?>

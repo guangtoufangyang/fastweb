@@ -21,17 +21,17 @@ function AddSelect($arrAttr = array())
 	{
 		echo ' class="'.$arrAttr["class"].'"';
 	}
-	echo '/> ';
+	echo '> '.PHP_EOL;
 	
 	if(array_key_exists("options", $arrAttr))
 	{
 		foreach ($arrAttr["options"] as $val)
 		{
-			echo '<option value="'.$val["value"].'">'.$val["text"].'</option>';
+			echo '<option value="'.$val["value"].'">'.$val["text"].'</option>'.PHP_EOL;
 		}
 	}
 	
-	echo '</select>';
+	echo '</select>'.PHP_EOL;
 }
 
 function AddCheckBox($arrAttr = array())
@@ -58,11 +58,60 @@ function AddCheckBox($arrAttr = array())
 	{
 		echo ' checked';
 	}
-	echo '/> ';
+	echo '/> '.PHP_EOL;
+	if(array_key_exists("text", $arrAttr))
+	{
+		echo $arrAttr["text"].PHP_EOL;
+	}
+}
+
+
+function AddLi($arrAttr = array())
+{
+	if(!is_array($arrAttr)) return;
+	echo '<li';
+	if(array_key_exists("name", $arrAttr))
+	{
+		echo ' name="'.$arrAttr["name"].'"';
+	}
+	if(array_key_exists("id", $arrAttr))
+	{
+		echo ' id="'.$arrAttr["id"].'"';
+	}
+	if(array_key_exists("class", $arrAttr))
+	{
+		echo ' class="'.$arrAttr["class"].'"';
+	}
+	echo '> ';
 	if(array_key_exists("text", $arrAttr))
 	{
 		echo $arrAttr["text"];
 	}
+	echo '</li>'.PHP_EOL;
+}
+
+function StartOl($arrAttr = array())
+{
+	if(!is_array($arrAttr)) return;
+	echo '<ol';
+	if(array_key_exists("name", $arrAttr))
+	{
+		echo ' name="'.$arrAttr["name"].'"';
+	}
+	if(array_key_exists("id", $arrAttr))
+	{
+		echo ' id="'.$arrAttr["id"].'"';
+	}
+	if(array_key_exists("class", $arrAttr))
+	{
+		echo ' class="'.$arrAttr["class"].'"';
+	}
+	echo '> '.PHP_EOL;
+}
+
+function EndOl()
+{
+	echo '</ol>'.PHP_EOL;
 }
 
 function StartFieldset($arrAttr = array())
@@ -81,16 +130,16 @@ function StartFieldset($arrAttr = array())
 	{
 		echo ' class="'.$arrAttr["class"].'"';
 	}
-	echo '> ';
+	echo '> '.PHP_EOL;
 	if(array_key_exists("text", $arrAttr))
 	{
-		echo '<legend>'.$arrAttr["text"].'</legend>';
+		echo '<legend>'.$arrAttr["text"].'</legend>'.PHP_EOL;
 	}
 }
 
 function EndFieldset()
 {
-	echo '</fieldset>';
+	echo '</fieldset>'.PHP_EOL;
 }
 
 function AddSpan($arrAttr = array()){
@@ -114,7 +163,7 @@ function AddSpan($arrAttr = array()){
 	{
 		echo $arrAttr["text"];
 	}
-	echo '</span>';
+	echo '</span>'.PHP_EOL;
 }
 
 function AddLink($arrAttr = array()){
@@ -131,12 +180,20 @@ function AddLink($arrAttr = array()){
 	{
 		echo ' target="'.$arrAttr["target"].'"';
 	}
+	if(array_key_exists("id", $arrAttr))
+	{
+		echo ' id="'.$arrAttr["id"].'"';
+	}
+	if(array_key_exists("class", $arrAttr))
+	{
+		echo ' class="'.$arrAttr["class"].'"';
+	}
 	echo '>';
 	if(array_key_exists("text", $arrAttr))
 	{
 		echo $arrAttr["text"];
 	}
-	echo '</a>';
+	echo '</a>'.PHP_EOL;
 }
 
 function AddLineLink($arrAttr = array()){
@@ -154,7 +211,7 @@ function AddLineLink($arrAttr = array()){
 	{
 		echo $arrAttr["text"];
 	}
-	echo '</a><br>';
+	echo '</a><br>'.PHP_EOL;
 }
 
 
@@ -180,7 +237,7 @@ function AddImg($arrAttr = array()){
 		echo ' height="'.$arrAttr["height"].'"';
 	}
 	
-	echo ' />';
+	echo ' />'.PHP_EOL;
 }
 
 function AddLiWithLink($arrAttr = array()){
@@ -201,7 +258,7 @@ function AddLiWithLink($arrAttr = array()){
 	}
 	echo '>';
 	AddLink($arrAttr);
-	echo '</li>';
+	echo '</li>'.PHP_EOL;
 
 }
 
@@ -227,12 +284,12 @@ function AddRadio($arrAttr = array()){
 	{
 		echo ' checked="checked"';
 	}
-	echo '/>';
+	echo '/>'.PHP_EOL;
 }
 
 
 function AddLabel($arrAttr = array()){
-	echo '<lable ';
+	echo '<label ';
 	
 	if(array_key_exists("class", $arrAttr))
 	{
@@ -249,7 +306,7 @@ function AddLabel($arrAttr = array()){
 	{
 		echo $arrAttr["text"];
 	}
-	echo '</lable>';
+	echo '</label>'.PHP_EOL;
 }
 
 function StartLiWithLink($arrAttr = array()){
@@ -272,7 +329,7 @@ function StartLiWithLink($arrAttr = array()){
 		{
 			echo $arrAttr["text"];
 		}
-		echo '</a>';
+		echo '</a>'.PHP_EOL;
 	}
 }
 
@@ -302,12 +359,12 @@ function StartLi($arrAttr = array()){
 	{
 		echo ' style="'.$arrAttr["style"].'"';
 	}
-	echo '>';
+	echo '>'.PHP_EOL;
 }
 
 
 function EndLi(){
-	echo '</li>';
+	echo '</li>'.PHP_EOL;
 }
 
 function StartNav($arrAttr = array()){
@@ -321,11 +378,11 @@ function StartNav($arrAttr = array()){
 	{
 		echo ' style="'.$arrAttr["style"].'"';
 	}
-	echo '>';
+	echo '>'.PHP_EOL;
 }
 
 function EndNav(){
-	echo '</nav>';
+	echo '</nav>'.PHP_EOL;
 }
 
 function StartSimpleDiv($arrAttr = array()){
@@ -334,7 +391,7 @@ function StartSimpleDiv($arrAttr = array()){
 	{
 		echo ' style="'.$arrAttr["style"].'"';
 	}
-	echo '>';
+	echo '>'.PHP_EOL;
 }
 
 function StartDiv($arrAttr = array()){
@@ -352,11 +409,11 @@ function StartDiv($arrAttr = array()){
 	{
 		echo ' id="'.$arrAttr["id"].'"';
 	}
-	echo '>';
+	echo '>'.PHP_EOL;
 }
 
 function EndDiv(){
-	echo '</div>';
+	echo '</div>'.PHP_EOL;
 }
 
 
@@ -376,13 +433,13 @@ function StartUl($arrAttr = array()){
 	{
 		echo ' id="'.$arrAttr["id"].'"';
 	}
-	echo '>';
+	echo '>'.PHP_EOL;
 }
 
 
 
 function EndUl(){
-	echo '</ul>';
+	echo '</ul>'.PHP_EOL;
 }
 
 function AddHtml($path){
@@ -391,7 +448,7 @@ function AddHtml($path){
 
 function ClearFloat()
 {
-	echo '<div style="clear:both"></div>';
+	echo '<div style="clear:both"></div>'.PHP_EOL;
 }
 
 
@@ -409,60 +466,60 @@ class CHead
 	
 	function HeadConfig($config = array())
 	{
-		echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
+		echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />'.PHP_EOL;
 		if(isset($config["keyword"]))
 		{
-			echo '<meta name="keywords" content="'.$config["keyword"].'" />';
+			echo '<meta name="keywords" content="'.$config["keyword"].'" />'.PHP_EOL;
 		}
 		else
 		{
-			echo '<meta name="keywords" content="fastweb" />';
+			echo '<meta name="keywords" content="fastweb" />'.PHP_EOL;
 		}
 		
 		if(isset($config["description"]))
 		{
-			echo '<meta name="description" content="'.$config["description"].'" />';
+			echo '<meta name="description" content="'.$config["description"].'" />'.PHP_EOL;
 		}
 		else
 		{
-			echo '<meta name="description" content="fastweb" />';
+			echo '<meta name="description" content="fastweb" />'.PHP_EOL;
 		}
 		
 		if(isset($config["title"]))
 		{
-			echo '<title>'.$config["title"].'</title>';
+			echo '<title>'.$config["title"].'</title>'.PHP_EOL;
 		}
 		else
 		{
-			echo '<title>fastweb</title>';
+			echo '<title>fastweb</title>'.PHP_EOL;
 		}
 		
 		if(isset($config["base"]))
 		{
-			echo '<base href="'.$config["base"].'" />';
+			echo '<base href="'.$config["base"].'" />'.PHP_EOL;
 		}
 		else
 		{
-			echo '<base href="'.SITE_URL.'" />';;
+			echo '<base href="'.SITE_URL.'" />'.PHP_EOL;
 		}
 		
 		if(isset($config["target"]))
 		{
-			echo '<base target="'.$config["target"].'" />';
+			echo '<base target="'.$config["target"].'" />'.PHP_EOL;
 		}
 		else
 		{
-			echo '<base target="_blank" />';
+			echo '<base target="_blank" />'.PHP_EOL;
 		}
 		
-		echo '<script type="text/javascript" src="'.SITE_URL.'/js/fastweb.js"></script>';
-		echo '<link href="'.SITE_URL.'/css/fastweb.css" rel="stylesheet" type="text/css" />';
+		echo '<script type="text/javascript" src="'.SITE_URL.'/js/fastweb.js"></script>'.PHP_EOL ;
+		echo '<link href="'.SITE_URL.'/css/fastweb.css" rel="stylesheet" type="text/css" />'.PHP_EOL ;
 		
 		if(isset($config["css"]))
 		{
 			foreach ($config["css"] as $val)
 			{
-				echo '<link href="'.$val.'" rel="stylesheet" type="text/css" />';
+				echo '<link href="'.$val.'" rel="stylesheet" type="text/css" />'.PHP_EOL ;
 			}
 		}
 		
@@ -470,7 +527,7 @@ class CHead
 		{
 			foreach ($config["js"] as $val)
 			{
-				echo '<script type="text/javascript" src="'.$val.'"></script>';
+				echo '<script type="text/javascript" src="'.$val.'"></script>'.PHP_EOL ;
 			}
 		}
 	}
@@ -512,6 +569,60 @@ class CDocument
 	}
 }
 
+class CTree
+{
+	private $sBranchTag;
+	private $iBranchNum;
+	
+	function __construct($branchTag)
+	{
+		$this->iBranchNum = 1;
+		$this->sBranchTag = $branchTag;
+		StartOl(array("class" => "fastweb_tree"));
+	}
+	
+	function __destruct()
+	{
+		EndOl();
+	}
+	
+	function StartBranch($text)
+	{
+		StartLi(array("class" => "fastweb_tree_branch"));
+		AddLabel(array("for" => $this->sBranchTag.(string)$this->iBranchNum, "text" => $text));
+		AddCheckBox(array("class" => "fastweb_tree_input", "id" => $this->sBranchTag.(string)$this->iBranchNum));
+		StartOl();
+		++$this->iBranchNum;
+	}
+	function EndBranch()
+	{
+		EndOl();
+		EndLi();
+	}
+	function AddLeaf($link, $text)
+	{
+		StartLi(array("class" => "fastweb_tree_leaf"));
+		AddLink(array("href" => $link, "text" => $text));
+		EndLi();
+	}
+	
+	function AddTreeData($data)
+	{
+		foreach ($data as $val)
+		{
+			if($val["name"] == "branch")
+			{
+				$this->StartBranch($val["text"]);
+				$this->AddTreeData($val["leaf"]);
+				$this->EndBranch();
+			}
+			else if($val["name"] == "leaf")
+			{
+				$this->AddLeaf($val["link"], $val["text"]);
+			}
+		}
+	}
+}
 
 class CTab
 {
@@ -523,6 +634,12 @@ class CTab
 		$this->id = count($arr);
 		$this->iCur = 1;
 		$this->Init($arr);
+	}
+	
+	function __destruct()
+	{
+		EndDiv();
+		EndDiv();
 	}
 	
 	function Init($arr)
@@ -550,11 +667,6 @@ class CTab
 		EndDiv();
 	}
 	
-	function __destruct()
-	{
-		EndDiv();
-		EndDiv();
-	}
 }
 
 ?>

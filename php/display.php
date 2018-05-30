@@ -85,4 +85,21 @@ function DisplayCheckbox($k)
 	}
 }
 
+function DisplayTree($k, $branchTag = "")
+{
+	if(!DataGetByKey($k, $data))
+	{
+		return;
+	}
+	
+	if(empty($branchTag))
+	{
+		AddTree($data);
+	}
+	else
+	{
+		AddTree($data, $branchTag);
+	}
+}
+
 ?>
