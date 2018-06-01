@@ -59,12 +59,28 @@ StartDiv(array("class" => "fastweb_div_frame"));
 EndDiv();
 
 StartDiv(array("class" => "fastweb_div_middle"));
-	StartDiv(array("style" => "width:68%;float:left;"));
+	StartDiv(array("style" => "width:30%;float:left;"));
 		DisplayTree("tree", "tree1_");
 	EndDiv();
 		
+	StartDiv(array("style" => "width:30%;float:left;"));
+		DisplayTree("tree", "tree1_");
+	EndDiv();
+	
 	StartDiv(array("style" => "width:30%;float:right;"));
-		DisplayTree("tree", "tree2_");
+		$tree = new CTree("tree2_");
+		$tree->StartBranch("树枝");
+			$tree->StartBranch("树枝");
+				$tree->StartBranch("树枝");
+					$tree->AddLeaf("#", "树叶");
+					$tree->AddLeaf("#", "树叶");
+				$tree->EndBranch();
+			$tree->EndBranch();
+			$tree->AddLeaf("#", "树叶");
+		$tree->EndBranch();
+		$tree->StartBranch("树枝");
+			$tree->AddLeaf("#", "树叶");
+		$tree->EndBranch();
 	EndDiv();
 	ClearFloat();
 EndDiv();

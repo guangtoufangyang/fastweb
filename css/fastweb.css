@@ -251,7 +251,8 @@ input.fastweb_tree_input{
 }
 ol.fastweb_tree{
 	padding: 0 0 0 30px;
-	width: 300px;
+	width: 100px;
+	text-align:left;
 }
 li.fastweb_tree_branch
 {
@@ -263,7 +264,7 @@ li.fastweb_tree_branch .fastweb_tree_leaf{
 	margin-left: -18px !important;
 }
 li.fastweb_tree_branch .fastweb_tree_leaf a{
-	background: url(document.png) 0 0 no-repeat;
+	background: url(../image/fastweb_tree_leaf.png) 0 0 no-repeat;
 	color: #002446;
 	padding-left: 21px;
 	text-decoration:none;
@@ -294,10 +295,10 @@ li.fastweb_tree_branch label {
 	cursor: pointer;
 	display: block;
 	padding-left: 17px;
-	background: url(toggle-small-expand.png) no-repeat 0px 1px;
+	background: url(../image/fastweb_tree_branch_open.png) no-repeat 0px 1px;
 }
 input.fastweb_tree_input:checked + ol {
-	background: url(toggle-small.png) 44px 5px no-repeat;
+	background: url(../image/fastweb_tree_branch_close.png) 44px 5px no-repeat;
 	margin: -22px 0 0 -44px;
 	padding:27px 0 0 80px;
 	height: auto;
