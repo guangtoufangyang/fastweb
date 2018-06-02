@@ -64,7 +64,7 @@ StartDiv(array("class" => "fastweb_div_middle"));
 	EndDiv();
 		
 	StartDiv(array("style" => "width:30%;float:left;"));
-		DisplayTree("tree", "tree1_");
+		//DisplayTree("tree", "tree1_");
 	EndDiv();
 	
 	StartDiv(array("style" => "width:30%;float:right;"));
@@ -118,6 +118,37 @@ StartDiv(array("class" => "fastweb_div_middle"));
 	unset($tab);
 	ClearFloat();	
 EndDiv();
+
+StartDiv(array("class" => "fastweb_div_middle"));
+	$tab = new CTab(array("水平菜单", "新闻", "垂直菜单", "单选框", "多选框", "播放"), "200px", "fastweb_tab_box_tab_prefix");
+	$tab->StartTab();
+	DisplayMenuH("liH");
+	$tab->EndTab();
+	
+	$tab->StartTab();
+	DisplayNew("fastweb");
+	$tab->EndTab();
+	
+	$tab->StartTab();
+	DisplayMenuV("liH");
+	$tab->EndTab();
+	
+	$tab->StartTab();
+	DisplayOptions("option");
+	$tab->EndTab();
+	
+	$tab->StartTab();
+	DisplayCheckbox("checkbox");
+	$tab->EndTab();
+	
+	$tab->StartTab();
+
+	$tab->EndTab();
+	
+	unset($tab);
+	ClearFloat();	
+EndDiv();
+
 
 StartDiv(array("class" => "fastweb_div_middle"));
 	//AddRollPlay(array(array("text" => "图片1", "src" => "./pic/bg1.jpg"),array("text" => "图片2", "src" => "./pic/bg2.jpg"),array("text" => "图片3", "src" => "./pic/bg3.jpg"),array("text" => "图片4", "src" => "./pic/bg4.jpg"),array("text" => "图片5", "src" => "./pic/bg5.jpg")));

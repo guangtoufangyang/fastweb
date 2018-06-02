@@ -244,6 +244,12 @@ nav.fastweb_menu_v ul li:hover ul
 	height:400px;
 	display:block;
 }
+#fastweb_tab_box_tab_prefix1,#fastweb_tab_box_tab_prefix2,#fastweb_tab_box_tab_prefix3,#fastweb_tab_box_tab_prefix4,#fastweb_tab_box_tab_prefix5,#fastweb_tab_box_tab_prefix6{
+	width:100%;
+	height:400px;
+	display:block;
+	top: -44px;
+}
 
 
 input.fastweb_tree_input{
