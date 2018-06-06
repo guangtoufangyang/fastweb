@@ -313,3 +313,44 @@ input.fastweb_tree_input:checked + ol {
 input.fastweb_tree_input:checked + ol > li {
 	height: auto;
 }
+
+.fastweb_rollplay_contain{
+    position: relative;
+    margin:auto;
+    width: 600px;
+    height: 200px;
+    text-align: center;
+    font-family: Arial;
+    color: #FFF;
+    overflow: hidden;
+}
+
+.fastweb_rollplay_contain ul{
+    margin:10px 0;
+    padding:0;
+    width: 1800px;
+    transition:all 0.5s;
+}
+
+.fastweb_rollplay_contain li{
+    float: left;
+    width: 600px;
+    height: 200px;
+    list-style: none;
+    line-height: 200px;
+    font-size: 36px;
+}
+
+.fastweb_rollplay_contain .fastweb_rollplay_slide{        
+    animation:fastweb_rollplay_marginLeft 10.5s infinite;
+}
+
+@keyframes fastweb_rollplay_marginLeft{
+    0%{margin-left: 0;}
+    28.5%{margin-left: 0;}
+    33.3%{margin-left: -600px;}
+    62%{margin-left: -600px;}
+    66.7%{margin-left: -1200px;}
+    95.2%{margin-left: -1200px;}
+    100%{margin-left: 0;}
+}

@@ -90,7 +90,7 @@ StartDiv(array("class" => "fastweb_div_middle"));
 EndDiv();
 
 StartDiv(array("class" => "fastweb_div_middle"));
-	$tab = new CTab(array("水平菜单", "新闻", "垂直菜单", "单选框", "多选框", "播放"));
+	$tab = new CTab(array("水平菜单", "新闻", "垂直菜单", "单选框", "多选框", "播放", "带链接播放"));
 	$tab->StartTab();
 	DisplayMenuH("liH");
 	$tab->EndTab();
@@ -112,7 +112,11 @@ StartDiv(array("class" => "fastweb_div_middle"));
 	$tab->EndTab();
 	
 	$tab->StartTab();
-
+	AddRollPlayImg(array("//www.baidu.com/img/bd_logo1.png","//www.baidu.com/img/bd_logo1.png","//www.baidu.com/img/bd_logo1.png"));
+	$tab->EndTab();
+	
+	$tab->StartTab();
+	//AddRollPlayImg(array(array("src" => "//www.baidu.com/img/bd_logo1.png", "href" => "#"), array("src" => "//www.baidu.com/img/bd_logo1.png", "href" => "#"), array("src" => "//www.baidu.com/img/bd_logo1.png", "href" => "#")));
 	$tab->EndTab();
 	
 	unset($tab);

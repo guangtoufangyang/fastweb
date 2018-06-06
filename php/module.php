@@ -134,7 +134,39 @@ function AddTree($data, $branchTag = "fastweb_tree_branch_tag")
 	unset($tree);
 }
 
-function AddRollPlay($data)
+function AddRollPlayImg($data, $contain = "fastweb_rollplay_contain", $slide = "fastweb_rollplay_slide")
+{
+	StartDiv(array("class" => $contain));
+	StartUl(array("class" => $slide));
+	
+	foreach ($data as $val)
+	{
+		StartLi();
+		AddImg(array("src" => $val));
+		EndLi();
+	}
+	
+	EndUl();
+	EndDiv();
+}
+/*
+function AddRollPlayImgWithLink($data, $contain = "fastweb_rollplay_contain", $slide = "fastweb_rollplay_slide")
+{
+	StartDiv(array("class" => $contain));
+	StartUl(array("class" => $slide));
+	
+	foreach ($data as $val)
+	{
+		StartLi();
+		AddImg($val);
+		EndLi();
+	}
+	
+	EndUl();
+	EndDiv();
+}
+*/
+function AddRollPlay1($data)
 {
 	StartDiv(array("id" => "fast_web_roll_play_frame"));
 	$max = count($data);
