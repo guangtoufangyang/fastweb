@@ -1,5 +1,5 @@
-*{margin:0; padding:0;}
-a{font:bold 14px/24px "微软雅黑", Verdana, Arial, Helvetica, sans-serif; color:green; text-decoration:none;}
+*{margin:0;padding:0;}
+a{font:bold 14px/24px "微软雅黑", Verdana, Arial, Helvetica, sans-serif;color:green;text-decoration:none;}
 a:hover{color:red;}
 
 body
@@ -354,3 +354,57 @@ input.fastweb_tree_input:checked + ol > li {
     95.2%{margin-left: -1200px;}
     100%{margin-left: 0;}
 }
+
+
+table.fastweb_table_style1 {
+	font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #999999;
+	border-collapse: collapse;
+}
+table.fastweb_table_style1 th {
+	background-color:#c3dde0;
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #a9c6c9;
+}
+table.fastweb_table_style1 tr {
+	background-color:#d4e3e5;
+}
+table.fastweb_table_style1 td {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #a9c6c9;
+}
+
+.fastweb_table_style2{ 
+	font-size:12px;
+} 
+.fastweb_table_style2{ 
+	table-layout:fixed;
+	empty-cells:show;
+	border-collapse: collapse;
+	margin:0 auto;
+} 
+.fastweb_table_style2 td{ 
+	height:30px;
+} 
+.fastweb_table_style2{ 
+	border:1px solid #cad9ea;
+	color:#666;
+} 
+.fastweb_table_style2 th { 
+	background-repeat:repeat-x;
+	height:30px;
+} 
+.fastweb_table_style2 td,.fastweb_table_style2 th{ 
+	border:1px solid #cad9ea;
+	padding:0 1em 0;
+} 
+.fastweb_table_style2 tr.alter{ 
+	background-color:#f5fafe;
+} 
