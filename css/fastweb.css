@@ -363,6 +363,7 @@ table.fastweb_table_style1 {
 	border-width: 1px;
 	border-color: #999999;
 	border-collapse: collapse;
+	width:100%;
 }
 table.fastweb_table_style1 th {
 	background-color:#c3dde0;
@@ -383,6 +384,7 @@ table.fastweb_table_style1 td {
 
 .fastweb_table_style2{ 
 	font-size:12px;
+	width:100%;
 } 
 .fastweb_table_style2{ 
 	table-layout:fixed;

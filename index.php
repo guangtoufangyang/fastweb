@@ -122,7 +122,7 @@ StartDiv(array("class" => "fastweb_div_middle"));
 	unset($tab);
 	ClearFloat();	
 EndDiv();
-
+/*
 StartDiv(array("class" => "fastweb_div_middle"));
 	$tab = new CTab(array("水平菜单", "新闻", "垂直菜单", "单选框", "多选框", "播放"), "200px", "fastweb_tab_box_tab_prefix");
 	$tab->StartTab();
@@ -152,11 +152,51 @@ StartDiv(array("class" => "fastweb_div_middle"));
 	unset($tab);
 	ClearFloat();	
 EndDiv();
-
+*/
 
 StartDiv(array("class" => "fastweb_div_middle"));
 	//AddRollPlay(array(array("text" => "图片1", "src" => "./pic/bg1.jpg"),array("text" => "图片2", "src" => "./pic/bg2.jpg"),array("text" => "图片3", "src" => "./pic/bg3.jpg"),array("text" => "图片4", "src" => "./pic/bg4.jpg"),array("text" => "图片5", "src" => "./pic/bg5.jpg")));
-
+	StartDiv(array("style" => "width:48%;float:left;"));
+	
+	$table = new CTable();
+	$table->AddTh("标题");
+	$table->AddTh("标题");
+	$table->AddTh("标题");
+	$table->AddTd("内容");
+	$table->AddTd("内容");
+	$table->AddTd("内容");
+	$table->AddTd("内容");
+	$table->AddTd("内容");
+	$table->AddTd("内容");
+	$table->AddTd("内容");
+	$table->StartTd();
+	DisplayText("libai");
+	$table->EndTd();
+	unset($table);
+	
+	EndDiv();
+	
+	StartDiv(array("style" => "width:48%;float:right;"));
+	
+	$table = new CTable();
+	$table->SetTrMouse();
+	$table->SetWidthArr(array("1%","1%","1%"));
+	$table->AddTh("标题");
+	$table->AddTh("标题");
+	$table->AddTh("标题");
+	$table->AddTd("内容");
+	$table->AddTd("内容");
+	$table->AddTd("内容");
+	$table->AddTd("内容");
+	$table->AddTd("内容");
+	$table->AddTd("内容");
+	$table->AddTd("内容");
+	$table->StartTd();
+	DisplayText("libai");
+	$table->EndTd();
+	unset($table);
+	
+	EndDiv();
 	
 ClearFloat();
 EndDiv();

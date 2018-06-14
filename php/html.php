@@ -683,4 +683,146 @@ class CTab
 }
 
 
+class CTable{
+	private $mTd;
+	private $mMaxTd;
+	private $mNum;
+	private $mTrMouseOn;
+	private $mTrMouseOut;
+	private $mTdWidth;
+	private $mTableEnd;
+	private $mTdWidArr;
+	function __construct($c = "fastweb_table_style1", $max=3, $style="", $summary=""){
+		$this->mTd = 0;
+		$this->mTableEnd = 0;
+		$this->mMaxTd = $max;
+		echo '<table summary = "'.$summary.'" class="'.$c.'" style="'.$style.'">';
+		if($this->mMaxTd <= 0)
+		{
+			$this->mMaxTd = 3;
+		}
+	}
+	function __destruct(){
+		
+		if(0 != $this->mTd)
+		{
+			for(;$this->mTd < $this->mMaxTd; ++$this->mTd){
+				echo '<td></td>';	
+			}
+		}
+		$this->EndTr();
+		$this->mTd = 0;
+		
+		$this->TableTail();
+	}
+	function TableTail(){
+	    if($this->mTableEnd == 0)
+	    {
+	        echo "</table>";
+	        $this->mTableEnd = 1;
+	    }		
+	}
+	
+	function SetTrMouse($colorOn = "#ffff66", $colorOut = "#d4e3e5")
+	{
+		$this->mTrMouseOn = ColorEventMouseOn($colorOn);
+		$this->mTrMouseOut = ColorEventMouseOut($colorOut);
+	}
+	
+	function StartTr()
+	{
+		echo "<tr ".$this->mTrMouseOn." ".$this->mTrMouseOut;
+	
+		
+		echo ">";
+	}
+	
+	function EndTr()
+	{
+		echo "<tr>";
+	}
+	
+	function StartTd()
+	{
+		if($this->mTd==0){
+			$this->StartTr();
+		}
+		echo "<td ";
+	
+		if(!empty($this->mTdWidArr))
+		{
+			echo 'style="width:'.$this->mTdWidArr[$this->mTd].'"';
+		}
+		
+		echo ">";
+	}
+	
+	function EndTd()
+	{
+		echo "</td>";
+		++$this->mTd;
+		if($this->mTd == $this->mMaxTd){
+			$this->EndTr();
+			$this->mTd = 0;
+		}
+	}
+	
+	function StartTh()
+	{
+		if($this->mTd==0){
+			$this->StartTr();
+		}
+		echo "<th ";
+	
+		
+		echo ">";
+	}
+	
+	function EndTh()
+	{
+		echo "</th>";
+		++$this->mTd;
+		if($this->mTd == $this->mMaxTd){
+			$this->EndTr();
+			$this->mTd = 0;
+		}
+	}
+	
+	function AddTh($text)
+	{
+		$this->StartTh();
+		echo $text;
+		$this->EndTh();
+	}
+	
+	function AddTd($text)
+	{
+		$this->StartTd();
+		echo $text;
+		$this->EndTd();
+	}
+	
+	function AddCaption($cap){
+		echo '<caption>'.$cap.'</caption>';
+		$this->mTd = 0;
+	}
+	
+	function SetWidthArr($widthArr){
+		if(!is_array($widthArr))
+		{
+			return;
+		}
+		
+		if($this->mMaxTd != count($widthArr))
+		{
+			return;
+		}
+		
+		$this->mTdWidArr = $widthArr;
+	}
+
+}
+
+
+
 ?>
