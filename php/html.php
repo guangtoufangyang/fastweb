@@ -686,15 +686,18 @@ class CTab
 class CTable{
 	private $mTd;
 	private $mMaxTd;
-	private $mNum;
+	private $mLineNum;
 	private $mTrMouseOn;
 	private $mTrMouseOut;
 	private $mTdWidth;
 	private $mTableEnd;
 	private $mTdWidArr;
+	private $mTdColorClass;
+	private $mTdColorClassCnt;
 	function __construct($c = "fastweb_table_style1", $max=3, $style="", $summary=""){
 		$this->mTd = 0;
 		$this->mTableEnd = 0;
+		$this->mLineNum = 0;
 		$this->mMaxTd = $max;
 		echo '<table summary = "'.$summary.'" class="'.$c.'" style="'.$style.'">';
 		if($this->mMaxTd <= 0)
@@ -723,18 +726,40 @@ class CTable{
 	    }		
 	}
 	
+	function SetTdColor($arrAttr = array())
+	{
+		$this->mTdColorClass = $arrAttr;
+		$this->mTdColorClassCnt = count($arrAttr);
+	}
+	
 	function SetTrMouse($colorOn = "#ffff66", $colorOut = "#d4e3e5")
 	{
 		$this->mTrMouseOn = ColorEventMouseOver($colorOn);
 		$this->mTrMouseOut = ColorEventMouseOut($colorOut);
 	}
 	
-	function StartTr()
+	function StartTr($arrAttr = array())
 	{
 		echo "<tr ".$this->mTrMouseOn." ".$this->mTrMouseOut;
-	
-		
+
+		if(is_array($arrAttr))
+		{
+			if(array_key_exists("name", $arrAttr))
+			{
+				echo ' name="'.$arrAttr["name"].'"';
+			}
+			if(array_key_exists("id", $arrAttr))
+			{
+				echo ' id="'.$arrAttr["id"].'"';
+			}
+			if(array_key_exists("class", $arrAttr))
+			{
+				echo ' class="'.$arrAttr["class"].'"';
+			}
+		}
+
 		echo ">";
+		++$this->mLineNum;
 	}
 	
 	function EndTr()
@@ -745,7 +770,15 @@ class CTable{
 	function StartTd()
 	{
 		if($this->mTd==0){
-			$this->StartTr();
+			if($this->mTdColorClassCnt > 0)
+			{
+				$this->StartTr(array("class" => $this->mTdColorClass[$this->mLineNum % $this->mTdColorClassCnt]));
+			}
+			else
+			{
+				$this->StartTr();
+			}
+			
 		}
 		echo "<td ";
 	

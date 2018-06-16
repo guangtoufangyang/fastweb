@@ -373,11 +373,27 @@ table.fastweb_table_style1 tr th {
 	border-color: #a9c6c9;
 }
 table.fastweb_table_style1 tr {
-	background-color:#d4e3e5;
+	/*background-color:#d4e3e5;*/
 }
 table.fastweb_table_style1 tr td {
 	border-width: 1px;
 	padding: 8px;
 	border-style: solid;
 	border-color: #a9c6c9;
+}
+
+
+.fastweb_bgcolor_fcf
+{
+	background-color:#fcf;
+}
+
+.fastweb_bgcolor_ffc
+{
+	background-color:#ffc;
+}
+
+.fastweb_bgcolor_cff
+{
+	background-color:#cff;
 }
