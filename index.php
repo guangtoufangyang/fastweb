@@ -212,6 +212,10 @@ StartDiv(array("class" => "fastweb_div_middle"));
 ClearFloat();
 EndDiv();
 
+StartDiv(array("class" => "fastweb_div_middle"));
+AddPageTurning(5, 12, 8, "//localhost/fastweb?page=");
+EndDiv();
+
 StartDiv(array("class" => "fastweb_div_frame"));
 	AddHtml("Bottom.html");
 EndDiv();

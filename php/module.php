@@ -24,6 +24,47 @@ function AddMultiCheckBoxWithFieldset($fieldInfo, $boxName, $boxInfo)
 	EndFieldset();
 }
 
+function AddPageTurning($minNum, $maxNum, $currNum, $urlPrefix, $globalMax = 100)
+{
+	if(($currNum < $minNum) || ($currNum > $maxNum))
+	{
+		$currNum = $minNum;
+	}
+	
+	StartUl(array("class" => "fastweb_page"));
+	if($currNum > 1)
+	{
+		StartLi();
+		AddLink(array("href" => $urlPrefix.($currNum - 1), "text" => "上一页"));
+		EndLi();
+	}
+	
+	for($i = $minNum; $i <= $maxNum; ++$i)
+	{
+		StartLi();
+		if($i != $currNum)
+		{
+			AddLink(array("href" => $urlPrefix.($currNum - 1), "text" => $i));
+		}
+		else
+		{
+			AddLink(array("href" => $urlPrefix.($currNum - 1), "text" => $i, "class" => "fastweb_page_active"));
+		}	
+		
+		
+		EndLi();
+	}
+	
+	if(($currNum < $globalMax) || ($currNum < $maxNum))
+	{
+		StartLi();
+		AddLink(array("href" => $urlPrefix.($currNum + 1), "text" => "下一页"));
+		EndLi();
+	}
+	
+	EndUl();
+}
+
 function AddDoc($data)
 {
 	$oDoc = new CDocument();

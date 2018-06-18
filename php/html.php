@@ -97,6 +97,7 @@ function AddLi($arrAttr = array())
 	echo '</li>'.PHP_EOL;
 }
 
+
 function StartOl($arrAttr = array())
 {
 	if(!is_array($arrAttr)) return;

@@ -390,17 +390,43 @@ table.fastweb_table_style1 tr td {
 }
 
 
-.fastweb_bgcolor_fcf
-{
+ul.fastweb_page {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+	width:100%;
+}
+
+ul.fastweb_page li {
+	display: inline;
+}
+
+ul.fastweb_page li a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+	border: 1px solid #ddd;
+}
+
+ul.fastweb_page li a.fastweb_page_active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+ul.fastweb_page li a:hover:not(.fastweb_page_active) {
+	background-color: #ddd;
+}
+
+
+.fastweb_bgcolor_fcf {
 	background-color:#fcf;
 }
 
-.fastweb_bgcolor_ffc
-{
+.fastweb_bgcolor_ffc {
 	background-color:#ffc;
 }
 
-.fastweb_bgcolor_cff
-{
+.fastweb_bgcolor_cff {
 	background-color:#cff;
 }
