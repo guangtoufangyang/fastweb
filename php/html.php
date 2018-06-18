@@ -637,6 +637,7 @@ class CTab
 	private $iCur;
 	private $iHeight;
 	private $sTabPrefix;
+	private $arrTabList;
 	
 	function __construct($arr, $iHeight = "", $sTabPrefix = "fastweb_tab_box_tab")
 	{
@@ -644,26 +645,35 @@ class CTab
 		$this->iCur = 1;
 		$this->sTabPrefix = $sTabPrefix;
 		$this->iHeight = $iHeight;
-		$this->Init($arr);
+		$this->arrTabList = $arr;
+		$this->AddTabList($this->arrTabList);
 	}
 	
 	function __destruct()
 	{
 		EndDiv();
+		StartUl(array("id" => "fastweb_tab_box_nav"));
+		for($i = 1; $i<= $this->id; ++$i)
+		{
+			StartLi();
+			AddLink(array("text" => $this->arrTabList[$i - 1], "href" => "#".$this->sTabPrefix.(string)$i, "target" => "_self"));
+			EndLi();
+		}
+		EndUl();
 		EndDiv();
 	}
 	
-	function Init($arr)
+	function AddTabList($arr)
 	{
 		StartDiv(array("id" => "fastweb_tab_box", "style" => empty($this->iHeight) ? "" : "height:".$this->iHeight.";"));
-		StartUl(array("id" => "fastweb_tab_box_nav"));
+		/*StartUl(array("id" => "fastweb_tab_box_nav"));
 		for($i = 1; $i<= $this->id; ++$i)
 		{
 			StartLi();
 			AddLink(array("text" => $arr[$i - 1], "href" => "#".$this->sTabPrefix.(string)$i, "target" => "_self"));
 			EndLi();
 		}
-		EndUl();
+		EndUl();*/
 		StartDiv(array("id" => "fastweb_tab_box_content", "style" => empty($this->iHeight) ? "" : "height:".$this->iHeight.";"));
 	}
 	

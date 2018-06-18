@@ -52,7 +52,9 @@ div.fastweb_new_module_title{
 	line-height:30px;
 	vertical-align:middle;
 	text-align:left;
-	border-radius: 25px;
+	/*border-radius: 15px;*/
+	border-top-left-radius:15px;
+	border-top-right-radius:15px;
 }
 div.fastweb_new_module_title,div.fastweb_new_module_content{	
 	width : 100% - 20px;
@@ -61,10 +63,12 @@ div.fastweb_new_module_title,div.fastweb_new_module_content{
 div.fastweb_new_module_content{	
 	background-color:#CAE1FF;
 	box-shadow:0 0 30px 10px rgba(255,255,255,.5) inset;
-	border-radius: 25px;
 	text-align:left;
 	padding-left: 10px;
 	line-height:30px;
+	/*border-radius: 15px;*/
+	border-bottom-right-radius:15px;
+	border-bottom-left-radius:15px;
 }
 
 
@@ -219,12 +223,12 @@ nav.fastweb_menu_v ul li:hover ul
 }
 #fastweb_tab_box_nav li{
 	float:left;
-	margin:0 3px;
+	margin:0;
 	list-style:none;
 	border:1px solid #999;
-	border-bottom:none;
+	border-top:none;
 	height:24px;
-	width:60px;
+	width:100px;
 	text-align:center;
 	background:#FFF;
 }
@@ -237,7 +241,7 @@ nav.fastweb_menu_v ul li:hover ul
 	text-align:center;
 	background:#FFF;
 	overflow:hidden;
-	margin-bottom:1px;
+	/*margin-bottom:1px;*/
 }
 #fastweb_tab_box_tab1,#fastweb_tab_box_tab2,#fastweb_tab_box_tab3,#fastweb_tab_box_tab4,#fastweb_tab_box_tab5,#fastweb_tab_box_tab6{
 	width:100%;
@@ -257,7 +261,7 @@ input.fastweb_tree_input{
 }
 ol.fastweb_tree{
 	padding: 0 0 0 30px;
-	width: 100px;
+	width: 100%;
 	text-align:left;
 }
 li.fastweb_tree_branch
@@ -270,9 +274,10 @@ li.fastweb_tree_branch .fastweb_tree_leaf{
 	margin-left: -18px !important;
 }
 li.fastweb_tree_branch .fastweb_tree_leaf a{
-	background: url(../image/fastweb_tree_leaf.png) 0 0 no-repeat;
+	background: url(../image/fastweb_tree_leaf.png) 0px 0px no-repeat;
+	background-size:auto auto;
 	color: #002446;
-	padding-left: 21px;
+	padding-left: 25px;
 	text-decoration:none;
 	display: block;
 }
@@ -300,11 +305,13 @@ input.fastweb_tree_input + ol > li {
 li.fastweb_tree_branch label {
 	cursor: pointer;
 	display: block;
-	padding-left: 17px;
-	background: url(../image/fastweb_tree_branch_open.png) no-repeat 0px 1px;
+	padding-left: 25px;
+	background: url(../image/fastweb_tree_branch_close.png) 0px 0px no-repeat;
+	background-size:auto auto;
 }
 input.fastweb_tree_input:checked + ol {
-	background: url(../image/fastweb_tree_branch_close.png) 44px 5px no-repeat;
+	background: url(../image/fastweb_tree_branch_open.png) 44px 0px no-repeat;
+	background-size:auto auto;
 	margin: -22px 0 0 -44px;
 	padding:27px 0 0 80px;
 	height: auto;
@@ -314,7 +321,7 @@ input.fastweb_tree_input:checked + ol > li {
 	height: auto;
 }
 
-.fastweb_rollplay_contain{
+div.fastweb_rollplay_contain{
     position: relative;
     margin:auto;
     width: 600px;
@@ -325,14 +332,14 @@ input.fastweb_tree_input:checked + ol > li {
     overflow: hidden;
 }
 
-.fastweb_rollplay_contain ul{
+div.fastweb_rollplay_contain ul{
     margin:10px 0;
     padding:0;
     width: 1800px;
     transition:all 0.5s;
 }
 
-.fastweb_rollplay_contain li{
+div.fastweb_rollplay_contain li{
     float: left;
     width: 600px;
     height: 200px;
@@ -341,7 +348,7 @@ input.fastweb_tree_input:checked + ol > li {
     font-size: 36px;
 }
 
-.fastweb_rollplay_contain .fastweb_rollplay_slide{     
+div.fastweb_rollplay_contain ul.fastweb_rollplay_slide{     
     animation:fastweb_rollplay_marginLeft 10.5s infinite;
 }
 
