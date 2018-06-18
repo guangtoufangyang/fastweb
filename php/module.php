@@ -24,6 +24,27 @@ function AddMultiCheckBoxWithFieldset($fieldInfo, $boxName, $boxInfo)
 	EndFieldset();
 }
 
+function AddNavigationL1($arr, $curNav, $bgColor = "#f3f3f3", $onColor = "#4CAF50")
+{
+	StartUl(array("class" => "fastweb_navigation"));
+	foreach($arr as $val)
+	{
+		StartLi();
+		if($val["text"] != $curNav)
+		{
+			AddLink(array("href" => $val["href"], "text" => $val["text"]));
+		}
+		else
+		{
+			AddLink(array("href" => $val["href"], "text" => $val["text"], "class" => "fastweb_navigation_active"));
+		}
+		
+		EndLi();
+	}
+	
+	EndUl();
+}
+
 function AddPageTurning($minNum, $maxNum, $currNum, $urlPrefix, $globalMax = 100)
 {
 	if(($currNum < $minNum) || ($currNum > $maxNum))

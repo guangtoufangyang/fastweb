@@ -418,6 +418,38 @@ ul.fastweb_page li a:hover:not(.fastweb_page_active) {
 	background-color: #ddd;
 }
 
+ul.fastweb_navigation {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #e7e7e7;
+    background-color: #f3f3f3;
+}
+
+ul.fastweb_navigation li {
+    float: left;
+	width:120px;
+	border-right:2px solid #ffffff;
+}
+
+ul.fastweb_navigation li a {
+    display: block;
+    color: #666;
+    text-align: center;
+    padding: 5px 7px;
+    text-decoration: none;
+	font:bold 14px/24px "微软雅黑", Verdana, Arial, Helvetica, sans-serif;
+}
+
+ul.fastweb_navigation li a:hover:not(.fastweb_navigation_active) {
+    background-color: #ddd;
+}
+
+ul.fastweb_navigation li a.fastweb_navigation_active {
+    color: white;
+    background-color: #4CAF50;
+}
 
 .fastweb_bgcolor_fcf {
 	background-color:#fcf;

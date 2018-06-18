@@ -11,6 +11,11 @@ StartDiv(array("class" => "fastweb_div_frame"));
 	StartDiv(array("class" => "fastweb_div_middle"));
 		DisplayMenuH("liH");
 	EndDiv();
+	
+	StartDiv(array("class" => "fastweb_div_middle"));
+		AddNavigationL1(array(array("href" => "#", "text" => "菜单1"), array("href" => "#", "text" => "菜单2"), array("href" => "#", "text" => "菜单3") ), "菜单1");
+	EndDiv();
+	
 	StartDiv(array("class" => "fastweb_div_middle"));
 	
 		StartDiv(array("style" => "width:78%;float:left;"));
