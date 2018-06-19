@@ -719,12 +719,16 @@ class CTable{
 	private $mTdWidArr;
 	private $mTdColorClass;
 	private $mTdColorClassCnt;
-	function __construct($c = "fastweb_table_style1", $max=3, $style="", $summary=""){
+	private $mLineTd;
+	private $mMultiTd;
+	function __construct($max=3, $c = "fastweb_table_style1", $style="", $summary=""){
 		$this->mTd = 0;
 		$this->mTableEnd = 0;
 		$this->mLineNum = 0;
+		$this->mLineTd = 0;
+		$this->mMultiTd = array();
 		$this->mMaxTd = $max;
-		echo '<table summary = "'.$summary.'" class="'.$c.'" style="'.$style.'">';
+		echo '<table summary = "'.$summary.'" class="'.$c.'" style="'.$style.'">'.PHP_EOL ;
 		if($this->mMaxTd <= 0)
 		{
 			$this->mMaxTd = 3;
@@ -734,8 +738,8 @@ class CTable{
 		
 		if(0 != $this->mTd)
 		{
-			for(;$this->mTd < $this->mMaxTd; ++$this->mTd){
-				echo '<td></td>';	
+			for(;$this->mTd < $this->mLineTd; ++$this->mTd){
+				echo '<td></td>'.PHP_EOL ;
 			}
 		}
 		$this->EndTr();
@@ -743,10 +747,30 @@ class CTable{
 		
 		$this->TableTail();
 	}
+	
+	private function CalcLineTd()
+	{
+		$this->mLineTd = $this->mMaxTd;
+		
+		foreach($this->mMultiTd as $key => &$val)
+		{
+			--$val["rows"];
+			if(0 == $val["rows"])
+			{
+				unset($this->mMultiTd[$key]);
+			}
+			else
+			{
+				$this->mLineTd = $this->mLineTd - $val["cols"];
+			}
+		}
+		
+	}
+	
 	function TableTail(){
 	    if($this->mTableEnd == 0)
 	    {
-	        echo "</table>";
+	        echo "</table>".PHP_EOL ;
 	        $this->mTableEnd = 1;
 	    }		
 	}
@@ -783,16 +807,17 @@ class CTable{
 			}
 		}
 
-		echo ">";
+		echo ">".PHP_EOL ;
 		++$this->mLineNum;
+		$this->CalcLineTd();
 	}
 	
 	function EndTr()
 	{
-		echo "<tr>";
+		echo "</tr>".PHP_EOL ;
 	}
 	
-	function StartTd()
+	function StartTd($rows = 1, $cols = 1)
 	{
 		if($this->mTd==0){
 			if($this->mTdColorClassCnt > 0)
@@ -805,42 +830,58 @@ class CTable{
 			}
 			
 		}
-		echo "<td ";
+		echo "<td";
 	
 		if(!empty($this->mTdWidArr))
 		{
-			echo 'style="width:'.$this->mTdWidArr[$this->mTd].'"';
+			echo ' style="width:'.$this->mTdWidArr[$this->mTd].'"';
 		}
+		
+		if(($rows > 1) || $cols > 1)
+		{
+			//echo ' rowspan="'.$rows.'" colspan="'.$cols.'"';
+			echo ' colspan="'.$cols.'" rowspan="'.$rows.'"';
+		}
+		$this->mLineTd = $this->mLineTd - $cols + 1;
+		
+		array_push($this->mMultiTd, array("rows" => $rows, "cols" => $cols));
 		
 		echo ">";
 	}
 	
 	function EndTd()
 	{
-		echo "</td>";
+		echo "</td>".PHP_EOL ;
 		++$this->mTd;
-		if($this->mTd == $this->mMaxTd){
+		if($this->mTd >= $this->mLineTd){
 			$this->EndTr();
 			$this->mTd = 0;
 		}
 	}
 	
-	function StartTh()
+	function StartTh($rows = 1, $cols = 1)
 	{
 		if($this->mTd==0){
 			$this->StartTr();
 		}
 		echo "<th ";
 	
+		if(($rows > 1) || $cols > 1)
+		{
+			echo ' rowspan="'.$rows.'" colspan="'.$cols.'"';
+		}
+		$this->mLineTd = $this->mLineTd - $cols + 1;
+		
+		array_push($this->mMultiTd, array("rows" => $rows, "cols" => $cols));
 		
 		echo ">";
 	}
 	
 	function EndTh()
 	{
-		echo "</th>";
+		echo "</th>".PHP_EOL ;
 		++$this->mTd;
-		if($this->mTd == $this->mMaxTd){
+		if($this->mTd >= $this->mLineTd){
 			$this->EndTr();
 			$this->mTd = 0;
 		}
@@ -853,15 +894,15 @@ class CTable{
 		$this->EndTh();
 	}
 	
-	function AddTd($text)
+	function AddTd($text, $rows = 1, $cols = 1)
 	{
-		$this->StartTd();
+		$this->StartTd($rows, $cols);
 		echo $text;
 		$this->EndTd();
 	}
 	
 	function AddCaption($cap){
-		echo '<caption>'.$cap.'</caption>';
+		echo '<caption>'.$cap.'</caption>'.PHP_EOL ;
 		$this->mTd = 0;
 	}
 	
