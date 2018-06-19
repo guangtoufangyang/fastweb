@@ -271,7 +271,7 @@ li.fastweb_tree_branch
 	list-style: none;
 }
 li.fastweb_tree_branch .fastweb_tree_leaf{
-	margin-left: -18px !important;
+	margin-left: -14px !important;
 }
 li.fastweb_tree_branch .fastweb_tree_leaf a{
 	background: url(../image/fastweb_tree_leaf.png) 0px 0px no-repeat;

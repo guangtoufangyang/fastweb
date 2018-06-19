@@ -12,6 +12,22 @@ function ColorEventMouseOut($color = "#d4e3e5")
 	return "onmouseout=\"this.style.backgroundColor='".$color."';\"";
 }
 
+function ParamInfo(&$paramArr)
+{
+	$paramArr = array();
+	
+	foreach($_GET as $key=>$value)
+	{
+		$paramArr[$key] = $value;
+	}
+	
+	foreach($_POST as $key=>$value)
+	{
+		$paramArr[$key] = $value;
+	}
+	return;
+}
+
 function AddSelect($arrAttr = array())
 {
 	if(!is_array($arrAttr)) return;

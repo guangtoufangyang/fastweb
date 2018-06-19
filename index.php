@@ -2,8 +2,9 @@
 <?php
 require_once rtrim($_SERVER['DOCUMENT_ROOT'],'/').'/fastweb/php/display.php';
 DisplayHead();
-StartBody();
 
+ParamInfo($paramInfo);
+StartBody();
 
 DisplayTop();
 
@@ -218,7 +219,8 @@ ClearFloat();
 EndDiv();
 
 StartDiv(array("class" => "fastweb_div_middle"));
-AddPageTurning(5, 12, 8, "//localhost/fastweb?page=");
+AddPageTurningBySize(isset($paramInfo["page"]) ? $paramInfo["page"] : 1, "//localhost/fastweb?page=");
+AddPageTurning(5, 12, isset($paramInfo["page"]) ? $paramInfo["page"] : 8, "//localhost/fastweb?page=");
 EndDiv();
 
 StartDiv(array("class" => "fastweb_div_frame"));
