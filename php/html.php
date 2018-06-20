@@ -428,7 +428,14 @@ function EndNav(){
 }
 
 function StartSimpleDiv($arrAttr = array()){
-	echo '<div class="fastweb_div_simple"';
+	echo '<div class="fastweb_div_simple';
+	
+	if(array_key_exists("class", $arrAttr))
+	{
+		echo ' '.$arrAttr["class"];
+	}
+	echo '"';
+	
 	if(array_key_exists("style", $arrAttr))
 	{
 		echo ' style="'.$arrAttr["style"].'"';
@@ -654,10 +661,18 @@ class CTree
 		EndOl();
 		EndLi();
 	}
-	function AddLeaf($link, $text)
+	function AddLeaf($text, $href = "")
 	{
 		StartLi(array("class" => "fastweb_tree_leaf"));
-		AddLink(array("href" => $link, "text" => $text));
+		if(!empty($href))
+		{
+			AddLink(array("href" => $href, "text" => $text));
+		}
+		else
+		{
+			echo $text;
+		}
+			
 		EndLi();
 	}
 	
@@ -673,7 +688,7 @@ class CTree
 			}
 			else if($val["name"] == "leaf")
 			{
-				$this->AddLeaf($val["link"], $val["text"]);
+				$this->AddLeaf($val["text"], isset($val["href"]) ? $val["href"] : "");
 			}
 		}
 	}
@@ -738,7 +753,7 @@ class CTab
 	
 }
 
-
+/*设置$mTdWidArr后多列属性宽度需要完善，加一个realTdNum*/
 class CTable{
 	private $mTd;
 	private $mMaxTd;

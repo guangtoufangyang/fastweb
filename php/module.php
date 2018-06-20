@@ -181,9 +181,31 @@ function AddNew($data)
 		EndDiv();
 
 		StartDiv(array("class" => "fastweb_new_module_content"));
+		
 		foreach($data["info"] as $val){
 			AddLineLink(array("href" => $val["link"], "text" => $val["text"]));
 		}
+		EndDiv();
+	EndDiv();
+}
+
+function AddNew2($data, $perLineCnt = 1)
+{
+	StartSimpleDiv();
+		if(!empty($data["title"]))
+		StartDiv(array("class" => "fastweb_new_module_title"));
+		AddSpan(array("text" => $data["title"]));
+		EndDiv();
+
+		StartDiv(array("class" => "fastweb_new_module_content"));
+		
+		$width = 100 / $perLineCnt - 1;
+		foreach($data["info"] as $val){
+			StartSimpleDiv(array("class" => "fastweb_align_center", "style" => "float:left;width:".$width."%;"));
+			AddLineLink(array("href" => $val["link"], "text" => $val["text"]));
+			EndDiv();
+		}
+		ClearFloat();
 		EndDiv();
 	EndDiv();
 }

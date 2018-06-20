@@ -35,9 +35,16 @@ function DisplayNew($k)
 	{
 		return;
 	}
-	
 	AddNew($data);
+}
 
+function DisplayNew2($k, $cnt)
+{
+	if(!DataGetByKey($k, $data))
+	{
+		return;
+	}
+	AddNew2($data, $cnt);
 }
 
 function DisplayMenuH($k)

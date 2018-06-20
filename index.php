@@ -20,6 +20,7 @@ StartDiv(array("class" => "fastweb_div_frame"));
 	StartDiv(array("class" => "fastweb_div_middle"));
 	
 		StartDiv(array("style" => "width:78%;float:left;"));
+			StartSimpleDiv(array("style" => "float:left;"));
 			StartDiv(array("style" => "width:48%;float:left;"));
 			DisplayText("libai");
 			EndDiv();
@@ -27,7 +28,30 @@ StartDiv(array("class" => "fastweb_div_frame"));
 			StartDiv(array("style" => "width:48%;float:right;"));
 			DisplayText("libai");
 			EndDiv();
+			EndDiv();
 			
+			StartSimpleDiv(array("style" => "float:left;"));
+			StartDiv(array("style" => "width:48%;float:left;"));
+			DisplayNew("fastweb");
+			EndDiv();
+			
+			StartDiv(array("style" => "width:48%;float:right;"));
+			DisplayNew2("fastweb", 2);
+			EndDiv();			
+			
+			EndDiv();
+			
+			StartSimpleDiv(array("style" => "float:left;"));
+			StartDiv(array("style" => "width:48%;float:left;"));
+			DisplayNew2("fastweb", 3);
+			EndDiv();
+			
+			StartDiv(array("style" => "width:48%;float:right;"));
+			DisplayNew("fastweb");
+			EndDiv();
+			EndDiv();
+			
+			StartSimpleDiv(array("style" => "float:left;"));
 			StartDiv(array("style" => "width:48%;float:left;"));
 			DisplayNew("fastweb");
 			EndDiv();
@@ -35,21 +59,6 @@ StartDiv(array("class" => "fastweb_div_frame"));
 			StartDiv(array("style" => "width:48%;float:right;"));
 			DisplayNew("fastweb");
 			EndDiv();
-			
-			StartDiv(array("style" => "width:48%;float:left;"));
-			DisplayNew("fastweb");
-			EndDiv();
-			
-			StartDiv(array("style" => "width:48%;float:right;"));
-			DisplayNew("fastweb");
-			EndDiv();
-			
-			StartDiv(array("style" => "width:48%;float:left;"));
-			DisplayNew("fastweb");
-			EndDiv();
-			
-			StartDiv(array("style" => "width:48%;float:right;"));
-			DisplayNew("fastweb");
 			EndDiv();
 		
 		EndDiv();
@@ -72,13 +81,13 @@ StartDiv(array("class" => "fastweb_div_middle"));
 	StartDiv(array("style" => "width:30%;float:left;"));
 		$tree = new CTree("tree2_", array("nav1"), "fastweb_tree_nav");
 		$tree->StartBranch("nav", "#");
-			$tree->AddLeaf("#", "栏目");
-			$tree->AddLeaf("#", "栏目");
+			$tree->AddLeaf("栏目", "#");
+			$tree->AddLeaf("栏目");
 		$tree->EndBranch();
 		$tree->StartBranch("nav1", "#");
-			$tree->AddLeaf("#", "栏目");
-			$tree->AddLeaf("#", "栏目");
-			$tree->AddLeaf("#", "栏目");
+			$tree->AddLeaf("栏目");
+			$tree->AddLeaf("栏目", "#");
+			$tree->AddLeaf("栏目", "#");
 		$tree->EndBranch();
 		unset($tree);
 	EndDiv();
@@ -88,14 +97,14 @@ StartDiv(array("class" => "fastweb_div_middle"));
 		$tree->StartBranch("树枝open1", "#");
 			$tree->StartBranch("树枝open2");
 				$tree->StartBranch("树枝open3");
-					$tree->AddLeaf("#", "树叶");
-					$tree->AddLeaf("#", "树叶");
+					$tree->AddLeaf("树叶", "#");
+					$tree->AddLeaf("树叶", "#");
 				$tree->EndBranch();
 			$tree->EndBranch();
-			$tree->AddLeaf("#", "树叶");
+			$tree->AddLeaf("树叶", "#");
 		$tree->EndBranch();
 		$tree->StartBranch("树枝");
-			$tree->AddLeaf("#", "树叶");
+			$tree->AddLeaf("树叶", "#");
 		$tree->EndBranch();
 		unset($tree);
 	EndDiv();
