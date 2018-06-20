@@ -597,11 +597,15 @@ class CTree
 {
 	private $sBranchTag;
 	private $iBranchNum;
+	private $sBranchClass;
+	private $arrCheckBranch;
 	
-	function __construct($branchTag)
+	function __construct($branchTag, $checkBranchArr = array(), $branchClass = "fastweb_tree_branch")
 	{
 		$this->iBranchNum = 1;
 		$this->sBranchTag = $branchTag;
+		$this->sBranchClass = $branchClass;
+		$this->arrCheckBranch = $checkBranchArr;
 		StartOl(array("class" => "fastweb_tree"));
 	}
 	
@@ -612,9 +616,18 @@ class CTree
 	
 	function StartBranch($text)
 	{
-		StartLi(array("class" => "fastweb_tree_branch"));
+		StartLi(array("class" => $this->sBranchClass));
 		AddLabel(array("for" => $this->sBranchTag.(string)$this->iBranchNum, "text" => $text));
-		AddCheckBox(array("class" => "fastweb_tree_input", "id" => $this->sBranchTag.(string)$this->iBranchNum));
+		//if($text == $this->sCheckBranch)
+		if(in_array($text, $this->arrCheckBranch))
+		{
+			AddCheckBox(array("class" => "fastweb_tree_input", "id" => $this->sBranchTag.(string)$this->iBranchNum, "checked" => true));
+		}
+		else
+		{
+			AddCheckBox(array("class" => "fastweb_tree_input", "id" => $this->sBranchTag.(string)$this->iBranchNum));
+		}
+		
 		StartOl();
 		++$this->iBranchNum;
 	}

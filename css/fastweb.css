@@ -256,7 +256,7 @@ nav.fastweb_menu_v ul li:hover ul
 }
 
 
-input.fastweb_tree_input{
+li.fastweb_tree_branch input.fastweb_tree_input{
 	font-size: 1em;
 }
 ol.fastweb_tree{
@@ -293,10 +293,10 @@ li.fastweb_tree_branch  input.fastweb_tree_input{
 	width:1em;
 	top: 0;
 }
-input.fastweb_tree_input + ol{
+li.fastweb_tree_branch input.fastweb_tree_input + ol{
 	display: none;
 }
-input.fastweb_tree_input + ol > li {
+li.fastweb_tree_branch input.fastweb_tree_input + ol > li {
 	height: 0;
 	overflow: hidden;
 	margin-left: -14px !important;
@@ -309,7 +309,7 @@ li.fastweb_tree_branch label {
 	background: url(../image/fastweb_tree_branch_close.png) 0px 0px no-repeat;
 	background-size:auto auto;
 }
-input.fastweb_tree_input:checked + ol {
+li.fastweb_tree_branch input.fastweb_tree_input:checked + ol {
 	background: url(../image/fastweb_tree_branch_open.png) 44px 0px no-repeat;
 	background-size:auto auto;
 	margin: -22px 0 0 -44px;
@@ -317,9 +317,72 @@ input.fastweb_tree_input:checked + ol {
 	height: auto;
 	display: block;
 }
-input.fastweb_tree_input:checked + ol > li {
+li.fastweb_tree_branch input.fastweb_tree_input:checked + ol > li {
 	height: auto;
 }
+
+li.fastweb_tree_nav input.fastweb_tree_input{
+	font-size: 1em;
+}
+li.fastweb_tree_nav
+{
+	position: relative;
+	list-style: none;
+}
+li.fastweb_tree_nav .fastweb_tree_leaf{
+	
+}
+li.fastweb_tree_nav .fastweb_tree_leaf a{
+	background-size:auto auto;
+	color: #002446;
+	padding-left: 0;
+	text-decoration:none;
+	display: block;
+}
+
+li.fastweb_tree_nav  input.fastweb_tree_input{
+	position: absolute;
+	left: 0;
+	margin-left: 0;
+	opacity: 0;
+	z-index: 2;
+	cursor: pointer;
+	height: 1em;
+	width:1em;
+	top: 0;
+}
+li.fastweb_tree_nav input.fastweb_tree_input + ol{
+	display: none;
+}
+li.fastweb_tree_nav input.fastweb_tree_input + ol > li {
+	height: 0;
+	overflow: hidden;
+	padding-left: 1px;
+}
+li.fastweb_tree_nav label {
+	cursor: pointer;
+	display: block;
+	padding-left: 10px;
+	background-color:#ffc;
+	background-size:auto auto;
+}
+li.fastweb_tree_nav input.fastweb_tree_input:checked + ol {
+	background-color:#fcf;
+	background-size:auto auto;
+	margin: 0;
+	padding-left:0px;
+	height: auto;
+	display: block;
+}
+li.fastweb_tree_nav input.fastweb_tree_input:checked + ol > li {
+	height: auto;
+	padding-left:20px;
+}
+
+li.fastweb_tree_nav input.fastweb_tree_input:checked + ol > li:hover{
+	background-color:red;
+}
+
 
 div.fastweb_rollplay_contain{
     position: relative;
