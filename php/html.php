@@ -82,6 +82,7 @@ function AddCheckBox($arrAttr = array())
 		echo ' checked';
 	}
 	echo '/> '.PHP_EOL;
+	
 	if(array_key_exists("text", $arrAttr))
 	{
 		echo $arrAttr["text"].PHP_EOL;
@@ -326,10 +327,27 @@ function AddLabel($arrAttr = array()){
 	}
 	
 	echo '>';
+	
+	$bHasLink = (array_key_exists("href", $arrAttr)) && (!empty($arrAttr["href"]));
+	
+	if($bHasLink)
+	{
+		echo '<a href="'.$arrAttr["href"].'">';
+	}
+	if(array_key_exists("text", $arrAttr))
+	{
+		echo $arrAttr["text"].PHP_EOL;
+	}
+	if($bHasLink)
+	{
+		echo '</a>';
+	}
+	/*
 	if(array_key_exists("text", $arrAttr))
 	{
 		echo $arrAttr["text"];
 	}
+	*/
 	echo '</label>'.PHP_EOL;
 }
 
@@ -614,10 +632,10 @@ class CTree
 		EndOl();
 	}
 	
-	function StartBranch($text)
+	function StartBranch($text, $href = "")
 	{
 		StartLi(array("class" => $this->sBranchClass));
-		AddLabel(array("for" => $this->sBranchTag.(string)$this->iBranchNum, "text" => $text));
+		AddLabel(array("for" => $this->sBranchTag.(string)$this->iBranchNum, "text" => $text, "href" => $href));
 		//if($text == $this->sCheckBranch)
 		if(in_array($text, $this->arrCheckBranch))
 		{
@@ -649,7 +667,7 @@ class CTree
 		{
 			if($val["name"] == "branch")
 			{
-				$this->StartBranch($val["text"]);
+				$this->StartBranch($val["text"], isset($val["href"]) ? $val["href"] : "");
 				$this->AddTreeData($val["leaf"]);
 				$this->EndBranch();
 			}

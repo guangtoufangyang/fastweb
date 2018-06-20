@@ -71,11 +71,11 @@ StartDiv(array("class" => "fastweb_div_middle"));
 		
 	StartDiv(array("style" => "width:30%;float:left;"));
 		$tree = new CTree("tree2_", array("nav1"), "fastweb_tree_nav");
-		$tree->StartBranch("nav");
+		$tree->StartBranch("nav", "#");
 			$tree->AddLeaf("#", "栏目");
 			$tree->AddLeaf("#", "栏目");
 		$tree->EndBranch();
-		$tree->StartBranch("nav1");
+		$tree->StartBranch("nav1", "#");
 			$tree->AddLeaf("#", "栏目");
 			$tree->AddLeaf("#", "栏目");
 			$tree->AddLeaf("#", "栏目");
@@ -85,7 +85,7 @@ StartDiv(array("class" => "fastweb_div_middle"));
 	
 	StartDiv(array("style" => "width:30%;float:right;"));
 		$tree = new CTree("tree3_", array("树枝open1", "树枝open2", "树枝open3"));
-		$tree->StartBranch("树枝open1");
+		$tree->StartBranch("树枝open1", "#");
 			$tree->StartBranch("树枝open2");
 				$tree->StartBranch("树枝open3");
 					$tree->AddLeaf("#", "树叶");
