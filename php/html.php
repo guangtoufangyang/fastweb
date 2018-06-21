@@ -753,7 +753,7 @@ class CTab
 	
 }
 
-/*设置$mTdWidArr后多列属性宽度需要完善，加一个realTdNum*/
+
 class CTable{
 	private $mTd;
 	private $mMaxTd;
@@ -790,6 +790,24 @@ class CTable{
 		}
 		$this->EndTr();
 		$this->mTd = 0;
+		
+		if(!empty($this->mTdWidArr))
+		{
+			if($this->mTdColorClassCnt > 0)
+			{
+				$this->StartTr(array("class" => $this->mTdColorClass[$this->mLineNum % $this->mTdColorClassCnt]));
+			}
+			else
+			{
+				$this->StartTr();
+			}
+			/*宽度占位行，单独处理，否则不好处理td占多列问题*/
+			foreach($this->mTdWidArr as $val)
+			{
+				echo '<td style="width:'.$val.';"></td>'.PHP_EOL;
+			}
+			$this->EndTr();
+		}
 		
 		$this->TableTail();
 	}
@@ -877,22 +895,14 @@ class CTable{
 			
 		}
 		echo "<td";
-	
-		if(!empty($this->mTdWidArr))
-		{
-			echo ' style="width:'.$this->mTdWidArr[$this->mTd].'"';
-		}
-		
 		if(($rows > 1) || $cols > 1)
 		{
-			//echo ' rowspan="'.$rows.'" colspan="'.$cols.'"';
-			echo ' colspan="'.$cols.'" rowspan="'.$rows.'"';
+			echo ' rowspan="'.$rows.'" colspan="'.$cols.'"';
 		}
-		$this->mLineTd = $this->mLineTd - $cols + 1;
-		
-		array_push($this->mMultiTd, array("rows" => $rows, "cols" => $cols));
-		
 		echo ">";
+		
+		$this->mLineTd = $this->mLineTd - $cols + 1;
+		array_push($this->mMultiTd, array("rows" => $rows, "cols" => $cols));		
 	}
 	
 	function EndTd()
