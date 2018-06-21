@@ -292,7 +292,9 @@ AddPageTurningBySize(isset($paramInfo["page"]) ? $paramInfo["page"] : 1, "//loca
 AddPageTurning(5, 12, isset($paramInfo["page"]) ? $paramInfo["page"] : 8, "//localhost/fastweb?page=");
 EndDiv();
 
-StartDiv(array("class" => "fastweb_div_frame fastweb_pos_left_bottom fastweb_pos_fixed"));
+EmptyLind(6);
+
+StartDiv(array("class" => "fastweb_div_frame fastweb_pos_bottom fastweb_pos_fixed"));
 	AddHtml("Bottom.html");
 EndDiv();
 

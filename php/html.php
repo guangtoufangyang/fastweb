@@ -500,6 +500,13 @@ function ClearFloat()
 	echo '<div style="clear:both"></div>'.PHP_EOL;
 }
 
+function EmptyLind($n)
+{
+	for($i = 0; $i < $n; ++$i)
+	{
+		echo '</br>';
+	}
+}
 
 
 class CHead

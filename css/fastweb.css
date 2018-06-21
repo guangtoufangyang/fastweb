@@ -546,6 +546,30 @@ ul.fastweb_navigation li a.fastweb_navigation_active {
 	text-align:right;
 }
 
+.fastweb_pos_left {
+	top:0;
+	bottom:0;
+	left:0;
+}
+
+.fastweb_pos_right {
+	top:0;
+	bottom:0;
+	right:0;
+}
+
+.fastweb_pos_top {
+	top:0;
+	left:0;
+	right:0;
+}
+
+.fastweb_pos_bottom {
+	bottom:0;
+	left:0;
+	right:0;
+}
+
 .fastweb_pos_left_top {
 	top:0;
 	left:0;
