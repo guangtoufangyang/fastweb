@@ -287,7 +287,45 @@ function AddImg($arrAttr = array()){
 		echo ' height="'.$arrAttr["height"].'"';
 	}
 	
+	if(array_key_exists("href", $arrAttr))
+	{
+		echo ' href="'.$arrAttr["href"].'"';
+	}
+	
 	echo ' />'.PHP_EOL;
+}
+
+function AddImgWithLink($arrAttr = array()){
+	if(!is_array($arrAttr))
+	{
+		return;
+	}
+	echo '<a ';
+	if(array_key_exists("href", $arrAttr))
+	{
+		echo ' href="'.$arrAttr["href"].'"';
+	}
+	echo '>';
+	
+	
+	echo '<img';
+	if(array_key_exists("src", $arrAttr))
+	{
+		echo ' src="'.$arrAttr["src"].'"';
+	}
+	
+	if(array_key_exists("width", $arrAttr))
+	{
+		echo ' width="'.$arrAttr["width"].'"';
+	}
+	
+	if(array_key_exists("height", $arrAttr))
+	{
+		echo ' height="'.$arrAttr["height"].'"';
+	}
+	
+	echo ' />'.PHP_EOL;
+	echo '</a>'.PHP_EOL;
 }
 
 function AddLiWithLink($arrAttr = array()){
