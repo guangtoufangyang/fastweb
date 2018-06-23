@@ -89,6 +89,45 @@ function AddCheckBox($arrAttr = array())
 	}
 }
 
+function AddEmbed($arrAttr = array())
+{
+	if(!is_array($arrAttr)) return;
+	echo '<embed';
+	if(array_key_exists("src", $arrAttr))
+	{
+		echo ' src="'.$arrAttr["src"].'"';
+	}
+	if(array_key_exists("play", $arrAttr))
+	{
+		echo ' play="'.$arrAttr["play"].'"';
+	}
+	if(array_key_exists("menu", $arrAttr))
+	{
+		echo ' menu="'.$arrAttr["menu"].'"';
+	}
+	if(array_key_exists("hidden", $arrAttr))
+	{
+		echo ' hidden="'.$arrAttr["hidden"].'"';
+	}
+	if(array_key_exists("loop", $arrAttr))
+	{
+		echo ' loop="'.$arrAttr["loop"].'"';
+	}
+	if(array_key_exists("width", $arrAttr))
+	{
+		echo ' width="'.$arrAttr["width"].'"';
+	}
+	if(array_key_exists("height", $arrAttr))
+	{
+		echo ' height="'.$arrAttr["height"].'"';
+	}
+	if(array_key_exists("flashvars", $arrAttr))
+	{
+		echo ' flashvars="'.$arrAttr["flashvars"].'"';
+	}
+	echo ' /> '.PHP_EOL;
+	
+}
 
 function AddLi($arrAttr = array())
 {
@@ -137,6 +176,30 @@ function StartOl($arrAttr = array())
 function EndOl()
 {
 	echo '</ol>'.PHP_EOL;
+}
+
+function StartObject($arrAttr = array())
+{
+	if(!is_array($arrAttr)) return;
+	echo '<object';
+	if(array_key_exists("name", $arrAttr))
+	{
+		echo ' name="'.$arrAttr["name"].'"';
+	}
+	if(array_key_exists("id", $arrAttr))
+	{
+		echo ' id="'.$arrAttr["id"].'"';
+	}
+	if(array_key_exists("class", $arrAttr))
+	{
+		echo ' class="'.$arrAttr["class"].'"';
+	}
+	echo '> '.PHP_EOL;
+}
+
+function EndObject()
+{
+	echo '</object>'.PHP_EOL;
 }
 
 function StartLabel($arrAttr = array())

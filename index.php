@@ -14,17 +14,11 @@ StartDiv(array("class" => "fastweb_div_frame"));
 	EndDiv();
 	
 	StartDiv(array("class" => "fastweb_div_middle"));
-	?>
+		AddCrumb(array(array("href" => "#", "text" => "首页"), array("href" => "#", "text" => "频道"), array("href" => "#", "text" => "栏目"), array( "text" => "fastweb")));
+	EndDiv();
 	
-
-	
-	<?php
-	
-	/*
-	$closeBlock = new CCloseBlock();
-	AddImg(array("src" => "http://p1.qhimg.com/t01726f477d76f8cf82.png"));
-	unset($closeBlock);
-	*/
+	StartDiv(array("class" => "fastweb_div_middle"));
+	AddVideoSwf(SITE_URL."video/100pian.swf", 360, 480);
 	EndDiv();
 	
 	StartDiv(array("class" => "fastweb_div_middle"));

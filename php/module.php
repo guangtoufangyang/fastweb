@@ -335,4 +335,56 @@ function AddRollPlay1($data)
 	ClearFloat();
 }
 
+
+function AddVideoSwf($src, $height = 0, $width = 0)
+{
+	StartObject();
+	$parm = array();
+	$parm["src"] = $src;
+	if(($height > 0) && ($width > 0))
+	{
+		$parm["height"] = $height;
+		$parm["width"] = $width;
+	}
+	$parm["play"] = "false";
+	$parm["flashvars"] = "autoplay=false&play=false";
+	$parm["menu"] = "true";
+	$parm["hidden"] = "false";
+	$parm["loop"] = "false";
+	
+	AddEmbed($parm);
+	EndObject();
+}
+
+function AddCrumb($data)
+{
+	StartSimpleDiv(array("class" => "fastweb_crumb"));
+	
+	$cnt = count($data);
+	$max = $cnt - 1;
+	for($i = 0; $i < $max; ++$i)
+	{
+		if(isset($data[$i]["href"]) && isset($data[$i]["text"]))
+		{
+			AddLink($data[$i]);
+			echo " &gt; ";
+		}
+		else
+		{
+			echo $data[$i]["text"]." &gt; ";
+		}
+	}
+	
+	if(isset($data[$max]["href"]) && isset($data[$max]["text"]))
+	{
+		AddLink($data[$i]);
+	}
+	else
+	{
+		echo $data[$max]["text"];
+	}
+	
+	EndDiv();
+}
+
 ?>

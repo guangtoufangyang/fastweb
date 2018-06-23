@@ -683,3 +683,18 @@ input.fastweb_close_block{
 input.fastweb_close_block:checked,input.fastweb_close_block:checked+div{
 	display:none;
 }
+
+div.fastweb_crumb{
+	text-align:left;
+	padding-top:10px;
+	padding-bottom:5px;
+	padding-left:10px;
+	font:12px 宋体;
+	border-bottom:1px solid black;
+}
+
+div.fastweb_crumb a{
+	font:bold 14px/24px "微软雅黑", Verdana, Arial, Helvetica, sans-serif;
+	color:green;
+	text-decoration:none;
+}
