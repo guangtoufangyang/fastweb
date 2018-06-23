@@ -14,6 +14,20 @@ StartDiv(array("class" => "fastweb_div_frame"));
 	EndDiv();
 	
 	StartDiv(array("class" => "fastweb_div_middle"));
+	?>
+	
+
+	
+	<?php
+	
+	/*
+	$closeBlock = new CCloseBlock();
+	AddImg(array("src" => "http://p1.qhimg.com/t01726f477d76f8cf82.png"));
+	unset($closeBlock);
+	*/
+	EndDiv();
+	
+	StartDiv(array("class" => "fastweb_div_middle"));
 		AddNavigationL1(array(array("href" => "#", "text" => "菜单1"), array("href" => "#", "text" => "菜单2"), array("href" => "#", "text" => "菜单3") ), "菜单1");
 	EndDiv();
 	
@@ -294,8 +308,15 @@ EndDiv();
 
 EmptyLind(6);
 
-StartDiv(array("class" => "fastweb_div_frame fastweb_pos_bottom fastweb_pos_fixed"));
+StartDiv(array("class" => "fastweb_div_frame fastweb_pos_bottom fastweb_pos_fixed fastweb_opacity_50"));
 	AddHtml("Bottom.html");
+EndDiv();
+
+StartDiv(array("class" => "fastweb_pos_right_middle fastweb_pos_fixed"));
+	$closeBlock = new CCloseBlock();
+	AddImg(array("src" => SITE_URL."image/fastweb.png"));
+	//AddImg(array("src" => "http://p1.qhimg.com/t01726f477d76f8cf82.png"));
+	unset($closeBlock);
 EndDiv();
 
 EndBody();

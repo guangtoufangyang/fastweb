@@ -575,6 +575,7 @@ ul.fastweb_navigation li a.fastweb_navigation_active {
 	left:0;
 }
 
+
 .fastweb_pos_right_top {
 	top:0;
 	right:0;
@@ -592,4 +593,93 @@ ul.fastweb_navigation li a.fastweb_navigation_active {
 
 .fastweb_pos_fixed{
 	position:fixed;
+}
+
+
+.fastweb_pos_left_middle {
+	top:50%;
+	left:0;
+}
+
+.fastweb_pos_right_middle {
+	top:50%;
+	right:0;
+}
+
+.fastweb_pos_top_middle {
+	top:0;
+	left:50%;
+}
+
+.fastweb_pos_bottom_middle {
+	bottom:0;
+	left:50%;
+}
+
+.fastweb_opacity_10 {
+	opacity:0.1;
+}
+
+.fastweb_opacity_20 {
+	opacity:0.2;
+}
+
+.fastweb_opacity_30 {
+	opacity:0.3;
+}
+
+.fastweb_opacity_40 {
+	opacity:0.4;
+}
+
+.fastweb_opacity_50 {
+	opacity:0.5;
+}
+
+.fastweb_opacity_60 {
+	opacity:0.6;
+}
+
+.fastweb_opacity_70 {
+	opacity:0.7;
+}
+
+.fastweb_opacity_80 {
+	opacity:0.8;
+}
+
+.fastweb_opacity_90 {
+	opacity:0.9;
+}
+
+
+label.fastweb_close_block_hold .fastweb_close_block_checkbox {
+	appearance: none;
+	-webkit-appearance: none;
+	outline: none;
+	display: none;
+}
+
+label.fastweb_close_block_hold .fastweb_close_block_checkbox+div {
+	display: inline-block;
+	background: url(../image/fastweb_close_block.png) top right no-repeat;
+}
+
+label.fastweb_close_block_hold .fastweb_close_block_checkbox:checked+div {
+	display:none;
+}
+			
+
+input.fastweb_close_block{
+	position:absolute;
+	top:0;
+	right:0;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	appearance:icon;
+	-moz-appearance:icon; /* Firefox */
+	-webkit-appearance:icon; /* Safari and Chrome */
+	background-image: url(../image/fastweb_close_block.png);
+}
+input.fastweb_close_block:checked,input.fastweb_close_block:checked+div{
+	display:none;
 }

@@ -139,6 +139,30 @@ function EndOl()
 	echo '</ol>'.PHP_EOL;
 }
 
+function StartLabel($arrAttr = array())
+{
+	if(!is_array($arrAttr)) return;
+	echo '<label';
+	if(array_key_exists("name", $arrAttr))
+	{
+		echo ' name="'.$arrAttr["name"].'"';
+	}
+	if(array_key_exists("id", $arrAttr))
+	{
+		echo ' id="'.$arrAttr["id"].'"';
+	}
+	if(array_key_exists("class", $arrAttr))
+	{
+		echo ' class="'.$arrAttr["class"].'"';
+	}
+	echo '> '.PHP_EOL;
+}
+
+function EndLabel()
+{
+	echo '</label>'.PHP_EOL;
+}
+
 function StartFieldset($arrAttr = array())
 {
 	if(!is_array($arrAttr)) return;
@@ -190,6 +214,7 @@ function AddSpan($arrAttr = array()){
 	}
 	echo '</span>'.PHP_EOL;
 }
+
 
 function AddLink($arrAttr = array()){
 	if(!is_array($arrAttr))
@@ -985,6 +1010,28 @@ class CTable{
 
 }
 
+class CCloseBlock{
+	public function __construct(){
+		AddCheckBox(array("class" => "fastweb_close_block"));
+		StartDiv();
+	}
+	public function __destruct(){
+		EndDiv();
+	}
+}
+
+/*此种关闭为点击任意位置都关闭*/
+class CCloseBlockHold{
+	public function __construct(){
+		StartLabel(array("class" => "fastweb_close_block_hold"));
+		AddCheckBox(array("class" => "fastweb_close_block_checkbox"));
+		StartDiv();
+	}
+	public function __destruct(){
+		EndDiv();
+		EndLabel();
+	}
+}
 
 
 ?>
