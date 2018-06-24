@@ -178,6 +178,30 @@ function EndOl()
 	echo '</ol>'.PHP_EOL;
 }
 
+function StartTextarea($arrAttr = array())
+{
+	if(!is_array($arrAttr)) return;
+	echo '<textarea';
+	if(array_key_exists("name", $arrAttr))
+	{
+		echo ' name="'.$arrAttr["name"].'"';
+	}
+	if(array_key_exists("id", $arrAttr))
+	{
+		echo ' id="'.$arrAttr["id"].'"';
+	}
+	if(array_key_exists("class", $arrAttr))
+	{
+		echo ' class="'.$arrAttr["class"].'"';
+	}
+	echo '> '.PHP_EOL;
+}
+
+function EndTextarea()
+{
+	echo '</textarea>'.PHP_EOL;
+}
+
 function StartObject($arrAttr = array())
 {
 	if(!is_array($arrAttr)) return;
@@ -626,11 +650,11 @@ function ClearFloat()
 	echo '<div style="clear:both"></div>'.PHP_EOL;
 }
 
-function EmptyLind($n)
+function Repeat($data, $cnt = 1)
 {
-	for($i = 0; $i < $n; ++$i)
+	for($i = 0; $i < $cnt; ++$i)
 	{
-		echo '</br>';
+		echo $data;
 	}
 }
 
@@ -718,31 +742,54 @@ class CHead
 
 class CDocument
 {
+	private $paraArr;
 	function __construct()
 	{
+		$this->paraArr = array();
 	}
 	
 	function __destruct()
 	{
 	}
 	
-	function AddTitle($t, $s = '')
+	private function SetPara($pos , $c)
 	{
-		StartDiv(array("class" => "fastweb_p_title", "style" => $s));
+		array_splice($this->paraArr, 0, count($this->paraArr));
+		if($pos == 1)
+		{
+			$this->paraArr["style"] = "text-align:left;";
+		}
+		else if($pos == 2)
+		{
+			$this->paraArr["style"] = "text-align:center;";
+		}
+		else if($pos == 3)
+		{
+			$this->paraArr["style"] = "text-align:right;";
+		}
+		$this->paraArr["class"] = $c;
+	}
+	
+	function AddTitle($t, $pos = 2, $c = 'fastweb_p_title_style1')
+	{
+		$this->SetPara($pos, $c);
+		StartDiv($this->paraArr);
 		AddSpan(array("text" => $t));
 		EndDiv();
 	}
 	
-	function AddAuthor($t)
+	function AddAuthor($t, $pos = 3, $c = 'fastweb_p_author_style1')
 	{
-		StartDiv(array("class" => "fastweb_p_author"));
+		$this->SetPara($pos, $c);
+		StartDiv($this->paraArr);
 		AddSpan(array("text" => $t));
 		EndDiv();
 	}
 
-	function StartParagraph()
+	function StartParagraph($pos = 1, $c = 'fastweb_p_text_style1')
 	{
-		StartDiv(array("class" => "fastweb_p_text"));
+		$this->SetPara($pos, $c);
+		StartDiv($this->paraArr);
 	}
 	
 	function EndParagraph()

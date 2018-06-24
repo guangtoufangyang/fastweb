@@ -154,7 +154,7 @@ function AddDoc($data)
 	
 	if(isset($data["author"]))
 	{
-		$oDoc->AddAuthor($data["author"]);
+		$oDoc->AddAuthor($data["author"], 2);
 	}
 	
 	if(isset($data["paragraph"]))
@@ -162,7 +162,7 @@ function AddDoc($data)
 		foreach ($data["paragraph"] as $val)
 		{
 			$oDoc->StartParagraph();
-			AddSpan(array("text" => $val));
+			AddSpan(array("text" => "&#12288;&#12288;".$val));
 			$oDoc->EndParagraph();
 		}
 	}

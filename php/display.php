@@ -21,12 +21,14 @@ function DisplayTop()
 
 function DisplayText($k)
 {
-	if(!DataGetByKey($k, $data))
+	if(!DataGetByKey($k, $jsonData))
 	{
 		return;
 	}
 	
-	AddDoc($data);
+	$arrData = json_decode($jsonData, true);
+	
+	AddDoc($arrData);
 }
 
 function DisplayNew($k)
@@ -107,6 +109,16 @@ function DisplayTree($k, $branchTag = "")
 	{
 		AddTree($data, $branchTag);
 	}
+}
+
+/*----------------fastweb网站功能函数--------------------*/
+function DisplayFastwebFunclist($openNode)
+{
+	global $funcList;
+	$data = json_decode($funcList, true);
+	$tree = new CTree("funclist_", array($openNode), "fastweb_tree_nav");
+	$tree->AddTreeData($data);
+	unset($tree);
 }
 
 ?>

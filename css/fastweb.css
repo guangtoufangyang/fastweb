@@ -10,6 +10,11 @@ body
 	padding-left:0px;
 }
 
+textarea{
+	width:100%;
+	height:wuto;
+}
+
 div.fastweb_div_frame
 {
 	margin-top:0px;
@@ -79,33 +84,47 @@ div.fastweb_new_module_content{
 	border-bottom-left-radius:15px;
 }
 
+div.fastweb_p_title_style1 {
+	font:bold 34px/44px "微软雅黑", Verdana, Arial, Helvetica, sans-serif;
+	padding: 12px 16px 12px 16px;
+}
+
+div.fastweb_p_author_style1 {
+	font:bold 14px/24px "微软雅黑", Verdana, Arial, Helvetica, sans-serif;
+	padding: 12px 16px 12px 16px;
+}
+
+div.fastweb_p_text_style1 {
+	font:bold 14px/24px "微软雅黑", Verdana, Arial, Helvetica, sans-serif;
+	padding: 12px 16px 12px 16px;
+}
 
 div.fastweb_div_dropdown {
-  background-color: #2f3e45;
-  min-width: 160px;
-  padding: 12px 16px 0px 0px;
-  font:italic bold 20px Georgia, serif;
-  color:#FFFFFF;
+	background-color: #2f3e45;
+	min-width: 160px;
+	padding: 12px 16px 0px 0px;
+	font:italic bold 20px Georgia, serif;
+	color:#FFFFFF;
 }
 
 div.fastweb_div_dropdown>a {
-  color:#FFFFFF;
-  font:20px solid 隶书;
+	color:#FFFFFF;
+	font:20px solid 隶书;
 }
 
 div.fastweb_div_dropdown_content >a {
-  color:#FFFFFF;
-  font:20px solid 隶书;
+	color:#FFFFFF;
+	font:20px solid 隶书;
 }
 
 
 div.fastweb_div_dropdown_content {
-  display: none;
-  position: absolute;
-  background-color: #2f3e45;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  padding: 12px 16px;
+	display: none;
+	position: absolute;
+	background-color: #2f3e45;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	padding: 12px 16px;
 }
 div.fastweb_div_dropdown:hover div.fastweb_div_dropdown_content {
   display: block;
@@ -138,7 +157,7 @@ nav.fastweb_menu_h ul li a
 	line-height: 35px;
 	text-align: center;
 	color:white;
-	font-fimily:微软雅黑;
+	font-family:微软雅黑;
 }
 nav.fastweb_menu_h ul li ul li
 {
@@ -336,7 +355,11 @@ li.fastweb_tree_nav
 {
 	position: relative;
 	list-style: none;
+	font:bold 14px/24px "微软雅黑", Verdana, Arial, Helvetica, sans-serif;
+	color:black;
+	text-decoration:none;
 }
+
 li.fastweb_tree_nav .fastweb_tree_leaf{
 	
 }
