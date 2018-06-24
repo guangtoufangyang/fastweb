@@ -40,6 +40,30 @@ $dataTable = array(
 	"tab1" => '
 		{"title":"选项卡模块", "paragraph":["new CTab()时传入选项卡名称数组","StartTab表示一个tab开始", "EndTab表示一个tab结束", "注意：包含tab功能的页面<head><base>必须为当前页面"]}
 	',
+	"doc1" => '
+		{"title":"AddDoc添加文章", "paragraph":["{\"title\":\"静夜思\",\"author\":\"李白\",\"paragraph\":[\"床前明月光，\",\"疑是地上霜，\",\"举头望明月，\",\"低头思故乡。\"]}"]}
+	',
+	"menu1" => '
+		{"title":"AddNavigationL1添加导航栏"}
+	',
+	"menu2" => '
+		{"title":"AddMenuH添加水平二级菜单"}
+	',
+	"menu3" => '
+		{"title":"AddMenuV添加垂直二级菜单"}
+	',
+	"pos1" => '
+		{"paragraph":["fastweb_pos_left:靠左","fastweb_pos_right:靠右","fastweb_pos_top:靠上","fastweb_pos_bottom:靠下",
+			"fastweb_pos_left_top:左上角","fastweb_pos_right_top:右上角","fastweb_pos_left_bottom:左下角","fastweb_pos_right_bottom:右下角",
+			"fastweb_pos_left_middle:左边中间","fastweb_pos_right_middle:右边中间","fastweb_pos_top_middle:上面中间","fastweb_pos_bottom_middle:下面中间",
+			"fastweb_pos_fixed:固定位置"]}
+	',
+	"opacity1" => '
+		{"paragraph":["fastweb_opacity_10:10%透明","fastweb_opacity_20:20%透明","fastweb_opacity_30:30%透明","fastweb_opacity_40:40%透明",
+		"fastweb_opacity_50:50%透明","fastweb_opacity_60:60%透明","fastweb_opacity_70:70%透明","fastweb_opacity_80:80%透明","fastweb_opacity_90:90%透明"]}
+	',
+	
+	
 	
 
 	
@@ -65,7 +89,13 @@ $funcList = '
 		{"name":"leaf", "text":"添加视频", "href":"video.php"},
 		{"name":"leaf", "text":"面包屑", "href":"crumb.php"},
 		{"name":"leaf", "text":"tab模块", "href":"tab.php"},
+		{"name":"leaf", "text":"文章模块", "href":"doc.php"},
+		{"name":"leaf", "text":"菜单模块", "href":"menu.php"},
 		{"name":"leaf", "text":"点击关闭模块", "href":"close.php"}
+	]},
+	{"name":"branch", "text":"属性", "leaf":[
+		{"name":"leaf", "text":"固定位置", "href":"pos.php"},
+		{"name":"leaf", "text":"透明度", "href":"opacity.php"}
 	]},
 	{"name":"branch", "text":"一个混乱的页面", "href":"index1.php", "leaf":[]}
 	]
