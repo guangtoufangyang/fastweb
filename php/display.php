@@ -120,6 +120,7 @@ function DisplayFile($path, $lineEnd = '', $trim = false)
 	}
 	while (! feof($file)) {
 		$line = fgets($file);
+		$line = htmlspecialchars($line);
 		if($trim)
 		{
 			$line = trim($line);
