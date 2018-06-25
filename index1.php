@@ -9,6 +9,14 @@ StartBody();
 DisplayTop();
 
 StartDiv(array("class" => "fastweb_div_frame"));
+
+	StartDiv(array("class" => "fastweb_div_middle"));
+	AddSearchBar("");
+	EndDiv();
+	StartDiv(array("class" => "fastweb_div_middle"));
+	AddSearchBar("", "name", "post", "搜索文字", "fastweb_search_bar_style2");
+	EndDiv();
+
 	StartDiv(array("class" => "fastweb_div_middle"));
 		DisplayMenuH("liH");
 	EndDiv();

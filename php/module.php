@@ -387,4 +387,15 @@ function AddCrumb($data)
 	EndDiv();
 }
 
+function AddSearchBar($searchUrl, $name = "word", $method = "get", $placeholder = "", $style = "fastweb_search_bar_style1")
+{
+	StartDiv(array("class" => $style));
+	StartForm(array("action" => $searchUrl, "method" => $method));
+	AddTextInput(array("placeholder" => $placeholder, "name" => $name));
+	AddSubmit(array("text" => "搜索"));
+	EndForm();
+	EndDiv();
+}
+
+
 ?>

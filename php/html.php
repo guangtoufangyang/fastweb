@@ -154,6 +154,200 @@ function AddLi($arrAttr = array())
 }
 
 
+function AddH1($arrAttr = array())
+{
+	if(!is_array($arrAttr)) return;
+	echo '<h1';
+	if(array_key_exists("id", $arrAttr))
+	{
+		echo ' id="'.$arrAttr["id"].'"';
+	}
+	if(array_key_exists("class", $arrAttr))
+	{
+		echo ' class="'.$arrAttr["class"].'"';
+	}
+	echo '> ';
+	if(array_key_exists("text", $arrAttr))
+	{
+		echo $arrAttr["text"];
+	}
+	echo '</h1>'.PHP_EOL;
+}
+
+function AddH2($arrAttr = array())
+{
+	if(!is_array($arrAttr)) return;
+	echo '<h2';
+	if(array_key_exists("id", $arrAttr))
+	{
+		echo ' id="'.$arrAttr["id"].'"';
+	}
+	if(array_key_exists("class", $arrAttr))
+	{
+		echo ' class="'.$arrAttr["class"].'"';
+	}
+	echo '> ';
+	if(array_key_exists("text", $arrAttr))
+	{
+		echo $arrAttr["text"];
+	}
+	echo '</h2>'.PHP_EOL;
+}
+
+function AddH3($arrAttr = array())
+{
+	if(!is_array($arrAttr)) return;
+	echo '<h3';
+	if(array_key_exists("id", $arrAttr))
+	{
+		echo ' id="'.$arrAttr["id"].'"';
+	}
+	if(array_key_exists("class", $arrAttr))
+	{
+		echo ' class="'.$arrAttr["class"].'"';
+	}
+	echo '> ';
+	if(array_key_exists("text", $arrAttr))
+	{
+		echo $arrAttr["text"];
+	}
+	echo '</h3>'.PHP_EOL;
+}
+
+function AddH4($arrAttr = array())
+{
+	if(!is_array($arrAttr)) return;
+	echo '<h4';
+	if(array_key_exists("id", $arrAttr))
+	{
+		echo ' id="'.$arrAttr["id"].'"';
+	}
+	if(array_key_exists("class", $arrAttr))
+	{
+		echo ' class="'.$arrAttr["class"].'"';
+	}
+	echo '> ';
+	if(array_key_exists("text", $arrAttr))
+	{
+		echo $arrAttr["text"];
+	}
+	echo '</h4>'.PHP_EOL;
+}
+
+function AddH5($arrAttr = array())
+{
+	if(!is_array($arrAttr)) return;
+	echo '<h5';
+	if(array_key_exists("id", $arrAttr))
+	{
+		echo ' id="'.$arrAttr["id"].'"';
+	}
+	if(array_key_exists("class", $arrAttr))
+	{
+		echo ' class="'.$arrAttr["class"].'"';
+	}
+	echo '> ';
+	if(array_key_exists("text", $arrAttr))
+	{
+		echo $arrAttr["text"];
+	}
+	echo '</h5>'.PHP_EOL;
+}
+
+function AddH6($arrAttr = array())
+{
+	if(!is_array($arrAttr)) return;
+	echo '<h6';
+	if(array_key_exists("id", $arrAttr))
+	{
+		echo ' id="'.$arrAttr["id"].'"';
+	}
+	if(array_key_exists("class", $arrAttr))
+	{
+		echo ' class="'.$arrAttr["class"].'"';
+	}
+	echo '> ';
+	if(array_key_exists("text", $arrAttr))
+	{
+		echo $arrAttr["text"];
+	}
+	echo '</h6>'.PHP_EOL;
+}
+
+function AddAbbr($arrAttr = array())
+{
+	if(!is_array($arrAttr)) return;
+	echo '<abbr';
+	if(array_key_exists("title", $arrAttr))
+	{
+		echo ' title="'.$arrAttr["title"].'"';
+	}
+	if(array_key_exists("id", $arrAttr))
+	{
+		echo ' id="'.$arrAttr["id"].'"';
+	}
+	if(array_key_exists("class", $arrAttr))
+	{
+		echo ' class="'.$arrAttr["class"].'"';
+	}
+	echo '> ';
+	if(array_key_exists("text", $arrAttr))
+	{
+		echo $arrAttr["text"];
+	}
+	echo '</abbr>'.PHP_EOL;
+}
+
+function AddB($arrAttr = array())
+{
+	if(!is_array($arrAttr)) return;
+	echo '<b';
+	if(array_key_exists("id", $arrAttr))
+	{
+		echo ' id="'.$arrAttr["id"].'"';
+	}
+	if(array_key_exists("class", $arrAttr))
+	{
+		echo ' class="'.$arrAttr["class"].'"';
+	}
+	echo '> ';
+	if(array_key_exists("text", $arrAttr))
+	{
+		echo $arrAttr["text"];
+	}
+	echo '</b>'.PHP_EOL;
+}
+
+
+function AddTextInput($arrAttr = array())
+{
+	if(!is_array($arrAttr)) return;
+	echo '<input type="text"';
+	if(array_key_exists("placeholder", $arrAttr))
+	{
+		echo ' placeholder="'.$arrAttr["placeholder"].'"';
+	}
+	if(array_key_exists("name", $arrAttr))
+	{
+		echo ' name="'.$arrAttr["name"].'"';
+	}
+	echo '> ';
+}
+
+function AddSubmit($arrAttr = array())
+{
+	if(!is_array($arrAttr)) return;
+	echo '<button type="submit"';
+	
+	echo '> ';
+	if(array_key_exists("text", $arrAttr))
+	{
+		echo $arrAttr["text"];
+	}
+	echo '</button>'.PHP_EOL;
+}
+
+
 function StartOl($arrAttr = array())
 {
 	if(!is_array($arrAttr)) return;
@@ -178,6 +372,42 @@ function EndOl()
 	echo '</ol>'.PHP_EOL;
 }
 
+function StartForm($arrAttr = array())
+{
+	if(!is_array($arrAttr)) return;
+	echo '<form';
+	if(array_key_exists("action", $arrAttr))
+	{
+		echo ' action="'.$arrAttr["action"].'"';
+	}
+	if(array_key_exists("method", $arrAttr))
+	{
+		echo ' method="'.$arrAttr["method"].'"';
+	}
+	echo '> '.PHP_EOL;
+}
+
+function EndForm()
+{
+	echo '</form>'.PHP_EOL;
+}
+
+function StartPre($arrAttr = array())
+{
+	if(!is_array($arrAttr)) return;
+	echo '<pre';
+	if(array_key_exists("class", $arrAttr))
+	{
+		echo ' class="'.$arrAttr["class"].'"';
+	}
+	echo '> '.PHP_EOL;
+}
+
+function EndPre()
+{
+	echo '</pre>'.PHP_EOL;
+}
+
 function StartTextarea($arrAttr = array())
 {
 	if(!is_array($arrAttr)) return;
@@ -193,6 +423,22 @@ function StartTextarea($arrAttr = array())
 	if(array_key_exists("class", $arrAttr))
 	{
 		echo ' class="'.$arrAttr["class"].'"';
+	}
+	if(array_key_exists("width", $arrAttr))
+	{
+		echo ' width="'.$arrAttr["width"].'"';
+	}
+	if(array_key_exists("height", $arrAttr))
+	{
+		echo ' height="'.$arrAttr["height"].'"';
+	}
+	if(array_key_exists("rows", $arrAttr))
+	{
+		echo ' rows="'.$arrAttr["rows"].'"';
+	}
+	if(array_key_exists("cols", $arrAttr))
+	{
+		echo ' cols="'.$arrAttr["cols"].'"';
 	}
 	echo '> '.PHP_EOL;
 }
