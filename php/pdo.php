@@ -6,7 +6,7 @@ $dataTable = array(
 		{"title":"静夜思", "author":"李白", "paragraph":["床前明月光，", "疑是地上霜，", "举头望明月，", "低头思故乡。"]}
 	',
 	"index1" => '
-		{"title":"fastweb介绍", "paragraph":["像写后台一样设计前端","GitHub:https://github.com/guangtoufangyang/fastweb"]}
+		{"title":"fastweb介绍", "paragraph":["像写后台一样设计前端"]}
 	',
 	"table1" => '
 		{"title":"table使用方法(1)", "paragraph":["CTable::SetTdColor(array());指定每一行的背景颜色"]}

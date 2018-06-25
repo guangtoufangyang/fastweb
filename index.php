@@ -34,5 +34,10 @@ StartDiv(array("class" => "fastweb_div_frame"));
 	EndDiv();
 EndDiv();	
 
+Repeat('</br>', 6);
+StartDiv(array("class" => "fastweb_div_frame fastweb_pos_bottom fastweb_pos_fixed fastweb_opacity_80"));
+	AddHtml("Bottom.html");
+EndDiv();
+
 EndBody();
 ?>
