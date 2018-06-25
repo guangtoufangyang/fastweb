@@ -721,3 +721,95 @@ div.fastweb_crumb a{
 	color:green;
 	text-decoration:none;
 }
+
+.fastweb_search_bar_style1 * {
+	box-sizing:border-box;
+}
+.fastweb_search_bar_style1 form {
+	height:42px;
+	position:relative;
+	width:100%;
+	margin:0 auto;
+}
+.fastweb_search_bar_style1 input {
+	/*border:2px solid #c5464a;*/
+	border:1px solid gray;
+	border-radius:5px;
+	background:transparent;
+	top:0;
+	right:0;
+	outline:none;
+	width:100%;
+	height:42px;
+	padding-left:13px;
+}
+.fastweb_search_bar_style1 button {
+	background:#c5464a;
+	border-radius:0 5px 5px 0;
+	width:auto;
+	padding-left:15px;
+	padding-right:15px;
+	top:0;
+	right:0;
+	border:none;
+	outline:none;
+	height:42px;
+	cursor:pointer;
+	position:absolute;
+	text-align:center;
+}
+.fastweb_search_bar_style1 button:before {
+	font-size:13px;
+	color:#F9F0DA;
+}
+
+.fastweb_search_bar_style2 * {
+	box-sizing:border-box;
+} 
+  
+.fastweb_search_bar_style2 form {
+	height:42px;
+	position:relative;
+	width:100%;
+	margin:0 auto;
+}
+.fastweb_search_bar_style2 input {
+	width:100%;
+	border-radius:42px;
+	border:2px solid #324B4E;
+	background:#F9F0DA;
+	transition:.3s linear;
+	outline:none;
+	height:42px;
+	padding-left:13px;
+}
+
+.fastweb_search_bar_style2 button {
+	background:none;
+	border-radius:0 42px 42px 0;
+	top:0px;
+	right:0px;
+	border:none;
+	outline:none;
+	height:42px;
+	width:auto;
+	text-align:center;
+	cursor:pointer;
+	position:absolute;
+	padding-left:15px;
+	padding-right:15px;
+}
+.fastweb_search_bar_style2 button:before {
+	font-family:FontAwesome;
+	color:#324b4e;
+}
+
+.fastweb_pre_style1{
+	text-align:left;
+	font-family:FontAwesome;
+}
+
+.fastweb_fieldset_style1{
+	padding:10px;
+	font:14px/24px "微软雅黑", Verdana, Arial, Helvetica, sans-serif;
+}

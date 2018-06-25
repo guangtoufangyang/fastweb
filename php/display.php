@@ -111,6 +111,24 @@ function DisplayTree($k, $branchTag = "")
 	}
 }
 
+function DisplayFile($path, $lineEnd = '', $trim = false)
+{
+	$file = fopen($path, 'r');
+	if(false === $file)
+	{
+		return;
+	}
+	while (! feof($file)) {
+		$line = fgets($file);
+		if($trim)
+		{
+			$line = trim($line);
+		}
+		echo $line.$lineEnd;
+	}
+	fclose($file);
+}
+
 /*----------------fastweb网站功能函数--------------------*/
 function DisplayFastwebFunclist($openNode)
 {
