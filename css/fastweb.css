@@ -747,6 +747,7 @@ div.fastweb_crumb a{
 	background:#c5464a;
 	border-radius:0 5px 5px 0;
 	width:auto;
+	min-width:40px;
 	padding-left:15px;
 	padding-right:15px;
 	top:0;
@@ -757,7 +758,16 @@ div.fastweb_crumb a{
 	cursor:pointer;
 	position:absolute;
 	text-align:center;
+	/*
+	background: url(../image/fastweb_search.png) top right no-repeat;
+	background-position: center;*/
 }
+
+.fastweb_search_bar_icon_style1{
+	background: url(../image/fastweb_search.png) top right no-repeat;
+	background-position: center;
+}
+
 .fastweb_search_bar_style1 button:before {
 	font-size:13px;
 	color:#F9F0DA;
@@ -793,6 +803,7 @@ div.fastweb_crumb a{
 	outline:none;
 	height:42px;
 	width:auto;
+	min-width:40px;
 	text-align:center;
 	cursor:pointer;
 	position:absolute;
@@ -812,4 +823,35 @@ div.fastweb_crumb a{
 .fastweb_fieldset_style1{
 	padding:10px;
 	font:14px/24px "微软雅黑", Verdana, Arial, Helvetica, sans-serif;
+}
+
+
+.fastweb_popup_a_style {
+}
+
+.fastweb_popup_fade_style {
+	position: fixed;
+	z-index:1000;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	filter: alpha(opacity=80);
+	opacity: 0.8;
+	overflow: hidden;
+	background-color: #000;
+}
+
+.fastweb_popup_light_style {
+	display: none;
+	position: absolute;
+	/*top: 15%;
+	left: 25%;
+	width: 632px;
+	height: 445px;*/
+	border: 16px solid #FFF;
+	border-bottom:none;
+	background-color: white;
+	z-index:1002;
+	overflow: auto;
 }

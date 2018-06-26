@@ -338,8 +338,11 @@ function AddSubmit($arrAttr = array())
 {
 	if(!is_array($arrAttr)) return;
 	echo '<button type="submit"';
-	
-	echo '> ';
+	if(array_key_exists("class", $arrAttr))
+	{
+		echo ' class="'.$arrAttr["class"].'"';
+	}
+	echo '>';
 	if(array_key_exists("text", $arrAttr))
 	{
 		echo $arrAttr["text"];
@@ -570,6 +573,10 @@ function AddLink($arrAttr = array()){
 	if(array_key_exists("class", $arrAttr))
 	{
 		echo ' class="'.$arrAttr["class"].'"';
+	}
+	if(array_key_exists("onclick", $arrAttr))
+	{
+		echo ' onclick="'.$arrAttr["onclick"].'"';
 	}
 	echo '>';
 	if(array_key_exists("text", $arrAttr))
@@ -1402,6 +1409,57 @@ class CTable{
 		$this->mTdWidArr = $widthArr;
 	}
 
+}
+
+class CPopup{
+	private $idPrefix;
+	public function __construct($prefix = "fastweb_class_popup_"){
+		$this->idPrefix = $prefix;
+	}
+	
+	public function SetPrefix($prefix = "fastweb_class_popup_"){
+		$this->idPrefix = $prefix;
+	}
+	
+	public function PopupOpenControlLink($text, $class = "fastweb_popup_a_style")
+	{
+		$arr = array();
+		$arr["href"] = "javascript:void(0)";
+		$arr["text"] = $text;
+		$arr["class"] = $class;
+		$arr["onclick"] = "document.getElementById('".$this->idPrefix."light').style.display='block';document.getElementById('".$this->idPrefix."fade').style.display='block'";
+		AddLink($arr);
+		
+		StartDiv(array("id" => $this->idPrefix."fade", "class" => "fastweb_popup_fade_style", "style" => "display:none;"));
+		EndDiv();
+	}
+	
+	public function PopupCloseControlLink($text, $class = "fastweb_popup_a_style")
+	{
+		$arr = array();
+		$arr["href"] = "javascript:void(0)";
+		$arr["text"] = $text;
+		$arr["class"] = $class;
+		$arr["onclick"] = "document.getElementById('".$this->idPrefix."light').style.display='none';document.getElementById('".$this->idPrefix."fade').style.display='none'";
+		AddLink($arr);
+	}
+	
+	public function PopupStart($width = "600px", $height = "400px", $left = "15%", $top = "15%")
+	{
+		$arr = array();
+		$arr["id"] = $this->idPrefix."light";
+		$arr["class"] = "fastweb_popup_light_style";
+		$arr["style"] = "width:".$width.";height:".$height.";left:".$left.";top:".$top.";";
+		StartDiv($arr);
+	}
+	public function PopupEnd()
+	{
+		EndDiv();
+	}
+	
+	public function __destruct(){
+		
+	}
 }
 
 class CCloseBlock{

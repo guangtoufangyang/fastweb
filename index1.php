@@ -11,10 +11,40 @@ DisplayTop();
 StartDiv(array("class" => "fastweb_div_frame"));
 
 	StartDiv(array("class" => "fastweb_div_middle"));
+	$pop = new CPopup();
+	
+	$pop->PopupOpenControlLink("打开弹窗");
+	
+	$pop->PopupStart();
+	
+	
+	$table = new CTable();
+	$table->SetTdColor(array("fastweb_bgcolor_fcf", "fastweb_bgcolor_ffc", "fastweb_bgcolor_cff"));
+	$table->AddTh("标题");
+	$table->AddTh("标题");
+	$table->AddTh("标题");
+	$table->AddTd("内容");
+	$table->AddTd("内容");
+	$table->AddTd("内容");
+	$table->AddTd("内容");
+	$table->AddTd("内容");
+	$table->AddTd("内容");
+	$table->AddTd("内容");
+	$table->StartTd();
+	$pop->PopupCloseControlLink("关闭弹窗");
+	$table->EndTd();
+	unset($table);
+	
+	
+	$pop->PopupEnd();
+	
+	EndDiv();
+
+	StartDiv(array("class" => "fastweb_div_middle"));
 	AddSearchBar("");
 	EndDiv();
 	StartDiv(array("class" => "fastweb_div_middle"));
-	AddSearchBar("", "name", "post", "搜索文字", "fastweb_search_bar_style2");
+	AddSearchBar("", "搜", "name", "post", "搜索文字", "fastweb_search_bar_style2");
 	EndDiv();
 
 	StartDiv(array("class" => "fastweb_div_middle"));

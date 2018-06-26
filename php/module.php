@@ -387,12 +387,20 @@ function AddCrumb($data)
 	EndDiv();
 }
 
-function AddSearchBar($searchUrl, $name = "word", $method = "get", $placeholder = "", $style = "fastweb_search_bar_style1")
+function AddSearchBar($searchUrl, $btText = "", $name = "word", $method = "get", $placeholder = "", $style = "fastweb_search_bar_style1")
 {
 	StartDiv(array("class" => $style));
 	StartForm(array("action" => $searchUrl, "method" => $method));
 	AddTextInput(array("placeholder" => $placeholder, "name" => $name));
-	AddSubmit(array("text" => "搜索"));
+	if(!empty($btText))
+	{
+		AddSubmit(array("text" => $btText));
+	}
+	else
+	{
+		AddSubmit(array("class" => "fastweb_search_bar_icon_style1"));
+	}
+	
 	EndForm();
 	EndDiv();
 }
