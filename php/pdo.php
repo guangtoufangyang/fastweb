@@ -63,6 +63,14 @@ $dataTable = array(
 		"fastweb_opacity_50:50%透明","fastweb_opacity_60:60%透明","fastweb_opacity_70:70%透明","fastweb_opacity_80:80%透明","fastweb_opacity_90:90%透明"]}
 	',
 	
+	"new1" => '
+		{"paragraph":["DisplayText每行显示一条记录"]}
+	',
+	
+	"new2" => '
+		{"paragraph":["DisplayText2每行显示多条记录"]}
+	',
+	
 	
 	
 
@@ -93,15 +101,16 @@ $funcList = '
 		{"name":"leaf", "text":"菜单模块", "href":"menu.php"},
 		{"name":"leaf", "text":"搜索框", "href":"search.php"},
 		{"name":"leaf", "text":"弹窗", "href":"popup.php"},
+		{"name":"leaf", "text":"新闻", "href":"new.php"},
 		{"name":"leaf", "text":"点击关闭模块", "href":"close.php"}
 	]},
 	{"name":"branch", "text":"属性", "leaf":[
 		{"name":"leaf", "text":"固定位置", "href":"pos.php"},
 		{"name":"leaf", "text":"透明度", "href":"opacity.php"}
-	]},
-	{"name":"branch", "text":"一个混乱的页面", "href":"index1.php", "leaf":[]}
+	]}
 	]
 	';
+	//{"name":"branch", "text":"一个混乱的页面", "href":"index1.php", "leaf":[]}
 
 
 function DataGetByKey($k, &$data)
