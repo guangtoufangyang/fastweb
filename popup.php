@@ -46,6 +46,15 @@ StartDiv(array("class" => "fastweb_div_frame"));
 				
 				
 				$pop->PopupEnd();
+				
+				
+				$pop->SetPrefix("aaaaaaa");
+				$pop->PopupOpenControlLink("打开弹窗1");
+				
+				$pop->PopupStart("200px","200px","600px","600px");
+				$pop->PopupCloseControlLink("关闭弹窗");
+				$pop->PopupEnd();
+				
 			EndDiv();
 			
 			StartDiv(array("class" => "fastweb_align_left", "style" => "width:100%;"));
