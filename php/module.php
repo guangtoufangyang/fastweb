@@ -32,11 +32,11 @@ function AddNavigationL1($arr, $curNav, $bgColor = "#f3f3f3", $onColor = "#4CAF5
 		StartLi();
 		if($val["text"] != $curNav)
 		{
-			AddLink(array("href" => $val["href"], "text" => $val["text"]));
+			AddLink(array("href" => $val["href"]), $val["text"]);
 		}
 		else
 		{
-			AddLink(array("href" => $val["href"], "text" => $val["text"], "class" => "fastweb_navigation_active"));
+			AddLink(array("href" => $val["href"], "class" => "fastweb_navigation_active"), $val["text"]);
 		}
 		
 		EndLi();
@@ -81,11 +81,11 @@ function AddPageTurningBySize($currNum, $urlPrefix, $globalMax = 100)
 		StartLi();
 		if($i != $currNum)
 		{
-			AddLink(array("href" => $urlPrefix.strval($i), "text" => $i));
+			AddLink(array("href" => $urlPrefix.strval($i)), $i);
 		}
 		else
 		{
-			AddLink(array("href" => $urlPrefix.strval($i), "text" => $i, "class" => "fastweb_page_active"));
+			AddLink(array("href" => $urlPrefix.strval($i), "class" => "fastweb_page_active"), $i);
 		}	
 		
 		
@@ -95,7 +95,7 @@ function AddPageTurningBySize($currNum, $urlPrefix, $globalMax = 100)
 	if($currNum < $globalMax)
 	{
 		StartLi();
-		AddLink(array("href" => $urlPrefix.($currNum + 1), "text" => "下一页"));
+		AddLink(array("href" => $urlPrefix.($currNum + 1)), "下一页");
 		EndLi();
 	}
 	
@@ -113,7 +113,7 @@ function AddPageTurning($minNum, $maxNum, $currNum, $urlPrefix, $globalMax = 100
 	if($currNum > 1)
 	{
 		StartLi();
-		AddLink(array("href" => $urlPrefix.($currNum - 1), "text" => "上一页"));
+		AddLink(array("href" => $urlPrefix.($currNum - 1)), "上一页");
 		EndLi();
 	}
 	
@@ -122,11 +122,11 @@ function AddPageTurning($minNum, $maxNum, $currNum, $urlPrefix, $globalMax = 100
 		StartLi();
 		if($i != $currNum)
 		{
-			AddLink(array("href" => $urlPrefix.strval($i), "text" => $i));
+			AddLink(array("href" => $urlPrefix.strval($i)), $i);
 		}
 		else
 		{
-			AddLink(array("href" => $urlPrefix.strval($i), "text" => $i, "class" => "fastweb_page_active"));
+			AddLink(array("href" => $urlPrefix.strval($i), "class" => "fastweb_page_active"), $i);
 		}	
 		
 		
@@ -136,7 +136,7 @@ function AddPageTurning($minNum, $maxNum, $currNum, $urlPrefix, $globalMax = 100
 	if(($currNum < $globalMax) || ($currNum < $maxNum))
 	{
 		StartLi();
-		AddLink(array("href" => $urlPrefix.($currNum + 1), "text" => "下一页"));
+		AddLink(array("href" => $urlPrefix.($currNum + 1)), "下一页");
 		EndLi();
 	}
 	
@@ -162,7 +162,7 @@ function AddDoc($data)
 		foreach ($data["paragraph"] as $val)
 		{
 			$oDoc->StartParagraph();
-			AddSpan(array("text" => "&#12288;&#12288;".$val));
+			AddSpan(array(), "&#12288;&#12288;".$val);
 			$oDoc->EndParagraph();
 		}
 	}
@@ -177,13 +177,13 @@ function AddNew($data)
 	StartSimpleDiv();
 		if(!empty($data["title"]))
 		StartDiv(array("class" => "fastweb_new_module_title"));
-		AddSpan(array("text" => $data["title"]));
+		AddSpan(array(), $data["title"]);
 		EndDiv();
 
 		StartDiv(array("class" => "fastweb_new_module_content"));
 		
 		foreach($data["info"] as $val){
-			AddLineLink(array("href" => $val["link"], "text" => $val["text"]));
+			AddLineLink(array("href" => $val["link"]), $val["text"]);
 		}
 		EndDiv();
 	EndDiv();
@@ -194,7 +194,7 @@ function AddNew2($data, $perLineCnt = 1)
 	StartSimpleDiv();
 		if(!empty($data["title"]))
 		StartDiv(array("class" => "fastweb_new_module_title"));
-		AddSpan(array("text" => $data["title"]));
+		AddSpan(array(), $data["title"]);
 		EndDiv();
 
 		StartDiv(array("class" => "fastweb_new_module_content"));
@@ -202,7 +202,7 @@ function AddNew2($data, $perLineCnt = 1)
 		$width = 100 / $perLineCnt - 1;
 		foreach($data["info"] as $val){
 			StartSimpleDiv(array("class" => "fastweb_align_center", "style" => "float:left;width:".$width."%;"));
-			AddLineLink(array("href" => $val["link"], "text" => $val["text"]));
+			AddLineLink(array("href" => $val["link"]), $val["text"]);
 			EndDiv();
 		}
 		ClearFloat();
@@ -216,11 +216,11 @@ function AddMenuH($data)
 	StartUl();
 	foreach ($data as $val)
 	{
-		StartLiWithLink(array("href" => "#", "text" => $val["name"]));
+		StartLiWithLink(array(), $val["name"], "#");
 		foreach ($val["list"] as $lis)
 		{
 			StartUl();
-			AddLiWithLink(array("href" => $lis["link"], "text" => $lis["name"]));
+			AddLiWithLink(array("href" => $lis["link"]), $lis["name"]);
 			EndUl();
 		}
 		EndLi();
@@ -236,11 +236,11 @@ function AddMenuV($data)
 	StartUl();
 	foreach ($data as $val)
 	{
-		StartLiWithLink(array("href" => "#", "text" => $val["name"], "style" => "width:100%;"));
+		StartLiWithLink(array("style" => "width:100%;"), $val["name"], "#");
 		foreach ($val["list"] as $lis)
 		{
 			StartUl();
-			AddLiWithLink(array("href" => $lis["link"], "text" => $lis["name"]));
+			AddLiWithLink(array("href" => $lis["link"]), $lis["name"]);
 			EndUl();
 		}
 		EndLi();
@@ -255,11 +255,11 @@ function AddMenuH2($data)
 	foreach ($data as $val)
 	{
 		StartDiv(array("class" => "fastweb_div_dropdown", "style" => "float:left;"));
-		AddLink(array("href" => "#", "text" => $val["name"], "class" => "fastweb_span_menu"));
+		AddLink(array("href" => "#", "class" => "fastweb_span_menu"), $val["name"]);
 		StartDiv(array("class" => "fastweb_div_dropdown_content"));
 		foreach ($val["list"] as $lis)
 		{
-			AddLink(array("href" => $lis["link"], "text" => $lis["name"]));
+			AddLink(array("href" => $lis["link"]), $lis["name"]);
 		}
 		
 		EndDiv();
@@ -326,7 +326,7 @@ function AddRollPlay1($data)
 	StartUl(array("id" => "fast_web_roll_play_text"));
 	for($i = 1; $i<= $max; ++$i)
 	{
-		AddLi(array("text" => $data[$i - 1]["text"]));
+		AddLi(array(), array("text" => $data[$i - 1]["text"]));
 	}
 	
 	EndUl();
@@ -366,7 +366,7 @@ function AddCrumb($data)
 	{
 		if(isset($data[$i]["href"]) && isset($data[$i]["text"]))
 		{
-			AddLink($data[$i]);
+			AddLink(array("href" => $data[$i]["href"]), $data[$i]["text"]);
 			echo " &gt; ";
 		}
 		else
@@ -377,7 +377,7 @@ function AddCrumb($data)
 	
 	if(isset($data[$max]["href"]) && isset($data[$max]["text"]))
 	{
-		AddLink($data[$i]);
+		AddLink(array("href" => $data[$max]["href"]), $data[$max]["text"]);
 	}
 	else
 	{
@@ -394,7 +394,7 @@ function AddSearchBar($searchUrl, $btText = "", $name = "word", $method = "get",
 	AddTextInput(array("placeholder" => $placeholder, "name" => $name));
 	if(!empty($btText))
 	{
-		AddSubmit(array("text" => $btText));
+		AddSubmit(array(), $btText);
 	}
 	else
 	{

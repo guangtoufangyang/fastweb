@@ -14,7 +14,7 @@ function DisplayTop()
 {
 	StartDiv(array("class" => "fastweb_div_frame", "style" => "background-color:#2f3e45;"));
 	StartDiv(array("class" => "fastweb_div_middle", "style" => "background-color:#2f3e45;line-height:50px;"));
-		AddSpan(array("text" => "fastweb真是简单啊！"));
+		AddSpan(array(), "fastweb真是简单啊！");
 	EndDiv();
 	EndDiv();
 }
@@ -78,7 +78,7 @@ function DisplayOptions($k)
 		return;
 	}
 	
-	AddSelect($data);
+	AddSelect(array(), $data);
 }
 
 function DisplayCheckbox($k)
@@ -90,7 +90,7 @@ function DisplayCheckbox($k)
 	
 	foreach ($data as $val)
 	{
-		AddCheckBox($val);
+		AddCheckBox($val, $val["text"]);
 	}
 }
 

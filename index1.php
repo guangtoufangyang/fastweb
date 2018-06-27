@@ -352,7 +352,7 @@ EndDiv();
 
 StartDiv(array("class" => "fastweb_pos_left_middle fastweb_pos_fixed"));
 	$closeBlock = new CCloseBlock();
-	AddImgWithLink(array("src" => SITE_URL."image/fastweb.png", "href" => "#"));
+	AddImgWithLink(array("src" => SITE_URL."image/fastweb.png"), "#");
 	unset($closeBlock);
 EndDiv();
 

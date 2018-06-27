@@ -21,12 +21,12 @@ StartDiv(array("class" => "fastweb_div_frame"));
 		
 			StartDiv(array("class" => "fastweb_pos_right_middle fastweb_pos_fixed"));
 				$closeBlock = new CCloseBlock();
-				AddImgWithLink(array("src" => SITE_URL."image/fastweb.png", "href" => "#"));
+				AddImgWithLink(array("src" => SITE_URL."image/fastweb.png"), "#");
 				unset($closeBlock);
 			EndDiv();
 			
 			StartDiv(array("class" => "fastweb_align_left", "style" => "width:100%;"));
-				StartFieldset(array("class" => "fastweb_fieldset_style1", "text" => "页面代码"));
+				StartFieldset(array("class" => "fastweb_fieldset_style1"),  "页面代码");
 				DisplayFile(basename(__FILE__), "</br>");
 				EndFieldset();
 			EndDiv();
