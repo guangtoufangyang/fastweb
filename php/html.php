@@ -1095,12 +1095,12 @@ class CRollPlay{
 	{
 		EndLi();
 	}
-	public AddRollImg($src, $href = "")
+	public function AddRollImg($src, $href = "")
 	{
 		$this->RollStart();
 		if(empty($href))
 		{
-			AddImg(array("src" => $val));
+			AddImg(array("src" => $src));
 		}
 		else
 		{
