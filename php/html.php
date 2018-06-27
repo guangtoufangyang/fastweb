@@ -1087,17 +1087,17 @@ class CRollPlay{
 		EndUl();
 		EndDiv();
 	}
-	public RollStart()
+	public function RollStart()
 	{
 		StartLi();
 	}
-	public RollEnd()
+	public function RollEnd()
 	{
 		EndLi();
 	}
 	public AddRollImg($src, $href = "")
 	{
-		RollStart();
+		$this->RollStart();
 		if(empty($href))
 		{
 			AddImg(array("src" => $val));
@@ -1107,7 +1107,7 @@ class CRollPlay{
 			AddImgWithLink(array("src" => $val), $href);
 		}
 		
-		EndLi();
+		$this->RollEnd();
 	}
 }
 
