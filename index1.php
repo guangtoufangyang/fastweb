@@ -184,7 +184,7 @@ StartDiv(array("class" => "fastweb_div_middle"));
 	$tab->EndTab();
 	
 	$tab->StartTab();
-	AddRollPlayImg(array("//www.baidu.com/img/bd_logo1.png","//www.baidu.com/img/bd_logo1.png","//www.baidu.com/img/bd_logo1.png"));
+	AddRollPlayImg(array(SITE_URL."image/fastweb.png",SITE_URL."image/fastweb.png",SITE_URL."image/fastweb.png"));
 	$tab->EndTab();
 	
 	$tab->StartTab();
@@ -338,7 +338,7 @@ AddPageTurningBySize(isset($paramInfo["page"]) ? $paramInfo["page"] : 1, "//loca
 AddPageTurning(5, 12, isset($paramInfo["page"]) ? $paramInfo["page"] : 8, "//localhost/fastweb?page=");
 EndDiv();
 
-Repeat('</br>', 6);
+Repeat('<br />', 6);
 
 StartDiv(array("class" => "fastweb_div_frame fastweb_pos_bottom fastweb_pos_fixed fastweb_opacity_50"));
 	AddHtml("Bottom.html");

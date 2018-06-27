@@ -102,6 +102,7 @@ $funcList = '
 		{"name":"leaf", "text":"搜索框", "href":"search.php"},
 		{"name":"leaf", "text":"弹窗", "href":"popup.php"},
 		{"name":"leaf", "text":"新闻", "href":"new.php"},
+		{"name":"leaf", "text":"滚动播放", "href":"rollplay.php"},
 		{"name":"leaf", "text":"点击关闭模块", "href":"close.php"}
 	]},
 	{"name":"branch", "text":"属性", "leaf":[

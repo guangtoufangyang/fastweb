@@ -353,7 +353,7 @@ function AddLineLink($arrAttr = array(), $text = ""){
 	{
 		echo $text;
 	}
-	echo '</a><br>'.PHP_EOL;
+	echo '</a><br />'.PHP_EOL;
 }
 
 
