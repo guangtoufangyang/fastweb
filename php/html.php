@@ -1078,6 +1078,39 @@ class CCloseBlock{
 	}
 }
 
+class CRollPlay{
+	public function __construct($contain = "fastweb_rollplay_contain", $slide = "fastweb_rollplay_slide"){
+		StartDiv(array("class" => $contain));
+		StartUl(array("class" => $slide));
+	}
+	public function __destruct(){
+		EndUl();
+		EndDiv();
+	}
+	public RollStart()
+	{
+		StartLi();
+	}
+	public RollEnd()
+	{
+		EndLi();
+	}
+	public AddRollImg($src, $href = "")
+	{
+		RollStart();
+		if(empty($href))
+		{
+			AddImg(array("src" => $val));
+		}
+		else
+		{
+			AddImgWithLink(array("src" => $val), $href);
+		}
+		
+		EndLi();
+	}
+}
+
 /*此种关闭为点击任意位置都关闭*/
 class CCloseBlockHold{
 	public function __construct(){

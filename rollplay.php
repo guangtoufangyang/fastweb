@@ -21,19 +21,11 @@ StartDiv(array("class" => "fastweb_div_frame"));
 		
 			StartDiv(array("style" => "width:100%;"));
 				
-				$data = array(SITE_URL."image/fastweb.png",SITE_URL."image/fastweb.png",SITE_URL."image/fastweb.png");
-				StartDiv(array("class" => "fastweb_rollplay_contain"));
-				StartUl(array("class" => "fastweb_rollplay_slide"));
-				
-				foreach ($data as $val)
-				{
-					StartLi();
-					AddImg(array("src" => $val));
-					EndLi();
-				}
-				
-				EndUl();
-				EndDiv();
+				$roll = new CRollPlay();
+				$roll->AddRollImg(SITE_URL."image/fastweb.png");
+				$roll->AddRollImg(SITE_URL."image/fastweb.png");
+				$roll->AddRollImg(SITE_URL."image/fastweb.png");
+				unset($roll);
 							
 				
 			EndDiv();

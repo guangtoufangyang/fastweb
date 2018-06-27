@@ -277,18 +277,13 @@ function AddTree($data, $branchTag = "fastweb_tree_branch_tag")
 
 function AddRollPlayImg($data, $contain = "fastweb_rollplay_contain", $slide = "fastweb_rollplay_slide")
 {
-	StartDiv(array("class" => $contain));
-	StartUl(array("class" => $slide));
-	
+	$roll = new CRollPlay();
 	foreach ($data as $val)
 	{
-		StartLi();
-		AddImg(array("src" => $val));
-		EndLi();
+		$roll->AddRollImg($val);
 	}
 	
-	EndUl();
-	EndDiv();
+	unset($roll);
 }
 /*
 function AddRollPlayImgWithLink($data, $contain = "fastweb_rollplay_contain", $slide = "fastweb_rollplay_slide")
