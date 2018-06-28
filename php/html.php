@@ -740,15 +740,17 @@ class CTab
 	private $iMax;
 	private $iCur;
 	private $iHeight;
+	private $iOffset;
 	private $sTabPrefix;
 	private $arrTabList;
 	
-	function __construct($arr, $iHeight = "", $sTabPrefix = "fastweb_tab_box_tab")
+	function __construct($arr, $height = "400px", $sTabPrefix = "fastweb_tab_box_tab", $offset = 0.3)
 	{
-		$this->id = count($arr);
+		$this->iMax = count($arr);
 		$this->iCur = 1;
 		$this->sTabPrefix = $sTabPrefix;
-		$this->iHeight = $iHeight;
+		$this->iHeight = $height;
+		$this->iOffset = $offset;
 		$this->arrTabList = $arr;
 		$this->AddTabList($this->arrTabList);
 	}
@@ -757,19 +759,33 @@ class CTab
 	{
 		EndDiv();
 		StartUl(array("id" => "fastweb_tab_box_nav"));
-		for($i = 1; $i<= $this->id; ++$i)
+		for($i = 1; $i<= $this->iMax; ++$i)
 		{
-			StartLi();
+			StartLi(array("style" => "width:".(100/$this->iMax - $this->iOffset)."%;"));
 			AddLink(array("href" => "#".$this->sTabPrefix.(string)$i, "target" => "_self"), $this->arrTabList[$i - 1]);
 			EndLi();
 		}
 		EndUl();
 		EndDiv();
+		$this->TabCss();
+	}
+	
+	private function TabCss()
+	{
+		echo '<style type="text/css">';
+		for($i = 1; $i< $this->iMax; ++$i)
+		{
+			echo '#'.$this->sTabPrefix.$i.',';
+		}
+		echo '#'.$this->sTabPrefix.$this->iMax;
+		echo '{width:100%;display:block;}';
+		
+		echo '</style>';
 	}
 	
 	function AddTabList($arr)
 	{
-		StartDiv(array("id" => "fastweb_tab_box", "style" => empty($this->iHeight) ? "" : "height:".$this->iHeight.";"));
+		StartDiv(array("id" => "fastweb_tab_box", "style" => "height:".$this->iHeight.";"));
 		/*StartUl(array("id" => "fastweb_tab_box_nav"));
 		for($i = 1; $i<= $this->id; ++$i)
 		{
@@ -778,12 +794,12 @@ class CTab
 			EndLi();
 		}
 		EndUl();*/
-		StartDiv(array("id" => "fastweb_tab_box_content", "style" => empty($this->iHeight) ? "" : "height:".$this->iHeight.";"));
+		StartDiv(array("id" => "fastweb_tab_box_content", "style" => "height:".$this->iHeight.";"));
 	}
 	
 	function StartTab()
 	{
-		StartDiv(array("id" => $this->sTabPrefix.(string)$this->iCur, "style" => empty($this->iHeight) ? "" : "height:".$this->iHeight.";"));
+		StartDiv(array("id" => $this->sTabPrefix.(string)$this->iCur, "style" => "height:".$this->iHeight.";"));
 		++$this->iCur;
 	}
 	
@@ -1079,20 +1095,59 @@ class CCloseBlock{
 }
 
 class CRollPlay{
-	public function __construct($contain = "fastweb_rollplay_contain", $slide = "fastweb_rollplay_slide"){
-		StartDiv(array("class" => $contain));
+	private $iWidth;
+	private $iHeight;
+	private $sSlide;
+	private $sContain;
+	private $iCnt;
+	private $iRollCycle;
+	public function __construct($slide = "fastweb_rollplay_slide", $width = 600, $height="200px", $rollCycle = "10s"){
+		$this->iWidth = $width;
+		$this->iHeight = $height;
+		$this->sSlide = $slide;
+		$this->sContain = "fastweb_rollplay_contain";
+		$this->iRollCycle = $rollCycle;
+		$this->iCnt = 0;
+		StartDiv(array("class" => $this->sContain, "style" => "width:".(string)$width."px;height:".$height.";"));
 		StartUl(array("class" => $slide));
 	}
 	public function __destruct(){
+		$this->RollCss();
 		EndUl();
 		EndDiv();
 	}
+	
+	private function RollCss()
+	{
+		echo '<style type="text/css">';
+		
+		echo 'div.'.$this->sContain.' ul.'.$this->sSlide.'{';
+		echo 'width:'.($this->iWidth * $this->iCnt).'px;';
+		echo 'animation:'.$this->sSlide.'_frames '.$this->iRollCycle.' infinite;';
+		echo '}';
+		
+		echo '@keyframes '.$this->sSlide.'_frames{';
+		for($i = 0; $i < $this->iCnt; ++$i)
+		{
+			echo (string)($i*100/$this->iCnt).'%{margin-left:-'.(string)($this->iWidth * $i).'px;}';
+			//添加过度比例时的位置，防止一直平滑播放
+			echo (string)(($i + 0.5)*100/$this->iCnt).'%{margin-left:-'.(string)($this->iWidth * $i).'px;}';
+		}
+		echo '100%{margin-left:0;}';
+		echo '}';
+
+		echo '</style>';
+	}
+	
 	public function RollStart()
 	{
-		StartLi();
+		++$this->iCnt;
+		StartLi(array("style" => "width:".(string)$this->iWidth."px;height:".$this->iHeight.";"));
+		StartDiv(array("style" => "width:100%;height:auto;"));
 	}
 	public function RollEnd()
 	{
+		EndDiv();
 		EndLi();
 	}
 	public function AddRollImg($src, $href = "")
@@ -1104,7 +1159,7 @@ class CRollPlay{
 		}
 		else
 		{
-			AddImgWithLink(array("src" => $val), $href);
+			AddImgWithLink(array("src" => $src), $href);
 		}
 		
 		$this->RollEnd();

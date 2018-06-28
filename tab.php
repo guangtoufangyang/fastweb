@@ -20,7 +20,7 @@ StartDiv(array("class" => "fastweb_div_frame"));
 			EndDiv();
 		
 			StartDiv(array("style" => "width:100%;"));
-				$tab = new CTab(array("水平菜单", "新闻", "垂直菜单", "单选框", "多选框", "播放", "带链接播放"));
+				$tab = new CTab(array("水平菜单", "新闻", "垂直菜单", "单选框", "多选框", "播放", "带链接播放"), "300px");
 				$tab->StartTab();
 				DisplayMenuH("liH");
 				$tab->EndTab();

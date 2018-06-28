@@ -21,10 +21,15 @@ StartDiv(array("class" => "fastweb_div_frame"));
 		
 			StartDiv(array("style" => "width:100%;"));
 				
-				$roll = new CRollPlay();
+				$roll = new CRollPlay("fastweb_rollplay_slide_AAA", 600, "400px", "10s");
 				$roll->AddRollImg(SITE_URL."image/fastweb.png");
+				$roll->AddRollImg(SITE_URL."image/fastweb.png", "#");
 				$roll->AddRollImg(SITE_URL."image/fastweb.png");
-				$roll->AddRollImg(SITE_URL."image/fastweb.png");
+				$roll->RollStart();
+					$jsonData = '{"title":"静夜思", "author":"李白", "paragraph":["床前明月光，", "疑是地上霜，", "举头望明月，", "低头思故乡。"]}';
+					$arrData = json_decode($jsonData, true);
+					AddDoc($arrData);
+				$roll->RollEnd();
 				unset($roll);
 							
 				
