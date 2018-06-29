@@ -2,6 +2,16 @@
 
 require_once rtrim($_SERVER['DOCUMENT_ROOT'],'/').'/fastweb/php/config.php';
 
+$defaultHeadConfig = array(
+	"keywords" => "fastweb",
+	"description" => "fastweb快速建站",
+	"title" => "fastweb快速建站",
+	"base" => SITE_URL,
+	"target" => "_blank",
+	"js" => array(SITE_URL."/js/fastweb.js"),
+	"css" => array(SITE_URL."/css/fastweb.css")
+	);
+
 function ColorEventMouseOver($color = "#ffff66")
 {
 	return "onmouseover=\"this.style.backgroundColor='".$color."';\"";
@@ -537,50 +547,27 @@ class CHead
 		{
 			echo '<meta name="keywords" content="'.$config["keyword"].'" />'.PHP_EOL;
 		}
-		else
-		{
-			echo '<meta name="keywords" content="fastweb" />'.PHP_EOL;
-		}
 		
 		if(isset($config["description"]))
 		{
 			echo '<meta name="description" content="'.$config["description"].'" />'.PHP_EOL;
-		}
-		else
-		{
-			echo '<meta name="description" content="fastweb" />'.PHP_EOL;
 		}
 		
 		if(isset($config["title"]))
 		{
 			echo '<title>'.$config["title"].'</title>'.PHP_EOL;
 		}
-		else
-		{
-			echo '<title>fastweb</title>'.PHP_EOL;
-		}
 		
 		if(isset($config["base"]))
 		{
 			echo '<base href="'.$config["base"].'" />'.PHP_EOL;
-		}
-		else
-		{
-			echo '<base href="'.SITE_URL.'" />'.PHP_EOL;
 		}
 		
 		if(isset($config["target"]))
 		{
 			echo '<base target="'.$config["target"].'" />'.PHP_EOL;
 		}
-		else
-		{
-			echo '<base target="_blank" />'.PHP_EOL;
-		}
-		
-		echo '<script type="text/javascript" src="'.SITE_URL.'/js/fastweb.js"></script>'.PHP_EOL ;
-		echo '<link href="'.SITE_URL.'/css/fastweb.css" rel="stylesheet" type="text/css" />'.PHP_EOL ;
-		
+
 		if(isset($config["css"]))
 		{
 			foreach ($config["css"] as $val)
@@ -1048,6 +1035,8 @@ class CPopup{
 	{
 		$arr = array();
 		$arr["href"] = "javascript:void(0)";
+		//必须增加"_self"属性，否则可能同时打开一个空白的新窗口
+		$arr["target"] = "_self";
 		$arr["class"] = $class;
 		$arr["onclick"] = "document.getElementById('".$this->idPrefix."light').style.display='block';document.getElementById('".$this->idPrefix."fade').style.display='block'";
 		AddLink($arr, $text);
@@ -1060,6 +1049,7 @@ class CPopup{
 	{
 		$arr = array();
 		$arr["href"] = "javascript:void(0)";
+		$arr["target"] = "_self";
 		$arr["class"] = $class;
 		$arr["onclick"] = "document.getElementById('".$this->idPrefix."light').style.display='none';document.getElementById('".$this->idPrefix."fade').style.display='none'";
 		AddLink($arr, $text);

@@ -394,12 +394,13 @@ li.fastweb_tree_nav
 	position: relative;
 	list-style: none;
 	font:bold 14px/24px "微软雅黑", Verdana, Arial, Helvetica, sans-serif;
+	line-height:30px;
 	color:black;
 	text-decoration:none;
 }
 
 li.fastweb_tree_nav .fastweb_tree_leaf{
-	
+	border-bottom:1px solid #aaaaaa;
 }
 li.fastweb_tree_nav .fastweb_tree_leaf a{
 	background-size:auto auto;
@@ -407,6 +408,7 @@ li.fastweb_tree_nav .fastweb_tree_leaf a{
 	padding-left: 0;
 	text-decoration:none;
 	display: block;
+	line-height:30px;
 }
 
 li.fastweb_tree_nav  input.fastweb_tree_input{
@@ -434,6 +436,7 @@ li.fastweb_tree_nav label {
 	padding-left: 10px;
 	background-color:#ffc;
 	background-size:auto auto;
+	border-bottom:1px solid #aaaaaa;
 }
 li.fastweb_tree_nav input.fastweb_tree_input:checked + ol {
 	background-color:#fcf;

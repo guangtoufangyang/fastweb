@@ -1,7 +1,7 @@
 
 <?php
 require_once rtrim($_SERVER['DOCUMENT_ROOT'],'/').'/fastweb/php/display.php';
-DisplayHead();
+DisplayHead($defaultHeadConfig);
 
 ParamInfo($paramInfo);
 StartBody();
