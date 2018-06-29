@@ -15,8 +15,14 @@ StartDiv(array("class" => "fastweb_div_frame"));
 		EndDiv();
 		
 		StartDiv(array("style" => "width:73%;float:right;"));
-			StartDiv(array("style" => "width:100%;"));
+			StartDiv(array("style" => "width:48%;"));
 				DisplayText("new1");
+			EndDiv();
+			
+			StartDiv(array("style" => "width:30%;"));
+				$jsonData = '{"title":"热门标签", "info":[{"link":"#","text":"标签1"},{"link":"#","text":"标签22"},{"link":"#","text":"标签标签标签"},{"link":"#","text":"标签"},{"link":"#","text":"标签333"},{"link":"#","text":"标签"},{"link":"#","text":"fastweb"},{"link":"#","text":"fastweb"},{"link":"#","text":"标签"},{"link":"#","text":"标签标签"},{"link":"#","text":"fastwebfastwebfastweb"},{"link":"#","text":"fastweb"},{"link":"#","text":"fastweb"},{"link":"#","text":"fastweb"}]}';
+				$arrData = json_decode($jsonData,true);
+				AddTag($arrData);
 			EndDiv();
 		
 			StartDiv(array("style" => "width:100%;"));
@@ -34,8 +40,8 @@ StartDiv(array("class" => "fastweb_div_frame"));
 			EndDiv();
 			
 			StartDiv(array("class" => "fastweb_align_left", "style" => "width:100%;"));
-				StartFieldset(array("class" => "fastweb_fieldset_style1"),  "页面代码");
-				DisplayFile(basename(__FILE__), "<br />");
+				StartFieldset(array("class" => "fastweb_fieldset_style1", "style" => "padding-left:50px;"),  "页面代码");
+				DisplayCode(basename(__FILE__));
 				EndFieldset();
 			EndDiv();
 			

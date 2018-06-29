@@ -172,15 +172,15 @@ function AddDoc($data)
 }
 
 
-function AddNew($data)
+function AddNew($data, $titleClass = "fastweb_new_module_title", $contentClass = "fastweb_new_module_content")
 {
 	StartSimpleDiv();
 		if(!empty($data["title"]))
-		StartDiv(array("class" => "fastweb_new_module_title"));
+		StartDiv(array("class" => $titleClass));
 		AddSpan(array(), $data["title"]);
 		EndDiv();
 
-		StartDiv(array("class" => "fastweb_new_module_content"));
+		StartDiv(array("class" => $contentClass));
 		
 		foreach($data["info"] as $val){
 			AddLineLink(array("href" => $val["link"]), $val["text"]);
@@ -189,19 +189,38 @@ function AddNew($data)
 	EndDiv();
 }
 
-function AddNew2($data, $perLineCnt = 1)
+function AddNew2($data, $perLineCnt = 1, $titleClass = "fastweb_new_module_title", $contentClass = "fastweb_new_module_content")
 {
 	StartSimpleDiv();
 		if(!empty($data["title"]))
-		StartDiv(array("class" => "fastweb_new_module_title"));
+		StartDiv(array("class" => $titleClass));
 		AddSpan(array(), $data["title"]);
 		EndDiv();
 
-		StartDiv(array("class" => "fastweb_new_module_content"));
+		StartDiv(array("class" => $contentClass));
 		
 		$width = 100 / $perLineCnt - 1;
 		foreach($data["info"] as $val){
 			StartSimpleDiv(array("class" => "fastweb_align_center", "style" => "float:left;width:".$width."%;"));
+			AddLineLink(array("href" => $val["link"]), $val["text"]);
+			EndDiv();
+		}
+		ClearFloat();
+		EndDiv();
+	EndDiv();
+}
+
+function AddTag($data, $titleClass = "fastweb_tag_module_title", $contentClass = "fastweb_tag_module_content", $tagClass = "fastweb_tag_module_tag")
+{
+	StartSimpleDiv();
+		if(!empty($data["title"]))
+		StartDiv(array("class" => $titleClass));
+		AddSpan(array(), $data["title"]);
+		EndDiv();
+
+		StartDiv(array("class" => $contentClass));
+		foreach($data["info"] as $val){
+			StartDiv(array("class" => $tagClass));
 			AddLineLink(array("href" => $val["link"]), $val["text"]);
 			EndDiv();
 		}
@@ -285,23 +304,7 @@ function AddRollPlayImg($data, $contain = "fastweb_rollplay_contain", $slide = "
 	
 	unset($roll);
 }
-/*
-function AddRollPlayImgWithLink($data, $contain = "fastweb_rollplay_contain", $slide = "fastweb_rollplay_slide")
-{
-	StartDiv(array("class" => $contain));
-	StartUl(array("class" => $slide));
-	
-	foreach ($data as $val)
-	{
-		StartLi();
-		AddImg($val);
-		EndLi();
-	}
-	
-	EndUl();
-	EndDiv();
-}
-*/
+
 function AddRollPlay1($data)
 {
 	StartDiv(array("id" => "fast_web_roll_play_frame"));

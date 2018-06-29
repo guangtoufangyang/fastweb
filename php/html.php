@@ -496,11 +496,10 @@ function StartUl($arrAttr = array()){
 	echo '>'.PHP_EOL;
 }
 
-
-
 function EndUl(){
 	echo '</ul>'.PHP_EOL;
 }
+
 
 function AddHtml($path){
 	include GLOBAL_HTML.$path;

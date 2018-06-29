@@ -26,8 +26,8 @@ StartDiv(array("class" => "fastweb_div_frame"));
 			EndDiv();
 			
 			StartDiv(array("class" => "fastweb_align_left", "style" => "width:100%;"));
-				StartFieldset(array("class" => "fastweb_fieldset_style1"),  "页面代码");
-				DisplayFile(basename(__FILE__), "<br />");
+				StartFieldset(array("class" => "fastweb_fieldset_style1", "style" => "padding-left:50px;"),  "页面代码");
+				DisplayCode(basename(__FILE__));
 				EndFieldset();
 			EndDiv();
 			

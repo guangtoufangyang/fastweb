@@ -130,6 +130,40 @@ function DisplayFile($path, $lineEnd = '', $trim = false)
 	fclose($file);
 }
 
+function DisplayCode($path, $lineEnd = '', $trim = false)
+{
+	$file = fopen($path, 'r');
+	if(false === $file)
+	{
+		return;
+	}
+	StartDiv(array("class" => "fastweb_code_frame"));
+	$i = 0;
+	StartOl(array("start" => 1, "class" => "fastweb_code_num"));
+	while (! feof($file)) {
+		$line = fgets($file);
+		$line = htmlspecialchars($line);
+		if($trim)
+		{
+			$line = trim($line);
+		}
+		++$i;
+		if($i % 2)
+		{
+			AddLi(array("class" => "fastweb_code_line", "style" => "background-color: rgb(248,248,248);"), $line.$lineEnd);
+		}
+		else
+		{
+			AddLi(array("class" => "fastweb_code_line", "style" => "background-color: rgb(255,255,255);"), $line.$lineEnd);
+		}
+		
+	}
+	fclose($file);
+	EndOl();
+	
+	EndDiv();
+}
+
 /*----------------fastweb网站功能函数--------------------*/
 function DisplayFastwebFunclist($openNode)
 {
