@@ -55,6 +55,36 @@ StartDiv(array("class" => "fastweb_div_frame"));
 				$pop->PopupCloseControlLink("关闭弹窗");
 				$pop->PopupEnd();
 				
+				unset($pop);
+				
+			EndDiv();
+			
+			StartDiv(array("style" => "width:100%;"));
+				$pop = new CPopupCloseBlock("aaaaaaaaaaaaaaaaaaaaaaaaa");				
+				$pop->PopupStart();
+						
+				$table = new CTable();
+				$table->SetTdColor(array("fastweb_bgcolor_fcf", "fastweb_bgcolor_ffc", "fastweb_bgcolor_cff"));
+				$table->AddTh("标题");
+				$table->AddTh("标题");
+				$table->AddTh("标题");
+				$table->AddTd("内容");
+				$table->AddTd("内容");
+				$table->AddTd("内容");
+				$table->AddTd("内容");
+				$table->AddTd("内容");
+				$table->AddTd("内容");
+				$table->AddTd("内容");
+				$table->StartTd();
+				$pop->PopupCloseControlLink("关闭弹窗");
+				$table->EndTd();
+				unset($table);
+				
+				
+				$pop->PopupEnd();
+				unset($pop);
+				
+				
 			EndDiv();
 			
 			StartDiv(array("class" => "fastweb_align_left", "style" => "width:100%;"));

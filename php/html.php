@@ -1155,6 +1155,44 @@ class CRollPlay{
 	}
 }
 
+class CPopupCloseBlock{
+	private $idPrefix;
+	public function __construct($prefix = "fastweb_close_block_popup_"){
+		$this->idPrefix = $prefix;
+	}
+	
+	public function SetPrefix($prefix = "fastweb_close_block_popup_"){
+		$this->idPrefix = $prefix;
+	}
+	
+	public function PopupCloseControlLink($text, $class = "fastweb_popup_a_style")
+	{
+		$arr = array();
+		$arr["href"] = "javascript:void(0)";
+		$arr["target"] = "_self";
+		$arr["class"] = $class;
+		$arr["onclick"] = "document.getElementById('".$this->idPrefix."light').style.display='none';";
+		AddLink($arr, $text);
+	}
+	
+	public function PopupStart($width = "600px", $height = "400px", $left = "0", $top = "0")
+	{
+		$arr = array();
+		$arr["id"] = $this->idPrefix."light";
+		$arr["class"] = "fastweb_close_block_pop";
+		$arr["style"] = "width:".$width.";height:".$height.";left:".$left.";top:".$top.";";
+		StartDiv($arr);
+	}
+	public function PopupEnd()
+	{
+		EndDiv();
+	}
+	
+	public function __destruct(){
+		
+	}
+}
+
 /*此种关闭为点击任意位置都关闭*/
 class CCloseBlockHold{
 	public function __construct(){

@@ -902,3 +902,13 @@ button.fastweb_search_bar_icon_style1{
 	line-height: 1.85em;
 	padding-left:10px;
 }
+
+.fastweb_close_block_pop {
+	display: block;
+	position: absolute;
+	border: 16px solid #FFF;
+	border-bottom:none;
+	background-color: white;
+	z-index:1002;
+	overflow: auto;
+}
