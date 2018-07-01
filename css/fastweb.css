@@ -74,8 +74,8 @@ div.fastweb_new_module_title,div.fastweb_new_module_content{
 	margin-right : 0px;
 }
 div.fastweb_new_module_content{	
-	background-color:#CAE1FF;
-	box-shadow:0 0 30px 10px rgba(255,255,255,.5) inset;
+	background-color:#ffc;
+	/*box-shadow:0 0 30px 10px rgba(255,255,255,.5) inset;*/
 	text-align:left;
 	padding-left: 10px;
 	line-height:30px;
@@ -115,11 +115,17 @@ div.fastweb_tag_module_content{
 div.fastweb_tag_module_tag{
 	float:left;
 	width:auto;
-	margin:10px 10px 0px 0px;
-	background-color:#ffc;
+	margin:5px 10px 5px 0px;
+	background-color:#fcf;
 	text-align:center;
 	font:bold 14px/24px "微软雅黑", Verdana, Arial, Helvetica, sans-serif;
 	line-height:30px;
+	padding-left:10px;
+	padding-right:10px;
+}
+div.fastweb_tag_module_tag:hover
+{
+	background-color:#ffc;
 }
 
 div.fastweb_p_title_style1 {
