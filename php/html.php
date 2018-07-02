@@ -12,6 +12,7 @@ $defaultHeadConfig = array(
 	"css" => array(SITE_URL."/css/fastweb.css")
 	);
 
+
 function ColorEventMouseOver($color = "#ffff66")
 {
 	return "onmouseover=\"this.style.backgroundColor='".$color."';\"";
@@ -42,7 +43,22 @@ function ShowAttr(&$arrAttr)
 {
 	foreach ($arrAttr as $key => $val)
 	{
-		echo ' '.$key.'="'.$val.'"';
+		if(!empty($val))
+		{
+			echo ' '.$key.'="'.$val.'"';
+		}
+	}
+}
+
+function GetStyle(&$arrStyle)
+{
+	$style = '';
+	foreach ($arrStyle as $key => $val)
+	{
+		if(!empty($val))
+		{
+			$style = $style.$key.':"'.$val.'";';
+		}
 	}
 }
 
@@ -1055,15 +1071,15 @@ class CPopup{
 		AddLink($arr, $text);
 	}
 	
-	public function PopupStart($width = "600px", $height = "400px", $left = "15%", $top = "15%")
+	public function StartPopup($width = "600px", $height = "400px", $left = "", $top = "", $right = "", $bottom = "")
 	{
 		$arr = array();
 		$arr["id"] = $this->idPrefix."light";
 		$arr["class"] = "fastweb_popup_light_style";
-		$arr["style"] = "width:".$width.";height:".$height.";left:".$left.";top:".$top.";";
+		$arr["style"] = "width:".$width.";height:".$height.";left:".$left.";top:".$top.";right:".$right.";bottom:".$bottom.";";
 		StartDiv($arr);
 	}
-	public function PopupEnd()
+	public function EndPopup()
 	{
 		EndDiv();
 	}
@@ -1090,6 +1106,7 @@ class CRollPlay{
 	private $sContain;
 	private $iCnt;
 	private $iRollCycle;
+	/*注意width变量是数字格式，代码中会用到这个数字计算偏移信息和宽度信息*/
 	public function __construct($slide = "fastweb_rollplay_slide", $width = 600, $height="200px", $rollCycle = "10s"){
 		$this->iWidth = $width;
 		$this->iHeight = $height;
@@ -1119,7 +1136,7 @@ class CRollPlay{
 		for($i = 0; $i < $this->iCnt; ++$i)
 		{
 			echo (string)($i*100/$this->iCnt).'%{margin-left:-'.(string)($this->iWidth * $i).'px;}';
-			//添加过度比例时的位置，防止一直平滑播放
+			//添加过渡比例时的位置，防止一直平滑播放
 			echo (string)(($i + 0.5)*100/$this->iCnt).'%{margin-left:-'.(string)($this->iWidth * $i).'px;}';
 		}
 		echo '100%{margin-left:0;}';
@@ -1175,15 +1192,25 @@ class CPopupCloseBlock{
 		AddLink($arr, $text);
 	}
 	
-	public function PopupStart($width = "600px", $height = "400px", $left = "0", $top = "0")
+	private function StartPopup($width = "600px", $height = "400px", $left = "", $top = "", $right = "", $bottom = "", $pos = "")
 	{
 		$arr = array();
 		$arr["id"] = $this->idPrefix."light";
 		$arr["class"] = "fastweb_close_block_pop";
-		$arr["style"] = "width:".$width.";height:".$height.";left:".$left.";top:".$top.";";
+		
+		$arr["style"] = "width:".$width.";height:".$height.";left:".$left.";top:".$top.";right:".$right.";bottom:".$bottom.";position:".$pos.";";
 		StartDiv($arr);
 	}
-	public function PopupEnd()
+	
+	public function StartFixedPopup($width = "600px", $height = "400px", $left = "", $top = "", $right = "", $bottom = "")
+	{
+		$this->StartPopup($width, $height, $left, $top, $right, $bottom, "fixed");
+	}
+	public function StartRelativePopup($width = "600px", $height = "400px", $left = "", $top = "", $right = "", $bottom = "")
+	{
+		$this->StartPopup($width, $height, $left, $top, $right, $bottom, "relative");
+	}
+	public function EndPopup()
 	{
 		EndDiv();
 	}

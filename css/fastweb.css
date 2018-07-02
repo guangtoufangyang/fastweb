@@ -24,7 +24,7 @@ div.fastweb_div_frame
 	margin-right:auto;
 	text-align:center;
 	min-width:1400px;
-	background-color:#f5f5f5;/*#4a4aff;*/
+	background-color:#f5f5f5;
 }
 
 div.fastweb_div_simple
@@ -43,7 +43,6 @@ div.fastweb_div_middle
 	width:1300px;
 	margin-left:auto;
 	margin-right:auto;
-	/*background-color:#f5f5f5;/*#4a4aff;*/
 	padding-top:16px;
 	padding-bottom:16px;
 	height:auto;
@@ -65,7 +64,6 @@ div.fastweb_new_module_title{
 	line-height:30px;
 	vertical-align:middle;
 	text-align:left;
-	/*border-radius: 15px;*/
 	border-top-left-radius:15px;
 	border-top-right-radius:15px;
 }
@@ -75,11 +73,9 @@ div.fastweb_new_module_title,div.fastweb_new_module_content{
 }
 div.fastweb_new_module_content{	
 	background-color:#ffc;
-	/*box-shadow:0 0 30px 10px rgba(255,255,255,.5) inset;*/
 	text-align:left;
 	padding-left: 10px;
 	line-height:30px;
-	/*border-radius: 15px;*/
 	border-bottom-right-radius:15px;
 	border-bottom-left-radius:15px;
 }
@@ -317,8 +313,6 @@ nav.fastweb_menu_v ul li:hover ul
 	width:100%;
 	display:block;
 }
-*/
-/*
 #fastweb_tab_box_tab_prefix1,#fastweb_tab_box_tab_prefix2,#fastweb_tab_box_tab_prefix3,#fastweb_tab_box_tab_prefix4,#fastweb_tab_box_tab_prefix5,#fastweb_tab_box_tab_prefix6{
 	width:100%;
 	height:400px;
@@ -782,9 +776,6 @@ div.fastweb_crumb a{
 	cursor:pointer;
 	position:absolute;
 	text-align:center;
-	/*
-	background: url(../image/fastweb_search.png) top right no-repeat;
-	background-position: center;*/
 }
 
 
@@ -849,6 +840,7 @@ button.fastweb_search_bar_icon_style1{
 .fastweb_fieldset_style1{
 	padding:10px;
 	font:14px/24px "微软雅黑", Verdana, Arial, Helvetica, sans-serif;
+	background:#ddd;
 }
 
 
@@ -871,10 +863,6 @@ button.fastweb_search_bar_icon_style1{
 .fastweb_popup_light_style {
 	display: none;
 	position: absolute;
-	/*top: 15%;
-	left: 25%;
-	width: 632px;
-	height: 445px;*/
 	border: 16px solid #FFF;
 	border-bottom:none;
 	background-color: white;
@@ -883,17 +871,17 @@ button.fastweb_search_bar_icon_style1{
 }
 
 .fastweb_code_frame{
-
+	background-color:#fcf;
 }
 
 .fastweb_code_num{
-
+	
 }
 
 .fastweb_code_line{
 	border-width: 0px 0px 0px 3px;
 	border-left-style: solid;
-	border-left-color: rgb(108,226,108);
+	border-left-color: #6CE26C;
 	font-weight: inherit;
 	font-style: inherit;
 	font-size: 1.28em;
@@ -905,10 +893,10 @@ button.fastweb_search_bar_icon_style1{
 
 .fastweb_close_block_pop {
 	display: block;
-	position: absolute;
+	/*position: fixed;*/
 	border: 16px solid #FFF;
 	border-bottom:none;
 	background-color: white;
-	z-index:1002;
+	z-index:1000;
 	overflow: auto;
 }

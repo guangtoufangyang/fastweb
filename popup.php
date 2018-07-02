@@ -24,7 +24,7 @@ StartDiv(array("class" => "fastweb_div_frame"));
 	
 				$pop->PopupOpenControlLink("打开弹窗");
 				
-				$pop->PopupStart();
+				$pop->StartPopup();
 				
 				
 				$table = new CTable();
@@ -45,23 +45,23 @@ StartDiv(array("class" => "fastweb_div_frame"));
 				unset($table);
 				
 				
-				$pop->PopupEnd();
+				$pop->EndPopup();
 				
 				
 				$pop->SetPrefix("aaaaaaa");
 				$pop->PopupOpenControlLink("打开弹窗1");
 				
-				$pop->PopupStart("200px","200px","600px","600px");
+				$pop->StartPopup("200px","200px","600px","600px");
 				$pop->PopupCloseControlLink("关闭弹窗");
-				$pop->PopupEnd();
+				$pop->EndPopup();
 				
 				unset($pop);
 				
 			EndDiv();
 			
 			StartDiv(array("style" => "width:100%;"));
-				$pop = new CPopupCloseBlock("aaaaaaaaaaaaaaaaaaaaaaaaa");				
-				$pop->PopupStart();
+				$pop = new CPopupCloseBlock("CPopupCloseBlock_");				
+				$pop->StartRelativePopup("300px", "300px", "", "0", "0", "");
 						
 				$table = new CTable();
 				$table->SetTdColor(array("fastweb_bgcolor_fcf", "fastweb_bgcolor_ffc", "fastweb_bgcolor_cff"));
@@ -79,9 +79,36 @@ StartDiv(array("class" => "fastweb_div_frame"));
 				$pop->PopupCloseControlLink("关闭弹窗");
 				$table->EndTd();
 				unset($table);
+				$pop->EndPopup();
+				unset($pop);
+
+			
+			EndDiv();
+			
+			StartDiv(array("style" => "width:100%;"));
+
+				$pop = new CPopupCloseBlock("CPopupCloseBlock1_");	
+				$pop->StartFixedPopup("300px", "300px", "", "", "0", "0");
+						
+				$table = new CTable();
+				$table->SetTdColor(array("fastweb_bgcolor_fcf", "fastweb_bgcolor_ffc", "fastweb_bgcolor_cff"));
+				$table->AddTh("标题");
+				$table->AddTh("标题");
+				$table->AddTh("标题");
+				$table->AddTd("内容");
+				$table->AddTd("内容");
+				$table->AddTd("内容");
+				$table->AddTd("内容");
+				$table->AddTd("内容");
+				$table->AddTd("内容");
+				$table->AddTd("内容");
+				$table->StartTd();
+				$pop->PopupCloseControlLink("关闭弹窗");
+				$table->EndTd();
+				unset($table);
+				$pop->EndPopup();
+
 				
-				
-				$pop->PopupEnd();
 				unset($pop);
 				
 				
