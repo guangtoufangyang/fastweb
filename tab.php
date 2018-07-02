@@ -1,7 +1,9 @@
 
 <?php
 require_once rtrim($_SERVER['DOCUMENT_ROOT'],'/').'/fastweb/php/display.php';
-DisplayHead(array("base" => SITE_URL."tab.php"));
+$headArr = $defaultHeadConfig;
+$headArr["base"] = SITE_URL."tab.php";
+DisplayHead($headArr);
 
 ParamInfo($paramInfo);
 StartBody();
