@@ -475,11 +475,21 @@ div.fastweb_rollplay_contain ul.fastweb_rollplay_slide{
 }
 
 div.fastweb_vertical_rollplay_contain{
+	width:100%;
 	padding:0;
 	margin:0;
 	position:relative;
 	-webkit-transform-style:preserve-3d;
 	transform-style:preserve-3d;
+}
+div.fastweb_vertical_rollplay_contain>div{
+	-webkit-transition:all 6s;
+	width:100%;
+	text-align:center;
+	transition:all 6s;
+	position:absolute;
+	top:0;
+	left:0;
 }
 
 

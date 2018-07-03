@@ -1546,14 +1546,22 @@ class CCloseBlock{
 		EndDiv();
 	}
 }
-/*
+
 class CVerticalRollPlay{
 	private $iRollCnt;
 	private $iHeight;
-	public function __construct($height){
+	private $iAngle1;
+	private $iAngle2;
+	private $sCycle;
+	private $sAnimationName;
+	private $sBackground;
+	public function __construct($height = 600, $cycle = "10s", $background = "#ffc",$animationName = "fastweb_vertical_rollplay_contain_animation"){
 		$this->iRollCnt = 0;
 		$this->iHeight = $height;
-		StartDiv(array("class" => "fastweb_vertical_rollplay_contain", "style" => "height:".$height.";"));
+		$this->sCycle = $cycle;
+		$this->sAnimationName = $animationName;
+		$this->sBackground = $background;
+		StartDiv(array("class" => "fastweb_vertical_rollplay_contain", "style" => "height:".$height."px;"));
 	}
 	
 	public function __destruct(){
@@ -1563,30 +1571,41 @@ class CVerticalRollPlay{
 	
 	private function RollCss()
 	{
-		echo '<style type="text/css">';
-		
-		echo 'div.'.$this->sContain.' ul.'.$this->sSlide.'{';
-		echo 'width:'.($this->iWidth * $this->iCnt).'px;';
-		echo 'animation:'.$this->sSlide.'_frames '.$this->iRollCycle.' infinite;';
-		echo '}';
-		
-		echo '@keyframes '.$this->sSlide.'_frames{';
-		for($i = 0; $i < $this->iCnt; ++$i)
+		if($this->iRollCnt < 1) return;
+		$this->iAngle1 = 360 / $this->iRollCnt;
+		$this->iAngle2 = 360 / ($this->iRollCnt + 1);
+		echo '<style type="text/css">'.PHP_EOL;
+		for($i = 1; $i <= $this->iRollCnt; ++$i)
 		{
-			echo (string)($i*100/$this->iCnt).'%{margin-left:-'.(string)($this->iWidth * $i).'px;}';
-			//添加过渡比例时的位置，防止一直平滑播放
-			echo (string)(($i + 0.5)*100/$this->iCnt).'%{margin-left:-'.(string)($this->iWidth * $i).'px;}';
+			echo 'div.fastweb_vertical_rollplay_contain>div:nth-child('.(string)$i.'){'.PHP_EOL;
+			echo '-webkit-transform:rotatex('.(string)($this->iAngle1*($this->iRollCnt - $i)).'deg) translatez('.(string)($this->iHeight/2).'px);'.PHP_EOL;
+			echo 'transform:rotatex('.(string)($this->iAngle1*($this->iRollCnt - $i)).'deg) translatez('.(string)($this->iHeight/2).'px);}'.PHP_EOL;
 		}
-		echo '100%{margin-left:0;}';
-		echo '}';
-
+		
+		
+		echo 'div.fastweb_vertical_rollplay_contain{'.PHP_EOL;
+		echo '-webkit-animation:'.$this->sAnimationName.' '.$this->sCycle.' linear infinite;'.PHP_EOL;
+		echo 'animation:'.$this->sAnimationName.' '.$this->sCycle.' linear infinite;'.PHP_EOL;
+		echo '}'.PHP_EOL;
+		
+		echo '@keyframes '.$this->sAnimationName.'{'.PHP_EOL;
+		
+		for($i = 0; $i < $this->iRollCnt; ++$i)
+		{
+			echo (string)($i*100/$this->iRollCnt).'%{transform:rotatex('.(string)($this->iAngle1 * $i).'deg);}'.PHP_EOL;
+			//添加过渡比例时的位置，防止一直平滑播放
+			echo (string)(($i + 0.5)*100/$this->iRollCnt).'%{transform:rotatex('.(string)($this->iAngle1 * $i).'deg);}'.PHP_EOL;
+		}
+		
+		echo '100%{transform:rotatex(360deg)}'.PHP_EOL;
+		echo '}'.PHP_EOL;
 		echo '</style>';
 	}
 	
 	public function RollStart()
 	{
 		++$this->iRollCnt;
-		StartSimpleDiv();
+		StartSimpleDiv(array("style" => "height:".$this->iHeight."px;background-color:".$this->sBackground.";"));
 	}
 	public function RollEnd()
 	{
@@ -1607,7 +1626,7 @@ class CVerticalRollPlay{
 		$this->RollEnd();
 	}
 }
-*/
+
 class CRollPlay{
 	private $iWidth;
 	private $iHeight;
@@ -1634,24 +1653,24 @@ class CRollPlay{
 	
 	private function RollCss()
 	{
-		echo '<style type="text/css">';
+		echo '<style type="text/css">'.PHP_EOL;
 		
-		echo 'div.'.$this->sContain.' ul.'.$this->sSlide.'{';
-		echo 'width:'.($this->iWidth * $this->iCnt).'px;';
-		echo 'animation:'.$this->sSlide.'_frames '.$this->iRollCycle.' infinite;';
-		echo '}';
+		echo 'div.'.$this->sContain.' ul.'.$this->sSlide.'{'.PHP_EOL;
+		echo 'width:'.($this->iWidth * $this->iCnt).'px;'.PHP_EOL;
+		echo 'animation:'.$this->sSlide.'_frames '.$this->iRollCycle.' infinite;'.PHP_EOL;
+		echo '}'.PHP_EOL;
 		
-		echo '@keyframes '.$this->sSlide.'_frames{';
+		echo '@keyframes '.$this->sSlide.'_frames{'.PHP_EOL;
 		for($i = 0; $i < $this->iCnt; ++$i)
 		{
-			echo (string)($i*100/$this->iCnt).'%{margin-left:-'.(string)($this->iWidth * $i).'px;}';
+			echo (string)($i*100/$this->iCnt).'%{margin-left:-'.(string)($this->iWidth * $i).'px;}'.PHP_EOL;
 			//添加过渡比例时的位置，防止一直平滑播放
-			echo (string)(($i + 0.5)*100/$this->iCnt).'%{margin-left:-'.(string)($this->iWidth * $i).'px;}';
+			echo (string)(($i + 0.5)*100/$this->iCnt).'%{margin-left:-'.(string)($this->iWidth * $i).'px;}'.PHP_EOL;
 		}
-		echo '100%{margin-left:0;}';
-		echo '}';
+		echo '100%{margin-left:0;}'.PHP_EOL;
+		echo '}'.PHP_EOL;
 
-		echo '</style>';
+		echo '</style>'.PHP_EOL;
 	}
 	
 	public function RollStart()
