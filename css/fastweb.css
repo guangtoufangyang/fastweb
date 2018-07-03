@@ -474,6 +474,14 @@ div.fastweb_rollplay_contain ul.fastweb_rollplay_slide{
     transition:all 0.5s;
 }
 
+div.fastweb_vertical_rollplay_contain{
+	padding:0;
+	margin:0;
+	position:relative;
+	-webkit-transform-style:preserve-3d;
+	transform-style:preserve-3d;
+}
+
 
 table.fastweb_table_style1 {
 	font-family: verdana,arial,sans-serif;

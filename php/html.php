@@ -1546,7 +1546,68 @@ class CCloseBlock{
 		EndDiv();
 	}
 }
+/*
+class CVerticalRollPlay{
+	private $iRollCnt;
+	private $iHeight;
+	public function __construct($height){
+		$this->iRollCnt = 0;
+		$this->iHeight = $height;
+		StartDiv(array("class" => "fastweb_vertical_rollplay_contain", "style" => "height:".$height.";"));
+	}
+	
+	public function __destruct(){
+		$this->RollCss();
+		EndDiv();
+	}
+	
+	private function RollCss()
+	{
+		echo '<style type="text/css">';
+		
+		echo 'div.'.$this->sContain.' ul.'.$this->sSlide.'{';
+		echo 'width:'.($this->iWidth * $this->iCnt).'px;';
+		echo 'animation:'.$this->sSlide.'_frames '.$this->iRollCycle.' infinite;';
+		echo '}';
+		
+		echo '@keyframes '.$this->sSlide.'_frames{';
+		for($i = 0; $i < $this->iCnt; ++$i)
+		{
+			echo (string)($i*100/$this->iCnt).'%{margin-left:-'.(string)($this->iWidth * $i).'px;}';
+			//添加过渡比例时的位置，防止一直平滑播放
+			echo (string)(($i + 0.5)*100/$this->iCnt).'%{margin-left:-'.(string)($this->iWidth * $i).'px;}';
+		}
+		echo '100%{margin-left:0;}';
+		echo '}';
 
+		echo '</style>';
+	}
+	
+	public function RollStart()
+	{
+		++$this->iRollCnt;
+		StartSimpleDiv();
+	}
+	public function RollEnd()
+	{
+		EndDiv();
+	}
+	public function AddRollImg($src, $href = "")
+	{
+		$this->RollStart();
+		if(empty($href))
+		{
+			AddImg(array("src" => $src));
+		}
+		else
+		{
+			AddImgWithLink(array("src" => $src), $href);
+		}
+		
+		$this->RollEnd();
+	}
+}
+*/
 class CRollPlay{
 	private $iWidth;
 	private $iHeight;
