@@ -35,7 +35,7 @@ StartDiv(array("class" => "fastweb_div_frame"));
 				
 			EndDiv();
 			
-			StartDiv(array("style" => "width:100%;"));
+			StartDiv(array("style" => "width:100%;overflow:hidden;"));
 				
 				$roll = new CVerticalRollPlay(600, "10s");
 				$roll->AddRollImg(SITE_URL."image/fastweb.png");
