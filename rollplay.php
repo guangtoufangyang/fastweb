@@ -51,6 +51,22 @@ StartDiv(array("class" => "fastweb_div_frame"));
 				
 			EndDiv();
 			
+			StartDiv(array("style" => "width:100%;overflow:hidden;"));
+				$roll = new CHorizontalRollDiv("600px", "5s");
+					$jsonData = '{"title":"静夜思", "author":"李白", "paragraph":["床前明月光，", "疑是地上霜，", "举头望明月，", "低头思故乡。"]}';
+					$arrData = json_decode($jsonData, true);
+					AddDoc($arrData);
+				unset($roll);
+			EndDiv();
+			
+			StartDiv(array("style" => "width:100%;overflow:hidden;"));
+				$roll = new CVerticalRollDiv("600px", "5s");
+					$jsonData = '{"title":"静夜思", "author":"李白", "paragraph":["床前明月光，", "疑是地上霜，", "举头望明月，", "低头思故乡。"]}';
+					$arrData = json_decode($jsonData, true);
+					AddDoc($arrData);
+				unset($roll);
+			EndDiv();
+			
 			StartDiv(array("class" => "fastweb_align_left", "style" => "width:100%;"));
 				StartFieldset(array("class" => "fastweb_fieldset_style1", "style" => "padding-left:50px;"),  "页面代码");
 				DisplayCode(basename(__FILE__));

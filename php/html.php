@@ -1700,6 +1700,93 @@ class CRollPlay{
 	}
 }
 
+
+
+class CHorizontalRollDiv{
+	private $iWidth;
+	private $sName;
+	private $sRollCycle;
+	/*注意width变量是数字格式，代码中会用到这个数字计算偏移信息和宽度信息*/
+	public function __construct($width = "600px", $rollCycle = "10s", $name = "fastweb_horizontal_rollplay_div"){
+		$this->iWidth = $width;
+		$this->sName = $name;
+		$this->sRollCycle = $rollCycle;
+		StartDiv(array("class" => $name, "style" => "width:".$width.";"));
+	}
+	public function __destruct(){
+		$this->RollCss();
+		EndDiv();
+	}
+	
+	private function RollCss()
+	{
+		echo '<style type="text/css">'.PHP_EOL;
+		
+		
+		echo 'div.'.$this->sName.'{'.PHP_EOL;
+		echo 'display: inline-block;'.PHP_EOL;
+		echo 'white-space: nowrap;'.PHP_EOL;
+		echo 'animation: '.$this->sRollCycle.' '.$this->sName.'_loop linear infinite normal;'.PHP_EOL;
+		echo '}'.PHP_EOL;
+
+		echo '@keyframes '.$this->sName.'_loop{'.PHP_EOL;
+		echo '0% {'.PHP_EOL;
+		echo 'transform: translateX('.$this->iWidth.');'.PHP_EOL;
+		echo '-webkit-transform: translateX('.$this->iWidth.');'.PHP_EOL;
+		echo '}'.PHP_EOL;
+		echo '100% {'.PHP_EOL;
+		echo 'transform: translateX(-'.$this->iWidth.');'.PHP_EOL;
+		echo '-webkit-transform: translateX(-'.$this->iWidth.');'.PHP_EOL;
+		echo '}'.PHP_EOL;
+		echo '}'.PHP_EOL;
+		
+		echo '</style>'.PHP_EOL;
+	}
+}
+
+class CVerticalRollDiv{
+	private $iHeight;
+	private $sName;
+	private $sRollCycle;
+	/*注意width变量是数字格式，代码中会用到这个数字计算偏移信息和宽度信息*/
+	public function __construct($height = "600px", $rollCycle = "10s", $name = "fastweb_vertical_rollplay_div"){
+		$this->iHeight = $height;
+		$this->sName = $name;
+		$this->sRollCycle = $rollCycle;
+		StartDiv(array("class" => $name, "style" => "width:100%;height:".$height.";"));
+	}
+	public function __destruct(){
+		$this->RollCss();
+		EndDiv();
+	}
+	
+	private function RollCss()
+	{
+		echo '<style type="text/css">'.PHP_EOL;
+		
+		
+		echo 'div.'.$this->sName.'{'.PHP_EOL;
+		echo 'display: inline-block;'.PHP_EOL;
+		echo 'white-space: nowrap;'.PHP_EOL;
+		echo 'animation: '.$this->sRollCycle.' '.$this->sName.'_loop linear infinite normal;'.PHP_EOL;
+		echo '}'.PHP_EOL;
+
+		echo '@keyframes '.$this->sName.'_loop{'.PHP_EOL;
+		echo '0% {'.PHP_EOL;
+		echo 'transform: translateY('.$this->iHeight.');'.PHP_EOL;
+		echo '-webkit-transform: translateY('.$this->iHeight.');'.PHP_EOL;
+		echo '}'.PHP_EOL;
+		echo '100% {'.PHP_EOL;
+		echo 'transform: translateX(-'.$this->iHeight.');'.PHP_EOL;
+		echo '-webkit-transform: translateY(-'.$this->iHeight.');'.PHP_EOL;
+		echo '}'.PHP_EOL;
+		echo '}'.PHP_EOL;
+		
+		echo '</style>'.PHP_EOL;
+	}
+}
+
+
 class CPopupCloseBlock{
 	private $idPrefix;
 	public function __construct($prefix = "fastweb_close_block_popup_"){
