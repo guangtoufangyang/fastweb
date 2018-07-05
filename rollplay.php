@@ -69,16 +69,15 @@ StartDiv(array("class" => "fastweb_div_frame"));
 			
 			StartDiv(array());
 				$dmnamic = new CDynamicBackgroundDiv();
-					StartDiv(array("style" => "background:#007fd5;position:absolute;left:0;top:0;width:100%;height:100%;"));
+					$dmnamic->StartBottomDiv();
 					$jsonData = '{"title":"静夜思", "author":"李白", "paragraph":["床前明月光，", "疑是地上霜，", "举头望明月，", "低头思故乡。"]}';
 					$arrData = json_decode($jsonData, true);
 					AddDoc($arrData);
-					EndDiv();
-					//$dmnamic->ImgUpward(SITE_URL."image/fastweb_cloud1.png", "499px", "5s");
-					$dmnamic->ImgDownward(SITE_URL."image/fastweb_cloud1.png", "499px", "5s");
+					$dmnamic->EndBottomDiv();
+					$dmnamic->SetBottomBackground("#007fd5");
 					$dmnamic->ImgLeftward(SITE_URL."image/fastweb_cloud1.png", "1477px", "5s");
-					//$dmnamic->ImgRightward(SITE_URL."image/fastweb_cloud1.png", "1477px", "5s");
-					
+					$dmnamic->ImgLeftward(SITE_URL."image/fastweb_cloud2.png", "1477px", "7s");
+					$dmnamic->ImgLeftward(SITE_URL."image/fastweb_cloud3.png", "1477px", "9s");
 					
 				unset($dmnamic);
 			EndDiv();

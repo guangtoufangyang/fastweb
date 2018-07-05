@@ -1748,10 +1748,12 @@ class CDynamicBackgroundDiv{
 	private $sName;
 	private $arrImg;
 	private $iImgCnt;
+	private $sBottomBackground;
 	public function __construct($width = "100%", $height = "400px", $name = "fastweb_dynamic_background_div"){
 		$this->sName = $name;
 		$this->iImgCnt = 0;
 		$this->arrImg = array();
+		$this->sBottomBackground = "";
 		StartDiv(array("class" => "fastweb_dynamic_background", "style" => "width:".$width.";height:".$height.";"));
 	}
 	public function __destruct(){
@@ -1761,10 +1763,15 @@ class CDynamicBackgroundDiv{
 	
 	public function StartBottomDiv()
 	{
-		
+		StartDiv(array("class" => $this->sName."_bottom", "style" => "position:absolute;left:0;top:0;width:100%;height:100%;"));
 	}
 	
-	public function DivBottomDiv()
+	public function SetBottomBackground($background)
+	{
+		$this->sBottomBackground = $background;
+	}
+	
+	public function EndBottomDiv()
 	{
 		EndDiv();
 	}
@@ -1836,6 +1843,13 @@ class CDynamicBackgroundDiv{
 	private function RollCss()
 	{
 		echo '<style type="text/css">'.PHP_EOL;
+		
+		if(!empty($this->sBottomBackground))
+		{
+			echo 'div.'.$this->sName.'_bottom{'.PHP_EOL;
+			echo 'background:'.$this->sBottomBackground;
+			echo '}';
+		}
 		
 		for($i = 1; $i <= $this->iImgCnt; ++$i)
 		{
