@@ -1776,6 +1776,17 @@ class CDynamicBackgroundDiv{
 		EndDiv();
 	}
 	
+	public function StartTopDiv()
+	{
+		StartDiv(array("style" => "position:absolute;left:0;top:0;width:100%;height:100%;background:none;"));
+	}
+	
+	
+	public function EndTopDiv()
+	{
+		EndDiv();
+	}
+	
 	public function ImgUpward($img , $height, $cycle , $seam = true)
 	{
 		++$this->iImgCnt;

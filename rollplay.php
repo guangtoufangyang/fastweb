@@ -70,15 +70,19 @@ StartDiv(array("class" => "fastweb_div_frame"));
 			StartDiv(array());
 				$dmnamic = new CDynamicBackgroundDiv();
 					$dmnamic->StartBottomDiv();
-					$jsonData = '{"title":"静夜思", "author":"李白", "paragraph":["床前明月光，", "疑是地上霜，", "举头望明月，", "低头思故乡。"]}';
-					$arrData = json_decode($jsonData, true);
-					AddDoc($arrData);
+					//$jsonData = '{"title":"静夜思", "author":"李白", "paragraph":["床前明月光，", "疑是地上霜，", "举头望明月，", "低头思故乡。"]}';
+					//$arrData = json_decode($jsonData, true);
+					//AddDoc($arrData);
 					$dmnamic->EndBottomDiv();
 					$dmnamic->SetBottomBackground("#007fd5");
 					$dmnamic->ImgLeftward(SITE_URL."image/fastweb_cloud1.png", "1477px", "5s");
 					$dmnamic->ImgLeftward(SITE_URL."image/fastweb_cloud2.png", "1477px", "7s");
 					$dmnamic->ImgLeftward(SITE_URL."image/fastweb_cloud3.png", "1477px", "9s");
-					
+					$dmnamic->StartTopDiv();
+					$jsonData = '{"title":"静夜思", "author":"李白", "paragraph":["床前明月光，", "疑是地上霜，", "举头望明月，", "低头思故乡。"]}';
+					$arrData = json_decode($jsonData, true);
+					AddDoc($arrData);
+					$dmnamic->EndTopDiv();
 				unset($dmnamic);
 			EndDiv();
 			
