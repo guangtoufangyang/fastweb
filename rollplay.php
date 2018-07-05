@@ -67,6 +67,22 @@ StartDiv(array("class" => "fastweb_div_frame"));
 				unset($roll);
 			EndDiv();
 			
+			StartDiv(array());
+				$dmnamic = new CDynamicBackgroundDiv();
+					StartDiv(array("style" => "background:#007fd5;position:absolute;left:0;top:0;width:100%;height:100%;"));
+					$jsonData = '{"title":"静夜思", "author":"李白", "paragraph":["床前明月光，", "疑是地上霜，", "举头望明月，", "低头思故乡。"]}';
+					$arrData = json_decode($jsonData, true);
+					AddDoc($arrData);
+					EndDiv();
+					//$dmnamic->ImgUpward(SITE_URL."image/fastweb_cloud1.png", "499px", "5s");
+					$dmnamic->ImgDownward(SITE_URL."image/fastweb_cloud1.png", "499px", "5s");
+					$dmnamic->ImgLeftward(SITE_URL."image/fastweb_cloud1.png", "1477px", "5s");
+					//$dmnamic->ImgRightward(SITE_URL."image/fastweb_cloud1.png", "1477px", "5s");
+					
+					
+				unset($dmnamic);
+			EndDiv();
+			
 			StartDiv(array("class" => "fastweb_align_left", "style" => "width:100%;"));
 				StartFieldset(array("class" => "fastweb_fieldset_style1", "style" => "padding-left:50px;"),  "页面代码");
 				DisplayCode(basename(__FILE__));

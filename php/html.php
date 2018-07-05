@@ -1706,7 +1706,6 @@ class CHorizontalRollDiv{
 	private $iWidth;
 	private $sName;
 	private $sRollCycle;
-	/*注意width变量是数字格式，代码中会用到这个数字计算偏移信息和宽度信息*/
 	public function __construct($width = "600px", $rollCycle = "10s", $name = "fastweb_horizontal_rollplay_div"){
 		$this->iWidth = $width;
 		$this->sName = $name;
@@ -1744,11 +1743,174 @@ class CHorizontalRollDiv{
 	}
 }
 
+
+class CDynamicBackgroundDiv{
+	private $sName;
+	private $arrImg;
+	private $iImgCnt;
+	public function __construct($width = "100%", $height = "400px", $name = "fastweb_dynamic_background_div"){
+		$this->sName = $name;
+		$this->iImgCnt = 0;
+		$this->arrImg = array();
+		StartDiv(array("class" => "fastweb_dynamic_background", "style" => "width:".$width.";height:".$height.";"));
+	}
+	public function __destruct(){
+		$this->RollCss();
+		EndDiv();
+	}
+	
+	public function StartBottomDiv()
+	{
+		
+	}
+	
+	public function DivBottomDiv()
+	{
+		EndDiv();
+	}
+	
+	public function ImgUpward($img , $height, $cycle , $seam = true)
+	{
+		++$this->iImgCnt;
+		StartDiv(array("class" => $this->sName."_".(string)$this->iImgCnt));
+		EndDiv();
+		array_push($this->arrImg, array("direction" => 1, "height" => $height, "from" => "0", "to" => "-".(string)$height, "cycle" => $cycle, "img" => $img));
+		
+		if($seam)
+		{
+			++$this->iImgCnt;
+			StartDiv(array("class" => $this->sName."_".(string)$this->iImgCnt));
+			EndDiv();
+			array_push($this->arrImg, array("direction" => 1, "height" => $height, "from" => (string)$height, "to" => "0", "cycle" => $cycle, "img" => $img));
+		}
+	}
+	
+	public function ImgDownward($img , $height, $cycle , $seam = true)
+	{
+		++$this->iImgCnt;
+		StartDiv(array("class" => $this->sName."_".(string)$this->iImgCnt));
+		EndDiv();
+		array_push($this->arrImg, array("direction" => 2, "height" => $height, "from" => "0", "to" => (string)$height, "cycle" => $cycle, "img" => $img));
+		
+		if($seam)
+		{
+			++$this->iImgCnt;
+			StartDiv(array("class" => $this->sName."_".(string)$this->iImgCnt));
+			EndDiv();
+			array_push($this->arrImg, array("direction" => 2, "height" => $height, "from" => "-".(string)$height, "to" => "0", "cycle" => $cycle, "img" => $img));
+		}
+	}
+	
+	public function ImgLeftward($img , $width, $cycle , $seam = true)
+	{
+		++$this->iImgCnt;
+		StartDiv(array("class" => $this->sName."_".(string)$this->iImgCnt));
+		EndDiv();
+		array_push($this->arrImg, array("direction" => 3, "width" => $width, "from" => "0", "to" => "-".(string)$width, "cycle" => $cycle, "img" => $img));
+		
+		if($seam)
+		{
+			++$this->iImgCnt;
+			StartDiv(array("class" => $this->sName."_".(string)$this->iImgCnt));
+			EndDiv();
+			array_push($this->arrImg, array("direction" => 3, "width" => $width, "from" => (string)$width, "to" => "0", "cycle" => $cycle, "img" => $img));
+		}
+	}
+	
+	public function ImgRightward($img , $width, $cycle ,$seam = true)
+	{
+		++$this->iImgCnt;
+		StartDiv(array("class" => $this->sName."_".(string)$this->iImgCnt));
+		EndDiv();
+		array_push($this->arrImg, array("direction" => 4, "width" => $width, "from" => "0", "to" => (string)$width, "cycle" => $cycle, "img" => $img));
+		
+		if($seam)
+		{
+			++$this->iImgCnt;
+			StartDiv(array("class" => $this->sName."_".(string)$this->iImgCnt));
+			EndDiv();
+			array_push($this->arrImg, array("direction" => 4, "width" => $width, "from" => "-".(string)$width, "to" => "0", "cycle" => $cycle, "img" => $img));
+		}
+	}
+	
+	private function RollCss()
+	{
+		echo '<style type="text/css">'.PHP_EOL;
+		
+		for($i = 1; $i <= $this->iImgCnt; ++$i)
+		{
+			echo 'div.'.$this->sName.'_'.(string)$i.'{'.PHP_EOL;
+			echo 'background: url("'.$this->arrImg[$i - 1]["img"].'") no-repeat;'.PHP_EOL;
+			echo 'position: absolute;'.PHP_EOL;
+			echo 'left: 0;'.PHP_EOL;
+			echo 'top: 0;'.PHP_EOL;
+			if(isset($this->arrImg[$i - 1]["height"]))
+			{
+				echo 'height:'.$this->arrImg[$i - 1]["height"].';'.PHP_EOL;
+				echo 'width:100%;';
+			}
+			if(isset($this->arrImg[$i - 1]["width"]))
+			{
+				echo 'width:'.$this->arrImg[$i - 1]["width"].';'.PHP_EOL;
+				echo 'height:100%;';
+			}
+			echo '-webkit-animation: '.$this->sName.'_animation'.(string)$i.' '.$this->arrImg[$i - 1]["cycle"].' linear infinite;'.PHP_EOL;
+			echo '-moz-animation: '.$this->sName.'_animation'.(string)$i.' '.$this->arrImg[$i - 1]["cycle"].' linear infinite;'.PHP_EOL;
+			echo '-o-animation: '.$this->sName.'_animation'.(string)$i.' '.$this->arrImg[$i - 1]["cycle"].' linear infinite;'.PHP_EOL;
+			echo 'animation: '.$this->sName.'_animation'.(string)$i.' '.$this->arrImg[$i - 1]["cycle"].' linear infinite;'.PHP_EOL;
+			echo '-webkit-transform: translate3d(0, 0, 0);'.PHP_EOL;
+			echo '-ms-transform: translate3d(0, 0, 0);'.PHP_EOL;
+			echo '-o-transform: translate3d(0, 0, 0);'.PHP_EOL;
+			echo 'transform: translate3d(0, 0, 0);'.PHP_EOL;
+			echo '}'.PHP_EOL;
+			
+			
+			$trans = "translateX";
+			if(($this->arrImg[$i - 1]["direction"] == 1) || ($this->arrImg[$i - 1]["direction"] == 2))
+			{
+				$trans = "translateY";
+			}
+			
+			echo '@-webkit-keyframes '.$this->sName.'_animation'.(string)$i.' {'.PHP_EOL;
+			echo '0% {'.PHP_EOL;
+			echo 'transform: '.$trans.'('.$this->arrImg[$i - 1]['from'].');'.PHP_EOL;
+			echo '-webkit-transform: '.$trans.'('.$this->arrImg[$i - 1]['from'].');'.PHP_EOL;
+			echo '}'.PHP_EOL;
+			echo '100% {'.PHP_EOL;
+			echo 'transform: '.$trans.'('.$this->arrImg[$i - 1]['to'].');'.PHP_EOL;
+			echo '-webkit-transform: '.$trans.'('.$this->arrImg[$i - 1]['to'].');'.PHP_EOL;
+			echo '}'.PHP_EOL;
+			echo '}'.PHP_EOL;
+			echo '@-moz-keyframes '.$this->sName.'_animation'.(string)$i.' {'.PHP_EOL;
+			echo '0% {'.PHP_EOL;
+			echo 'transform: '.$trans.'('.$this->arrImg[$i - 1]['from'].');'.PHP_EOL;
+			echo '-webkit-transform: '.$trans.'('.$this->arrImg[$i - 1]['from'].');'.PHP_EOL;
+			echo '}'.PHP_EOL;
+			echo '100% {'.PHP_EOL;
+			echo 'transform: '.$trans.'('.$this->arrImg[$i - 1]['to'].');'.PHP_EOL;
+			echo '-webkit-transform: '.$trans.'('.$this->arrImg[$i - 1]['to'].');'.PHP_EOL;
+			echo '}'.PHP_EOL;
+			echo '}'.PHP_EOL;
+			echo '@keyframes '.$this->sName.'_animation'.(string)$i.' {'.PHP_EOL;
+			echo '0% {'.PHP_EOL;
+			echo 'transform: '.$trans.'('.$this->arrImg[$i - 1]['from'].');'.PHP_EOL;
+			echo '-webkit-transform: '.$trans.'('.$this->arrImg[$i - 1]['from'].');'.PHP_EOL;
+			echo '}'.PHP_EOL;
+			echo '100% {'.PHP_EOL;
+			echo 'transform: '.$trans.'('.$this->arrImg[$i - 1]['to'].');'.PHP_EOL;
+			echo '-webkit-transform: '.$trans.'('.$this->arrImg[$i - 1]['to'].');'.PHP_EOL;
+			echo '}'.PHP_EOL;
+			echo '}'.PHP_EOL;
+		}
+		
+		echo '</style>'.PHP_EOL;
+	}
+}
+
 class CVerticalRollDiv{
 	private $iHeight;
 	private $sName;
 	private $sRollCycle;
-	/*注意width变量是数字格式，代码中会用到这个数字计算偏移信息和宽度信息*/
 	public function __construct($height = "600px", $rollCycle = "10s", $name = "fastweb_vertical_rollplay_div"){
 		$this->iHeight = $height;
 		$this->sName = $name;

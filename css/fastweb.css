@@ -918,3 +918,19 @@ button.fastweb_search_bar_icon_style1{
 	z-index:1000;
 	overflow: auto;
 }
+
+div.fastweb_dynamic_background {
+	height:auto;
+	width:100%;
+	position: relative;
+	overflow: hidden;
+	-webkit-animation: sky_background 50s ease-out infinite;
+	-moz-animation: sky_background 50s ease-out infinite;
+	-o-animation: sky_background 50s ease-out infinite;
+	animation: sky_background 50s ease-out infinite;
+	-webkit-transform: translate3d(0, 0, 0);
+	-ms-transform: translate3d(0, 0, 0);
+	-o-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+}
+
