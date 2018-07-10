@@ -1,4 +1,11 @@
 <?php
+/**
+* 基础的html封装
+* 
+* 对基本的html标签的封装
+* @作者			光头放羊<bingzhao456@163.com>
+* @版本			1.0
+*/
 
 require_once rtrim($_SERVER['DOCUMENT_ROOT'],'/').'/fastweb/php/config.php';
 
@@ -992,7 +999,13 @@ function Repeat($data, $cnt = 1)
 	}
 }
 
-
+/**
+* head信息输出控制类
+*
+* 根据输入的数据信息，生成对应的head信息。配合全局的head配置数组使用，可极大的较少代码量。
+* @作者			光头放羊<bingzhao456@163.com>
+* @版本			1.0
+*/
 class CHead
 {
 	function __construct(){
@@ -1050,7 +1063,13 @@ class CHead
 	}
 }
 
-
+/**
+* 文章类
+*
+* 
+* @作者			光头放羊<bingzhao456@163.com>
+* @版本			1.0
+*/
 class CDocument
 {
 	private $paraArr;
@@ -1062,7 +1081,16 @@ class CDocument
 	function __destruct()
 	{
 	}
-	
+	/**
+	* SetPara 
+	* 设置段落的文字对齐方式及段落的格式类
+	*
+	* @access private
+	* @param mixed $pos		对齐方式:0-左对齐,1-居中,2-右对齐
+	* @param mixed $c 		段落格式的类
+	* @since 1.0
+	* @return
+	*/
 	private function SetPara($pos , $c)
 	{
 		array_splice($this->paraArr, 0, count($this->paraArr));
@@ -1080,7 +1108,17 @@ class CDocument
 		}
 		$this->paraArr["class"] = $c;
 	}
-	
+	/**
+	* AddTitle 
+	* 添加一段标题
+	*
+	* @access public
+	* @param mixed $t		标题文字
+	* @param mixed $pos		对齐方式:0-左对齐,1-居中,2-右对齐
+	* @param mixed $c 		段落格式的类
+	* @since 1.0
+	* @return
+	*/
 	function AddTitle($t, $pos = 2, $c = 'fastweb_p_title_style1')
 	{
 		$this->SetPara($pos, $c);
@@ -1088,7 +1126,17 @@ class CDocument
 		AddSpan(array(), $t);
 		EndDiv();
 	}
-	
+	/**
+	* AddAuthor 
+	* 添加一段作者信息
+	*
+	* @access public
+	* @param mixed $t		作者信息
+	* @param mixed $pos		对齐方式:0-左对齐,1-居中,2-右对齐
+	* @param mixed $c 		段落格式的类
+	* @since 1.0
+	* @return
+	*/
 	function AddAuthor($t, $pos = 3, $c = 'fastweb_p_author_style1')
 	{
 		$this->SetPara($pos, $c);
@@ -1096,19 +1144,42 @@ class CDocument
 		AddSpan(array(), $t);
 		EndDiv();
 	}
-
+	/**
+	* StartParagraph 
+	* 开始一个段落
+	*
+	* @access public
+	* @param mixed $pos		对齐方式:0-左对齐,1-居中,2-右对齐
+	* @param mixed $c 		段落格式的类
+	* @since 1.0
+	* @return
+	*/
 	function StartParagraph($pos = 1, $c = 'fastweb_p_text_style1')
 	{
 		$this->SetPara($pos, $c);
 		StartDiv($this->paraArr);
 	}
-	
+	/**
+	* EndParagraph 
+	* 段落结束
+	*
+	* @access public
+	* @since 1.0
+	* @return
+	*/
 	function EndParagraph()
 	{
 		EndDiv();
 	}
 }
 
+/**
+* 树形菜单类
+*
+* 生成目录树结构
+* @作者			光头放羊<bingzhao456@163.com>
+* @版本			1.0
+*/
 class CTree
 {
 	private $sBranchTag;
@@ -1116,6 +1187,17 @@ class CTree
 	private $sBranchClass;
 	private $arrCheckBranch;
 	
+	/**
+	* __construct 
+	* 构造函数
+	*
+	* @access public
+	* @param mixed $branchTag		分支的控制关系对应的元素id前缀(一个页面包含多棵树时前缀不能相同)
+	* @param mixed $checkBranchArr 	树中需要为打开状态的分支数组,值为对应分支所展示的文字
+	* @param mixed $branchClass 	分支的类名(不同的类将展示出不同的样式,目前提供了fastweb_tree_branch和fastweb_tree_nav两种样式选择)
+	* @since 1.0
+	* @return
+	*/
 	function __construct($branchTag, $checkBranchArr = array(), $branchClass = "fastweb_tree_branch")
 	{
 		$this->iBranchNum = 1;
@@ -1129,7 +1211,16 @@ class CTree
 	{
 		EndOl();
 	}
-	
+	/**
+	* StartBranch 
+	* 开始一个新的分支
+	*
+	* @access public
+	* @param mixed $text		分支展示的文字
+	* @param mixed $href 		包含的跳转链接
+	* @since 1.0
+	* @return
+	*/
 	function StartBranch($text, $href = "")
 	{
 		StartLi(array("class" => $this->sBranchClass));
@@ -1147,11 +1238,29 @@ class CTree
 		StartOl();
 		++$this->iBranchNum;
 	}
+	/**
+	* EndBranch 
+	* 结束一个分支
+	*
+	* @access public
+	* @since 1.0
+	* @return
+	*/
 	function EndBranch()
 	{
 		EndOl();
 		EndLi();
 	}
+	/**
+	* AddLeaf 
+	* 添加一个节点
+	*
+	* @access public
+	* @param mixed $text		节点展示的文字
+	* @param mixed $href 		节点的跳转链接
+	* @since 1.0
+	* @return
+	*/
 	function AddLeaf($text, $href = "")
 	{
 		StartLi(array("class" => "fastweb_tree_leaf"));
@@ -1166,7 +1275,15 @@ class CTree
 			
 		EndLi();
 	}
-	
+	/**
+	* AddTreeData 
+	* 添加一个树
+	*
+	* @access public
+	* @param mixed $data		包含分支和节点信息的指定格式的数组
+	* @since 1.0
+	* @return
+	*/
 	function AddTreeData($data)
 	{
 		foreach ($data as $val)
@@ -1185,6 +1302,13 @@ class CTree
 	}
 }
 
+/**
+* 选项卡样式类
+*
+* 生成选项卡结构
+* @作者			光头放羊<bingzhao456@163.com>
+* @版本			1.0
+*/
 class CTab
 {
 	private $iMax;
@@ -1194,6 +1318,18 @@ class CTab
 	private $sTabPrefix;
 	private $arrTabList;
 	
+	/**
+	* __construct 
+	* 构造函数
+	*
+	* @access public
+	* @param mixed $arr			包含每个选项卡名称是数组
+	* @param mixed $height 		选项卡的高度
+	* @param mixed $sTabPrefix	每个选项卡的id前缀(一个页面包含多个Ctab时需要指定不同的前缀)
+	* @param mixed $offset 		选项卡名称的占位偏移
+	* @since 1.0
+	* @return
+	*/
 	function __construct($arr, $height = "400px", $sTabPrefix = "fastweb_tab_box_tab", $offset = 0.3)
 	{
 		$this->iMax = count($arr);
@@ -1220,6 +1356,14 @@ class CTab
 		$this->TabCss();
 	}
 	
+	/**
+	* TabCss 
+	* 生成选项卡对应的css样式
+	*
+	* @access private
+	* @since 1.0
+	* @return
+	*/
 	private function TabCss()
 	{
 		echo '<style type="text/css">';
@@ -1233,7 +1377,16 @@ class CTab
 		echo '</style>';
 	}
 	
-	function AddTabList($arr)
+	/**
+	* AddTabList 
+	* 生成选项卡名称列表
+	*
+	* @access private
+	* @param mixed $arr			包含每个选项卡名称是数组
+	* @since 1.0
+	* @return
+	*/
+	private function AddTabList($arr)
 	{
 		StartDiv(array("id" => "fastweb_tab_box", "style" => "height:".$this->iHeight.";"));
 		/*StartUl(array("id" => "fastweb_tab_box_nav"));
@@ -1247,12 +1400,28 @@ class CTab
 		StartDiv(array("id" => "fastweb_tab_box_content", "style" => "height:".$this->iHeight.";"));
 	}
 	
+	/**
+	* StartTab 
+	* 开始一个选项卡
+	*
+	* @access public
+	* @since 1.0
+	* @return
+	*/
 	function StartTab()
 	{
 		StartDiv(array("id" => $this->sTabPrefix.(string)$this->iCur, "style" => "height:".$this->iHeight.";"));
 		++$this->iCur;
 	}
 	
+	/**
+	* StartTab 
+	* 结束一个选项卡
+	*
+	* @access public
+	* @since 1.0
+	* @return
+	*/
 	function EndTab()
 	{
 		EndDiv();
@@ -1260,7 +1429,13 @@ class CTab
 	
 }
 
-
+/**
+* 表格类
+*
+* 生成表格
+* @作者			光头放羊<bingzhao456@163.com>
+* @版本			1.0
+*/
 class CTable{
 	private $mTd;
 	private $mMaxTd;
@@ -1274,6 +1449,19 @@ class CTable{
 	private $mTdColorClassCnt;
 	private $mLineTd;
 	private $mMultiTd;
+	
+	/**
+	* __construct 
+	* 构造函数
+	*
+	* @access public
+	* @param mixed $max			表格列数
+	* @param mixed $c 			table所属类
+	* @param mixed $style		自定义的table样式
+	* @param mixed $summary 	table的summay属性
+	* @since 1.0
+	* @return
+	*/
 	function __construct($max=3, $c = "fastweb_table_style1", $style="", $summary=""){
 		$this->mTd = 0;
 		$this->mTableEnd = 0;
@@ -1318,7 +1506,14 @@ class CTable{
 		
 		$this->TableTail();
 	}
-	
+	/**
+	* CalcLineTd 
+	* 计算当前列需要多少个td计数
+	*
+	* @access private
+	* @since 1.0
+	* @return
+	*/
 	private function CalcLineTd()
 	{
 		$this->mLineTd = $this->mMaxTd;
@@ -1338,7 +1533,15 @@ class CTable{
 		
 	}
 	
-	function TableTail(){
+	/**
+	* TableTail 
+	* table结束
+	*
+	* @access private
+	* @since 1.0
+	* @return
+	*/
+	private function TableTail(){
 	    if($this->mTableEnd == 0)
 	    {
 	        echo "</table>".PHP_EOL ;
@@ -1346,18 +1549,46 @@ class CTable{
 	    }		
 	}
 	
+	/**
+	* SetTdColor 
+	* 指定一个颜色数组,没一行数据将以此显示不同的颜色
+	*
+	* @access public
+	* @param mixed $arrAttr			颜色数组
+	* @since 1.0
+	* @return
+	*/
 	function SetTdColor($arrAttr = array())
 	{
 		$this->mTdColorClass = $arrAttr;
 		$this->mTdColorClassCnt = count($arrAttr);
 	}
 	
+	/**
+	* SetTrMouse 
+	* 指定鼠标移动到tr和移开tr时的颜色
+	*
+	* @access public
+	* @param mixed $colorOn			鼠标移到tr时的背景色
+	* @param mixed $colorOut		鼠标离开tr时的背景色
+	* @since 1.0
+	* @return
+	*/
 	function SetTrMouse($colorOn = "#ffff66", $colorOut = "#d4e3e5")
 	{
 		$this->mTrMouseOn = ColorEventMouseOver($colorOn);
 		$this->mTrMouseOut = ColorEventMouseOut($colorOut);
 	}
 	
+	/**
+	* StartTr 
+	* 开始一行数据
+	*
+	* @access public
+	* @param mixed $arrAttr			tr的属性数组
+	* @since 1.0
+	* @return
+	*/
 	function StartTr($arrAttr = array())
 	{
 		echo "<tr ".$this->mTrMouseOn." ".$this->mTrMouseOut;
@@ -1383,11 +1614,29 @@ class CTable{
 		$this->CalcLineTd();
 	}
 	
+	/**
+	* EndTr 
+	* 结束一行数据
+	*
+	* @access public
+	* @since 1.0
+	* @return
+	*/
 	function EndTr()
 	{
 		echo "</tr>".PHP_EOL ;
 	}
 	
+	/**
+	* StartTr 
+	* 开始一个单元格
+	*
+	* @access public
+	* @param mixed $rows			单元格跨行数量
+	* @param mixed $cols			单元格跨列数量
+	* @since 1.0
+	* @return
+	*/
 	function StartTd($rows = 1, $cols = 1)
 	{
 		if($this->mTd==0){
@@ -1412,6 +1661,14 @@ class CTable{
 		array_push($this->mMultiTd, array("rows" => $rows, "cols" => $cols));		
 	}
 	
+	/**
+	* EndTd 
+	* 结束一个单元格
+	*
+	* @access public
+	* @since 1.0
+	* @return
+	*/
 	function EndTd()
 	{
 		echo "</td>".PHP_EOL ;
@@ -1422,6 +1679,16 @@ class CTable{
 		}
 	}
 	
+	/**
+	* StartTh 
+	* 开始一个标题行
+	*
+	* @access public
+	* @param mixed $rows			单元格跨行数量
+	* @param mixed $cols			单元格跨列数量
+	* @since 1.0
+	* @return
+	*/
 	function StartTh($rows = 1, $cols = 1)
 	{
 		if($this->mTd==0){
@@ -1440,6 +1707,14 @@ class CTable{
 		echo ">";
 	}
 	
+	/**
+	* EndTh 
+	* 结束标题行
+	*
+	* @access public
+	* @since 1.0
+	* @return
+	*/
 	function EndTh()
 	{
 		echo "</th>".PHP_EOL ;
@@ -1450,6 +1725,15 @@ class CTable{
 		}
 	}
 	
+	/**
+	* AddTh 
+	* 添加一格标题
+	*
+	* @access public
+	* @param mixed $text			单元格文字
+	* @since 1.0
+	* @return
+	*/
 	function AddTh($text)
 	{
 		$this->StartTh();
@@ -1457,6 +1741,15 @@ class CTable{
 		$this->EndTh();
 	}
 	
+	/**
+	* AddTh 
+	* 添加一格数据
+	*
+	* @access public
+	* @param mixed $text			单元格文字
+	* @since 1.0
+	* @return
+	*/
 	function AddTd($text, $rows = 1, $cols = 1)
 	{
 		$this->StartTd($rows, $cols);
@@ -1464,11 +1757,29 @@ class CTable{
 		$this->EndTd();
 	}
 	
+	/**
+	* AddCaption 
+	* 添加caption信息
+	*
+	* @access public
+	* @param mixed $cap			文字
+	* @since 1.0
+	* @return
+	*/
 	function AddCaption($cap){
 		echo '<caption>'.$cap.'</caption>'.PHP_EOL ;
 		$this->mTd = 0;
 	}
 	
+	/**
+	* SetWidthArr 
+	* 设置单元格宽度
+	*
+	* @access public
+	* @param mixed $widthArr	宽度数组,必须与构造函数中的列数相同
+	* @since 1.0
+	* @return
+	*/
 	function SetWidthArr($widthArr){
 		if(!is_array($widthArr))
 		{
