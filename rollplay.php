@@ -21,7 +21,7 @@ StartDiv(array("class" => "fastweb_div_frame"));
 		
 			StartDiv(array("style" => "width:100%;"));
 				
-				$roll = new CRollPlay("fastweb_rollplay_slide_AAA", 600, "400px", "10s");
+				$roll = new CHorizontalRollPlay(600, "400px", "10s", "fastweb_rollplay_slide_AAA");
 				$roll->AddRollImg(SITE_URL."image/fastweb.png");
 				$roll->AddRollImg(SITE_URL."image/fastweb.png", "#");
 				$roll->AddRollImg(SITE_URL."image/fastweb.png");

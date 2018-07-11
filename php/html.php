@@ -1,4 +1,6 @@
 <?php
+
+
 /**
 * 基础的html封装
 * 
@@ -19,6 +21,22 @@ $defaultHeadConfig = array(
 	"css" => array(SITE_URL."/css/fastweb.css")
 	);
 
+
+function CompatibleAnimation($animation)
+{
+	echo '-webkit-animation: '.$animation.';'.PHP_EOL;
+	echo '-moz-animation: '.$animation.';'.PHP_EOL;
+	echo '-o-animation: '.$animation.';'.PHP_EOL;
+	echo 'animation: '.$animation.';'.PHP_EOL;
+}
+			
+function CompatibleTransform($transform)
+{
+	echo '-webkit-transform: '.$transform.';'.PHP_EOL;
+	echo '-ms-transform: '.$transform.';'.PHP_EOL;
+	echo '-o-transform: '.$transform.';'.PHP_EOL;
+	echo 'transform: '.$transform.';'.PHP_EOL;
+}
 
 function ColorEventMouseOver($color = "#ffff66")
 {
@@ -1796,16 +1814,51 @@ class CTable{
 
 }
 
+/**
+* 弹窗类
+*
+* 显示一个弹窗
+* @作者			光头放羊<bingzhao456@163.com>
+* @版本			1.0
+*/
 class CPopup{
 	private $idPrefix;
+	/**
+	* __construct 
+	* 构造函数
+	*
+	* @access public
+	* @param mixed $prefix	弹出窗口的div的id前缀,不同的弹窗必须设置不同的前缀
+	* @since 1.0
+	* @return
+	*/
 	public function __construct($prefix = "fastweb_class_popup_"){
 		$this->idPrefix = $prefix;
 	}
 	
+	/**
+	* SetPrefix 
+	* 设置弹窗的id前缀
+	*
+	* @access public
+	* @param mixed $prefix	弹出窗口的div的id前缀,不同的弹窗必须设置不同的前缀
+	* @since 1.0
+	* @return
+	*/
 	public function SetPrefix($prefix = "fastweb_class_popup_"){
 		$this->idPrefix = $prefix;
 	}
 	
+	/**
+	* PopupOpenControlLink 
+	* 生成一个控制打开弹窗的链接
+	*
+	* @access public
+	* @param mixed $text	链接的文字
+	* @param mixed $class	链接的样式类
+	* @since 1.0
+	* @return
+	*/
 	public function PopupOpenControlLink($text, $class = "fastweb_popup_a_style")
 	{
 		$arr = array();
@@ -1820,6 +1873,16 @@ class CPopup{
 		EndDiv();
 	}
 	
+	/**
+	* PopupCloseControlLink 
+	* 生成一个控制关闭弹窗的链接
+	*
+	* @access public
+	* @param mixed $text	链接的文字
+	* @param mixed $class	链接的样式类
+	* @since 1.0
+	* @return
+	*/
 	public function PopupCloseControlLink($text, $class = "fastweb_popup_a_style")
 	{
 		$arr = array();
@@ -1830,6 +1893,20 @@ class CPopup{
 		AddLink($arr, $text);
 	}
 	
+	/**
+	* StartPopup 
+	* 弹窗开始
+	*
+	* @access public
+	* @param mixed $width	弹窗宽度
+	* @param mixed $height	弹窗高度
+	* @param mixed $left	弹窗左边距
+	* @param mixed $top		弹窗上边距
+	* @param mixed $right	弹窗右边距
+	* @param mixed $bottom	弹窗下边距
+	* @since 1.0
+	* @return
+	*/
 	public function StartPopup($width = "600px", $height = "400px", $left = "", $top = "", $right = "", $bottom = "")
 	{
 		$arr = array();
@@ -1838,6 +1915,15 @@ class CPopup{
 		$arr["style"] = "width:".$width.";height:".$height.";left:".$left.";top:".$top.";right:".$right.";bottom:".$bottom.";";
 		StartDiv($arr);
 	}
+	
+	/**
+	* EndPopup 
+	* 弹窗结束
+	*
+	* @access public
+	* @since 1.0
+	* @return
+	*/
 	public function EndPopup()
 	{
 		EndDiv();
@@ -1848,6 +1934,13 @@ class CPopup{
 	}
 }
 
+/**
+* 点击关闭类
+*
+* 生成一个点击关闭模块
+* @作者			光头放羊<bingzhao456@163.com>
+* @版本			1.0
+*/
 class CCloseBlock{
 	public function __construct(){
 		AddCheckBox(array("class" => "fastweb_close_block"));
@@ -1858,6 +1951,13 @@ class CCloseBlock{
 	}
 }
 
+/**
+* 垂直滚动播放类
+*
+* 生成一个由多个显示区域组合成的垂直滚动播放模块
+* @作者			光头放羊<bingzhao456@163.com>
+* @版本			1.0
+*/
 class CVerticalRollPlay{
 	private $iRollCnt;
 	private $iHeight;
@@ -1866,6 +1966,19 @@ class CVerticalRollPlay{
 	private $sCycle;
 	private $sAnimationName;
 	private $sBackground;
+	
+	/**
+	* __construct 
+	* 构造函数
+	*
+	* @access public
+	* @param mixed $height			显示出来的窗口高度，必须是数字格式
+	* @param mixed $cycle			循环周期
+	* @param mixed $background		显示区的背景色
+	* @param mixed $animationName	动画名称,页面存在多个垂直播放模块时，必须定义不同的播放动画名称
+	* @since 1.0
+	* @return
+	*/
 	public function __construct($height = 600, $cycle = "10s", $background = "#ffc",$animationName = "fastweb_vertical_rollplay_contain_animation"){
 		$this->iRollCnt = 0;
 		$this->iHeight = $height;
@@ -1880,6 +1993,14 @@ class CVerticalRollPlay{
 		EndDiv();
 	}
 	
+	/**
+	* RollCss 
+	* 生成对应的css样式
+	*
+	* @access private
+	* @since 1.0
+	* @return
+	*/
 	private function RollCss()
 	{
 		if($this->iRollCnt < 1) return;
@@ -1889,39 +2010,82 @@ class CVerticalRollPlay{
 		for($i = 1; $i <= $this->iRollCnt; ++$i)
 		{
 			echo 'div.fastweb_vertical_rollplay_contain>div:nth-child('.(string)$i.'){'.PHP_EOL;
-			echo '-webkit-transform:rotatex('.(string)($this->iAngle1*($this->iRollCnt - $i)).'deg) translatez('.(string)($this->iHeight/2).'px);'.PHP_EOL;
-			echo 'transform:rotatex('.(string)($this->iAngle1*($this->iRollCnt - $i)).'deg) translatez('.(string)($this->iHeight/2).'px);}'.PHP_EOL;
+			//echo '-webkit-transform:rotatex('.(string)($this->iAngle1*($this->iRollCnt - $i)).'deg) translatez('.(string)($this->iHeight/2).'px);'.PHP_EOL;
+			//echo 'transform:rotatex('.(string)($this->iAngle1*($this->iRollCnt - $i)).'deg) translatez('.(string)($this->iHeight/2).'px);}'.PHP_EOL;
+			
+			CompatibleTransform('rotatex('.(string)($this->iAngle1*($this->iRollCnt - $i)).'deg) translatez('.(string)($this->iHeight/2).'px);');
+			echo '}'.PHP_EOL;
 		}
 		
 		
 		echo 'div.fastweb_vertical_rollplay_contain{'.PHP_EOL;
-		echo '-webkit-animation:'.$this->sAnimationName.' '.$this->sCycle.' linear infinite;'.PHP_EOL;
-		echo 'animation:'.$this->sAnimationName.' '.$this->sCycle.' linear infinite;'.PHP_EOL;
+		CompatibleAnimation($this->sAnimationName.' '.$this->sCycle.' linear infinite;');
+		//echo '-webkit-animation:'.$this->sAnimationName.' '.$this->sCycle.' linear infinite;'.PHP_EOL;
+		//echo 'animation:'.$this->sAnimationName.' '.$this->sCycle.' linear infinite;'.PHP_EOL;
 		echo '}'.PHP_EOL;
 		
 		echo '@keyframes '.$this->sAnimationName.'{'.PHP_EOL;
 		
 		for($i = 0; $i < $this->iRollCnt; ++$i)
 		{
-			echo (string)($i*100/$this->iRollCnt).'%{transform:rotatex('.(string)($this->iAngle1 * $i).'deg);}'.PHP_EOL;
+			echo (string)($i*100/$this->iRollCnt).'%{'.PHP_EOL;
+			//transform:rotatex('.(string)($this->iAngle1 * $i).'deg);}'.PHP_EOL;
+			
+			CompatibleTransform('rotatex('.(string)($this->iAngle1 * $i).'deg);');
+			echo '}'.PHP_EOL;
+			
 			//添加过渡比例时的位置，防止一直平滑播放
-			echo (string)(($i + 0.5)*100/$this->iRollCnt).'%{transform:rotatex('.(string)($this->iAngle1 * $i).'deg);}'.PHP_EOL;
+			echo (string)(($i + 0.5)*100/$this->iRollCnt).'%{'.PHP_EOL;
+			//transform:rotatex('.(string)($this->iAngle1 * $i).'deg);}'.PHP_EOL;
+			CompatibleTransform('rotatex('.(string)($this->iAngle1 * $i).'deg);');
+			echo '}'.PHP_EOL;
 		}
 		
-		echo '100%{transform:rotatex(360deg)}'.PHP_EOL;
+		echo '100%{'.PHP_EOL;
+		CompatibleTransform('rotatex(360deg)');
+		//transform:rotatex(360deg)
+		echo '}'.PHP_EOL;
 		echo '}'.PHP_EOL;
 		echo '</style>';
 	}
 	
+	/**
+	* RollStart 
+	* 开始一个显示区域
+	*
+	* @access public
+	* @since 1.0
+	* @return
+	*/
 	public function RollStart()
 	{
 		++$this->iRollCnt;
 		StartSimpleDiv(array("style" => "height:".$this->iHeight."px;background-color:".$this->sBackground.";"));
 	}
+	
+	/**
+	* RollEnd 
+	* 结束一个显示区域
+	*
+	* @access public
+	* @since 1.0
+	* @return
+	*/
 	public function RollEnd()
 	{
 		EndDiv();
 	}
+	
+	/**
+	* AddRollImg 
+	* 添加一个带有指定图片的显示区域
+	*
+	* @access public
+	* @param mixed $src				图片地址
+	* @param mixed $href			超链接地址,为空则表示不带有超链接
+	* @since 1.0
+	* @return
+	*/
 	public function AddRollImg($src, $href = "")
 	{
 		$this->RollStart();
@@ -1938,15 +2102,34 @@ class CVerticalRollPlay{
 	}
 }
 
-class CRollPlay{
+/**
+* 水平滚动播放类
+*
+* 生成一个由多个显示区域组合成的水平滚动播放模块
+* @作者			光头放羊<bingzhao456@163.com>
+* @版本			1.0
+*/
+class CHorizontalRollPlay{
 	private $iWidth;
 	private $iHeight;
 	private $sSlide;
 	private $sContain;
 	private $iCnt;
 	private $iRollCycle;
-	/*注意width变量是数字格式，代码中会用到这个数字计算偏移信息和宽度信息*/
-	public function __construct($slide = "fastweb_rollplay_slide", $width = 600, $height="200px", $rollCycle = "10s"){
+
+	/**
+	* __construct 
+	* 构造函数
+	*
+	* @access public
+	* @param mixed $width			显示出来的窗口宽度，必须是数字格式
+	* @param mixed $height			显示出来的窗口高度
+	* @param mixed $rollCycle		循环周期
+	* @param mixed $slide			滑动窗口的类名,当一个页面存在多个CRollPlay时需要指定不同值
+	* @since 1.0
+	* @return
+	*/
+	public function __construct($width = 600, $height="200px", $rollCycle = "10s", $slide = "fastweb_rollplay_slide"){
 		$this->iWidth = $width;
 		$this->iHeight = $height;
 		$this->sSlide = $slide;
@@ -1962,13 +2145,22 @@ class CRollPlay{
 		EndDiv();
 	}
 	
+	/**
+	* RollCss 
+	* 生成对应的css样式
+	*
+	* @access private
+	* @since 1.0
+	* @return
+	*/
 	private function RollCss()
 	{
 		echo '<style type="text/css">'.PHP_EOL;
 		
 		echo 'div.'.$this->sContain.' ul.'.$this->sSlide.'{'.PHP_EOL;
 		echo 'width:'.($this->iWidth * $this->iCnt).'px;'.PHP_EOL;
-		echo 'animation:'.$this->sSlide.'_frames '.$this->iRollCycle.' infinite;'.PHP_EOL;
+		CompatibleAnimation($this->sSlide.'_frames '.$this->iRollCycle.' infinite;');
+		//echo 'animation:'.$this->sSlide.'_frames '.$this->iRollCycle.' infinite;'.PHP_EOL;
 		echo '}'.PHP_EOL;
 		
 		echo '@keyframes '.$this->sSlide.'_frames{'.PHP_EOL;
@@ -1984,17 +2176,45 @@ class CRollPlay{
 		echo '</style>'.PHP_EOL;
 	}
 	
+	/**
+	* RollStart 
+	* 开始一个显示区域
+	*
+	* @access public
+	* @since 1.0
+	* @return
+	*/
 	public function RollStart()
 	{
 		++$this->iCnt;
 		StartLi(array("style" => "width:".(string)$this->iWidth."px;height:".$this->iHeight.";"));
 		StartDiv(array("style" => "width:100%;height:auto;"));
 	}
+	
+	/**
+	* RollEnd 
+	* 结束一个显示区域
+	*
+	* @access public
+	* @since 1.0
+	* @return
+	*/
 	public function RollEnd()
 	{
 		EndDiv();
 		EndLi();
 	}
+	
+	/**
+	* AddRollImg 
+	* 添加一个带有指定图片的显示区域
+	*
+	* @access public
+	* @param mixed $src				图片地址
+	* @param mixed $href			超链接地址,为空则表示不带有超链接
+	* @since 1.0
+	* @return
+	*/
 	public function AddRollImg($src, $href = "")
 	{
 		$this->RollStart();
@@ -2011,55 +2231,29 @@ class CRollPlay{
 	}
 }
 
-
-
-class CHorizontalRollDiv{
-	private $iWidth;
-	private $sName;
-	private $sRollCycle;
-	public function __construct($width = "600px", $rollCycle = "10s", $name = "fastweb_horizontal_rollplay_div"){
-		$this->iWidth = $width;
-		$this->sName = $name;
-		$this->sRollCycle = $rollCycle;
-		StartDiv(array("class" => $name, "style" => "width:".$width.";"));
-	}
-	public function __destruct(){
-		$this->RollCss();
-		EndDiv();
-	}
-	
-	private function RollCss()
-	{
-		echo '<style type="text/css">'.PHP_EOL;
-		
-		
-		echo 'div.'.$this->sName.'{'.PHP_EOL;
-		echo 'display: inline-block;'.PHP_EOL;
-		echo 'white-space: nowrap;'.PHP_EOL;
-		echo 'animation: '.$this->sRollCycle.' '.$this->sName.'_loop linear infinite normal;'.PHP_EOL;
-		echo '}'.PHP_EOL;
-
-		echo '@keyframes '.$this->sName.'_loop{'.PHP_EOL;
-		echo '0% {'.PHP_EOL;
-		echo 'transform: translateX('.$this->iWidth.');'.PHP_EOL;
-		echo '-webkit-transform: translateX('.$this->iWidth.');'.PHP_EOL;
-		echo '}'.PHP_EOL;
-		echo '100% {'.PHP_EOL;
-		echo 'transform: translateX(-'.$this->iWidth.');'.PHP_EOL;
-		echo '-webkit-transform: translateX(-'.$this->iWidth.');'.PHP_EOL;
-		echo '}'.PHP_EOL;
-		echo '}'.PHP_EOL;
-		
-		echo '</style>'.PHP_EOL;
-	}
-}
-
-
+/**
+* 动态背景类
+*
+* 制作一个带有动态背景效果的模块,原理是多个无底纹图片重叠
+* @作者			光头放羊<bingzhao456@163.com>
+* @版本			1.0
+*/
 class CDynamicBackgroundDiv{
 	private $sName;
 	private $arrImg;
 	private $iImgCnt;
 	private $sBottomBackground;
+	/**
+	* __construct 
+	* 构造函数
+	*
+	* @access public
+	* @param mixed $width			模块的宽度
+	* @param mixed $height			模块的高度,最好设定像素格式的大小,不能是auto
+	* @param mixed $name			背景模块的类名,一个页面存在多个CDynamicBackgroundDiv时需要指定不同值
+	* @since 1.0
+	* @return
+	*/
 	public function __construct($width = "100%", $height = "400px", $name = "fastweb_dynamic_background_div"){
 		$this->sName = $name;
 		$this->iImgCnt = 0;
@@ -2072,32 +2266,84 @@ class CDynamicBackgroundDiv{
 		EndDiv();
 	}
 	
+	/**
+	* StartBottomDiv 
+	* 开始最底层模块
+	*
+	* @access public
+	* @since 1.0
+	* @return
+	*/
 	public function StartBottomDiv()
 	{
 		StartDiv(array("class" => $this->sName."_bottom", "style" => "position:absolute;left:0;top:0;width:100%;height:100%;"));
 	}
 	
+	/**
+	* SetBottomBackground 
+	* 设置最底层模块的背景色
+	*
+	* @access public
+	* @param mixed $background			背景色
+	* @since 1.0
+	* @return
+	*/
 	public function SetBottomBackground($background)
 	{
 		$this->sBottomBackground = $background;
 	}
 	
+	/**
+	* EndBottomDiv 
+	* 结束底层模块
+	*
+	* @access public
+	* @since 1.0
+	* @return
+	*/
 	public function EndBottomDiv()
 	{
 		EndDiv();
 	}
 	
+	/**
+	* StartTopDiv 
+	* 开始最上层模块
+	*
+	* @access public
+	* @since 1.0
+	* @return
+	*/
 	public function StartTopDiv()
 	{
 		StartDiv(array("style" => "position:absolute;left:0;top:0;width:100%;height:100%;background:none;"));
 	}
 	
-	
+	/**
+	* EndTopDiv 
+	* 结束最上层模块
+	*
+	* @access public
+	* @since 1.0
+	* @return
+	*/
 	public function EndTopDiv()
 	{
 		EndDiv();
 	}
 	
+	/**
+	* ImgUpward 
+	* 添加一个向上移动的图片层
+	*
+	* @access public
+	* @param mixed $img				图片地址,注意图片必须是无底纹,否则将遮挡更底层的图层
+	* @param mixed $height			图片高度像素
+	* @param mixed $cycle			图片循环周期
+	* @param mixed $seam			是否无缝模式,无缝模式下通过两个图片无缝衔接实现
+	* @since 1.0
+	* @return
+	*/
 	public function ImgUpward($img , $height, $cycle , $seam = true)
 	{
 		++$this->iImgCnt;
@@ -2114,6 +2360,18 @@ class CDynamicBackgroundDiv{
 		}
 	}
 	
+	/**
+	* ImgDownward 
+	* 添加一个向下移动的图片层
+	*
+	* @access public
+	* @param mixed $img				图片地址,注意图片必须是无底纹,否则将遮挡更底层的图层
+	* @param mixed $height			图片高度像素
+	* @param mixed $cycle			图片循环周期
+	* @param mixed $seam			是否无缝模式,无缝模式下通过两个图片无缝衔接实现
+	* @since 1.0
+	* @return
+	*/
 	public function ImgDownward($img , $height, $cycle , $seam = true)
 	{
 		++$this->iImgCnt;
@@ -2130,6 +2388,18 @@ class CDynamicBackgroundDiv{
 		}
 	}
 	
+	/**
+	* ImgLeftward 
+	* 添加一个向左移动的图片层
+	*
+	* @access public
+	* @param mixed $img				图片地址,注意图片必须是无底纹,否则将遮挡更底层的图层
+	* @param mixed $height			图片高度像素
+	* @param mixed $cycle			图片循环周期
+	* @param mixed $seam			是否无缝模式,无缝模式下通过两个图片无缝衔接实现
+	* @since 1.0
+	* @return
+	*/
 	public function ImgLeftward($img , $width, $cycle , $seam = true)
 	{
 		++$this->iImgCnt;
@@ -2146,6 +2416,18 @@ class CDynamicBackgroundDiv{
 		}
 	}
 	
+	/**
+	* ImgRightward 
+	* 添加一个向右移动的图片层
+	*
+	* @access public
+	* @param mixed $img				图片地址,注意图片必须是无底纹,否则将遮挡更底层的图层
+	* @param mixed $height			图片高度像素
+	* @param mixed $cycle			图片循环周期
+	* @param mixed $seam			是否无缝模式,无缝模式下通过两个图片无缝衔接实现
+	* @since 1.0
+	* @return
+	*/
 	public function ImgRightward($img , $width, $cycle ,$seam = true)
 	{
 		++$this->iImgCnt;
@@ -2162,6 +2444,14 @@ class CDynamicBackgroundDiv{
 		}
 	}
 	
+	/**
+	* RollCss 
+	* 生成对应的css文件
+	*
+	* @access private
+	* @since 1.0
+	* @return
+	*/
 	private function RollCss()
 	{
 		echo '<style type="text/css">'.PHP_EOL;
@@ -2190,14 +2480,16 @@ class CDynamicBackgroundDiv{
 				echo 'width:'.$this->arrImg[$i - 1]["width"].';'.PHP_EOL;
 				echo 'height:100%;';
 			}
-			echo '-webkit-animation: '.$this->sName.'_animation'.(string)$i.' '.$this->arrImg[$i - 1]["cycle"].' linear infinite;'.PHP_EOL;
-			echo '-moz-animation: '.$this->sName.'_animation'.(string)$i.' '.$this->arrImg[$i - 1]["cycle"].' linear infinite;'.PHP_EOL;
-			echo '-o-animation: '.$this->sName.'_animation'.(string)$i.' '.$this->arrImg[$i - 1]["cycle"].' linear infinite;'.PHP_EOL;
-			echo 'animation: '.$this->sName.'_animation'.(string)$i.' '.$this->arrImg[$i - 1]["cycle"].' linear infinite;'.PHP_EOL;
-			echo '-webkit-transform: translate3d(0, 0, 0);'.PHP_EOL;
-			echo '-ms-transform: translate3d(0, 0, 0);'.PHP_EOL;
-			echo '-o-transform: translate3d(0, 0, 0);'.PHP_EOL;
-			echo 'transform: translate3d(0, 0, 0);'.PHP_EOL;
+			CompatibleAnimation($this->sName.'_animation'.(string)$i.' '.$this->arrImg[$i - 1]["cycle"].' linear infinite;');
+			//echo '-webkit-animation: '.$this->sName.'_animation'.(string)$i.' '.$this->arrImg[$i - 1]["cycle"].' linear infinite;'.PHP_EOL;
+			//echo '-moz-animation: '.$this->sName.'_animation'.(string)$i.' '.$this->arrImg[$i - 1]["cycle"].' linear infinite;'.PHP_EOL;
+			//echo '-o-animation: '.$this->sName.'_animation'.(string)$i.' '.$this->arrImg[$i - 1]["cycle"].' linear infinite;'.PHP_EOL;
+			//echo 'animation: '.$this->sName.'_animation'.(string)$i.' '.$this->arrImg[$i - 1]["cycle"].' linear infinite;'.PHP_EOL;
+			CompatibleTransform('translate3d(0, 0, 0);');
+			//echo '-webkit-transform: translate3d(0, 0, 0);'.PHP_EOL;
+			//echo '-ms-transform: translate3d(0, 0, 0);'.PHP_EOL;
+			//echo '-o-transform: translate3d(0, 0, 0);'.PHP_EOL;
+			//echo 'transform: translate3d(0, 0, 0);'.PHP_EOL;
 			echo '}'.PHP_EOL;
 			
 			
@@ -2209,32 +2501,38 @@ class CDynamicBackgroundDiv{
 			
 			echo '@-webkit-keyframes '.$this->sName.'_animation'.(string)$i.' {'.PHP_EOL;
 			echo '0% {'.PHP_EOL;
-			echo 'transform: '.$trans.'('.$this->arrImg[$i - 1]['from'].');'.PHP_EOL;
-			echo '-webkit-transform: '.$trans.'('.$this->arrImg[$i - 1]['from'].');'.PHP_EOL;
+			CompatibleTransform($trans.'('.$this->arrImg[$i - 1]['from'].');');
+			//echo 'transform: '.$trans.'('.$this->arrImg[$i - 1]['from'].');'.PHP_EOL;
+			//echo '-webkit-transform: '.$trans.'('.$this->arrImg[$i - 1]['from'].');'.PHP_EOL;
 			echo '}'.PHP_EOL;
 			echo '100% {'.PHP_EOL;
-			echo 'transform: '.$trans.'('.$this->arrImg[$i - 1]['to'].');'.PHP_EOL;
-			echo '-webkit-transform: '.$trans.'('.$this->arrImg[$i - 1]['to'].');'.PHP_EOL;
+			CompatibleTransform($trans.'('.$this->arrImg[$i - 1]['to'].');');
+			//echo 'transform: '.$trans.'('.$this->arrImg[$i - 1]['to'].');'.PHP_EOL;
+			//echo '-webkit-transform: '.$trans.'('.$this->arrImg[$i - 1]['to'].');'.PHP_EOL;
 			echo '}'.PHP_EOL;
 			echo '}'.PHP_EOL;
 			echo '@-moz-keyframes '.$this->sName.'_animation'.(string)$i.' {'.PHP_EOL;
 			echo '0% {'.PHP_EOL;
-			echo 'transform: '.$trans.'('.$this->arrImg[$i - 1]['from'].');'.PHP_EOL;
-			echo '-webkit-transform: '.$trans.'('.$this->arrImg[$i - 1]['from'].');'.PHP_EOL;
+			CompatibleTransform($trans.'('.$this->arrImg[$i - 1]['from'].');');
+			//echo 'transform: '.$trans.'('.$this->arrImg[$i - 1]['from'].');'.PHP_EOL;
+			//echo '-webkit-transform: '.$trans.'('.$this->arrImg[$i - 1]['from'].');'.PHP_EOL;
 			echo '}'.PHP_EOL;
 			echo '100% {'.PHP_EOL;
-			echo 'transform: '.$trans.'('.$this->arrImg[$i - 1]['to'].');'.PHP_EOL;
-			echo '-webkit-transform: '.$trans.'('.$this->arrImg[$i - 1]['to'].');'.PHP_EOL;
+			CompatibleTransform($trans.'('.$this->arrImg[$i - 1]['to'].');');
+			//echo 'transform: '.$trans.'('.$this->arrImg[$i - 1]['to'].');'.PHP_EOL;
+			//echo '-webkit-transform: '.$trans.'('.$this->arrImg[$i - 1]['to'].');'.PHP_EOL;
 			echo '}'.PHP_EOL;
 			echo '}'.PHP_EOL;
 			echo '@keyframes '.$this->sName.'_animation'.(string)$i.' {'.PHP_EOL;
 			echo '0% {'.PHP_EOL;
-			echo 'transform: '.$trans.'('.$this->arrImg[$i - 1]['from'].');'.PHP_EOL;
-			echo '-webkit-transform: '.$trans.'('.$this->arrImg[$i - 1]['from'].');'.PHP_EOL;
+			CompatibleTransform($trans.'('.$this->arrImg[$i - 1]['from'].');');
+			//echo 'transform: '.$trans.'('.$this->arrImg[$i - 1]['from'].');'.PHP_EOL;
+			//echo '-webkit-transform: '.$trans.'('.$this->arrImg[$i - 1]['from'].');'.PHP_EOL;
 			echo '}'.PHP_EOL;
 			echo '100% {'.PHP_EOL;
-			echo 'transform: '.$trans.'('.$this->arrImg[$i - 1]['to'].');'.PHP_EOL;
-			echo '-webkit-transform: '.$trans.'('.$this->arrImg[$i - 1]['to'].');'.PHP_EOL;
+			CompatibleTransform($trans.'('.$this->arrImg[$i - 1]['to'].');');
+			//echo 'transform: '.$trans.'('.$this->arrImg[$i - 1]['to'].');'.PHP_EOL;
+			//echo '-webkit-transform: '.$trans.'('.$this->arrImg[$i - 1]['to'].');'.PHP_EOL;
 			echo '}'.PHP_EOL;
 			echo '}'.PHP_EOL;
 		}
@@ -2243,10 +2541,29 @@ class CDynamicBackgroundDiv{
 	}
 }
 
+/**
+* 垂直滚动模块
+*
+* 制作一个垂直滚动模块
+* @作者			光头放羊<bingzhao456@163.com>
+* @版本			1.0
+*/
 class CVerticalRollDiv{
 	private $iHeight;
 	private $sName;
 	private $sRollCycle;
+	
+	/**
+	* __construct 
+	* 构造函数
+	*
+	* @access public
+	* @param mixed $height			模块的高度
+	* @param mixed $rollCycle		循环周期
+	* @param mixed $name			模块名称,一个页面存在多个CVerticalRollDiv时需要指定不同值
+	* @since 1.0
+	* @return
+	*/
 	public function __construct($height = "600px", $rollCycle = "10s", $name = "fastweb_vertical_rollplay_div"){
 		$this->iHeight = $height;
 		$this->sName = $name;
@@ -2258,6 +2575,14 @@ class CVerticalRollDiv{
 		EndDiv();
 	}
 	
+	/**
+	* RollCss 
+	* 生成对应的css文件
+	*
+	* @access private
+	* @since 1.0
+	* @return
+	*/
 	private function RollCss()
 	{
 		echo '<style type="text/css">'.PHP_EOL;
@@ -2266,17 +2591,21 @@ class CVerticalRollDiv{
 		echo 'div.'.$this->sName.'{'.PHP_EOL;
 		echo 'display: inline-block;'.PHP_EOL;
 		echo 'white-space: nowrap;'.PHP_EOL;
-		echo 'animation: '.$this->sRollCycle.' '.$this->sName.'_loop linear infinite normal;'.PHP_EOL;
+		CompatibleAnimation($this->sRollCycle.' '.$this->sName.'_loop linear infinite normal;');
+		//echo 'animation: '.$this->sRollCycle.' '.$this->sName.'_loop linear infinite normal;'.PHP_EOL;
 		echo '}'.PHP_EOL;
 
 		echo '@keyframes '.$this->sName.'_loop{'.PHP_EOL;
 		echo '0% {'.PHP_EOL;
-		echo 'transform: translateY('.$this->iHeight.');'.PHP_EOL;
-		echo '-webkit-transform: translateY('.$this->iHeight.');'.PHP_EOL;
+		CompatibleTransform('translateY('.$this->iHeight.');');
+		//echo 'transform: translateY('.$this->iHeight.');'.PHP_EOL;
+		//echo '-webkit-transform: translateY('.$this->iHeight.');'.PHP_EOL;
 		echo '}'.PHP_EOL;
 		echo '100% {'.PHP_EOL;
-		echo 'transform: translateX(-'.$this->iHeight.');'.PHP_EOL;
-		echo '-webkit-transform: translateY(-'.$this->iHeight.');'.PHP_EOL;
+		CompatibleTransform('translateX(-'.$this->iHeight.');');
+		CompatibleTransform('translateY(-'.$this->iHeight.');');
+		//echo 'transform: translateX(-'.$this->iHeight.');'.PHP_EOL;
+		//echo '-webkit-transform: translateY(-'.$this->iHeight.');'.PHP_EOL;
 		echo '}'.PHP_EOL;
 		echo '}'.PHP_EOL;
 		
@@ -2284,17 +2613,122 @@ class CVerticalRollDiv{
 	}
 }
 
+/**
+* 水平滚动模块
+*
+* 制作一个水平滚动模块
+* @作者			光头放羊<bingzhao456@163.com>
+* @版本			1.0
+*/
+class CHorizontalRollDiv{
+	private $iWidth;
+	private $sName;
+	private $sRollCycle;
+	/**
+	* __construct 
+	* 构造函数
+	*
+	* @access public
+	* @param mixed $width			模块的宽度
+	* @param mixed $rollCycle		循环周期
+	* @param mixed $name			模块名称,一个页面存在多个CVerticalRollDiv时需要指定不同值
+	* @since 1.0
+	* @return
+	*/
+	public function __construct($width = "600px", $rollCycle = "10s", $name = "fastweb_horizontal_rollplay_div"){
+		$this->iWidth = $width;
+		$this->sName = $name;
+		$this->sRollCycle = $rollCycle;
+		StartDiv(array("class" => $name, "style" => "width:".$width.";"));
+	}
+	public function __destruct(){
+		$this->RollCss();
+		EndDiv();
+	}
+	
+	/**
+	* RollCss 
+	* 生成对应的css文件
+	*
+	* @access private
+	* @since 1.0
+	* @return
+	*/
+	private function RollCss()
+	{
+		echo '<style type="text/css">'.PHP_EOL;
+		
+		
+		echo 'div.'.$this->sName.'{'.PHP_EOL;
+		echo 'display: inline-block;'.PHP_EOL;
+		echo 'white-space: nowrap;'.PHP_EOL;
+		CompatibleAnimation($this->sRollCycle.' '.$this->sName.'_loop linear infinite normal;');
+		//echo 'animation: '.$this->sRollCycle.' '.$this->sName.'_loop linear infinite normal;'.PHP_EOL;
+		echo '}'.PHP_EOL;
 
+		echo '@keyframes '.$this->sName.'_loop{'.PHP_EOL;
+		echo '0% {'.PHP_EOL;
+		CompatibleTransform('translateX('.$this->iWidth.');');
+		//echo 'transform: translateX('.$this->iWidth.');'.PHP_EOL;
+		//echo '-webkit-transform: translateX('.$this->iWidth.');'.PHP_EOL;
+		echo '}'.PHP_EOL;
+		echo '100% {'.PHP_EOL;
+		CompatibleTransform('translateX(-'.$this->iWidth.');');
+		//echo 'transform: translateX(-'.$this->iWidth.');'.PHP_EOL;
+		//echo '-webkit-transform: translateX(-'.$this->iWidth.');'.PHP_EOL;
+		echo '}'.PHP_EOL;
+		echo '}'.PHP_EOL;
+		
+		echo '</style>'.PHP_EOL;
+	}
+}
+
+/**
+* 关闭模块
+*
+* 制作一个初始为显示状态的可关闭模块
+* @作者			光头放羊<bingzhao456@163.com>
+* @版本			1.0
+*/
 class CPopupCloseBlock{
 	private $idPrefix;
+	
+	/**
+	* __construct 
+	* 构造函数
+	*
+	* @access public
+	* @param mixed $prefix			模块的id前缀,一个页面存在多个CPopupCloseBlock时需要指定不同值
+	* @since 1.0
+	* @return
+	*/
 	public function __construct($prefix = "fastweb_close_block_popup_"){
 		$this->idPrefix = $prefix;
 	}
 	
+	/**
+	* SetPrefix 
+	* 设置模块id前缀
+	*
+	* @access public
+	* @param mixed $prefix			模块的id前缀,一个页面存在多个CPopupCloseBlock时需要指定不同值
+	* @since 1.0
+	* @return
+	*/
 	public function SetPrefix($prefix = "fastweb_close_block_popup_"){
 		$this->idPrefix = $prefix;
 	}
 	
+	/**
+	* PopupCloseControlLink 
+	* 添加关闭模块的控制链接
+	*
+	* @access public
+	* @param mixed $text			链接文字
+	* @param mixed $class			链接样式
+	* @since 1.0
+	* @return
+	*/
 	public function PopupCloseControlLink($text, $class = "fastweb_popup_a_style")
 	{
 		$arr = array();
@@ -2305,6 +2739,21 @@ class CPopupCloseBlock{
 		AddLink($arr, $text);
 	}
 	
+	/**
+	* StartPopup 
+	* 开始一个模块
+	*
+	* @access private
+	* @param mixed $width			模块宽度
+	* @param mixed $height			模块高度
+	* @param mixed $left			模块左边距
+	* @param mixed $top				模块上边距
+	* @param mixed $right			模块右边距
+	* @param mixed $bottom			模块下边距
+	* @param mixed $pos				模块定位方式
+	* @since 1.0
+	* @return
+	*/
 	private function StartPopup($width = "600px", $height = "400px", $left = "", $top = "", $right = "", $bottom = "", $pos = "")
 	{
 		$arr = array();
@@ -2315,14 +2764,52 @@ class CPopupCloseBlock{
 		StartDiv($arr);
 	}
 	
+	/**
+	* StartFixedPopup 
+	* 开始一个绝对位置的模块
+	*
+	* @access public
+	* @param mixed $width			模块宽度
+	* @param mixed $height			模块高度
+	* @param mixed $left			模块左边距
+	* @param mixed $top				模块上边距
+	* @param mixed $right			模块右边距
+	* @param mixed $bottom			模块下边距
+	* @since 1.0
+	* @return
+	*/
 	public function StartFixedPopup($width = "600px", $height = "400px", $left = "", $top = "", $right = "", $bottom = "")
 	{
 		$this->StartPopup($width, $height, $left, $top, $right, $bottom, "fixed");
 	}
+	
+	/**
+	* StartRelativePopup 
+	* 开始一个相对位置的模块
+	*
+	* @access public
+	* @param mixed $width			模块宽度
+	* @param mixed $height			模块高度
+	* @param mixed $left			模块左边距
+	* @param mixed $top				模块上边距
+	* @param mixed $right			模块右边距
+	* @param mixed $bottom			模块下边距
+	* @since 1.0
+	* @return
+	*/
 	public function StartRelativePopup($width = "600px", $height = "400px", $left = "", $top = "", $right = "", $bottom = "")
 	{
 		$this->StartPopup($width, $height, $left, $top, $right, $bottom, "relative");
 	}
+	
+	/**
+	* StartRelativePopup 
+	* 结束一个模块
+	*
+	* @access public
+	* @since 1.0
+	* @return
+	*/
 	public function EndPopup()
 	{
 		EndDiv();
@@ -2333,7 +2820,13 @@ class CPopupCloseBlock{
 	}
 }
 
-/*此种关闭为点击任意位置都关闭*/
+/**
+* 点击关闭类
+*
+* 此模块生成的模块,点击模块区域任意位置均会关闭
+* @作者			光头放羊<bingzhao456@163.com>
+* @版本			1.0
+*/
 class CCloseBlockHold{
 	public function __construct(){
 		StartLabel(array("class" => "fastweb_close_block_hold"));

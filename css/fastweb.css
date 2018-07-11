@@ -468,7 +468,7 @@ div.fastweb_rollplay_contain li{
     list-style: none;
 }
 
-div.fastweb_rollplay_contain ul.fastweb_rollplay_slide{
+div.fastweb_rollplay_contain ul{
 	margin:0;
     padding:0;
     transition:all 0.5s;

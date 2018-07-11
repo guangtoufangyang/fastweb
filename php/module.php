@@ -72,7 +72,7 @@ function AddPageTurningBySize($currNum, $urlPrefix, $globalMax = 100)
 	if($currNum > 1)
 	{
 		StartLi();
-		AddLink(array("href" => $urlPrefix.($currNum - 1), "text" => "上一页"));
+		AddLink(array("href" => $urlPrefix.($currNum - 1)), "上一页");
 		EndLi();
 	}
 	
@@ -296,7 +296,7 @@ function AddTree($data, $branchTag = "fastweb_tree_branch_tag")
 
 function AddRollPlayImg($data, $contain = "fastweb_rollplay_contain", $slide = "fastweb_rollplay_slide")
 {
-	$roll = new CRollPlay();
+	$roll = new CHorizontalRollPlay();
 	foreach ($data as $val)
 	{
 		$roll->AddRollImg($val);

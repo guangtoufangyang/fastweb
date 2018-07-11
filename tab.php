@@ -60,11 +60,12 @@ StartDiv(array("class" => "fastweb_div_frame"));
 				DisplayCode(basename(__FILE__));
 				EndFieldset();
 			EndDiv();
-			
+
 		EndDiv();
 		ClearFloat();
 	EndDiv();
 EndDiv();
+
 
 Repeat('<br />', 6);
 StartDiv(array("class" => "fastweb_div_frame fastweb_pos_bottom fastweb_pos_fixed fastweb_opacity_80"));
