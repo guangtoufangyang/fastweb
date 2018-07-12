@@ -22,6 +22,15 @@ $defaultHeadConfig = array(
 	);
 
 
+/**
+* CompatibleAnimation 
+* 输出兼容的动画效果
+*
+* @access
+* @param mixed $animation		动画内容
+* @since 1.0
+* @return
+*/
 function CompatibleAnimation($animation)
 {
 	echo '-webkit-animation: '.$animation.';'.PHP_EOL;
@@ -29,7 +38,16 @@ function CompatibleAnimation($animation)
 	echo '-o-animation: '.$animation.';'.PHP_EOL;
 	echo 'animation: '.$animation.';'.PHP_EOL;
 }
-			
+
+/**
+* CompatibleTransform 
+* 输出兼容的翻转效果
+*
+* @access
+* @param mixed $animation		翻转内容
+* @since 1.0
+* @return
+*/		
 function CompatibleTransform($transform)
 {
 	echo '-webkit-transform: '.$transform.';'.PHP_EOL;
@@ -71,18 +89,6 @@ function ShowAttr(&$arrAttr)
 		if(!empty($val))
 		{
 			echo ' '.$key.'="'.$val.'"';
-		}
-	}
-}
-
-function GetStyle(&$arrStyle)
-{
-	$style = '';
-	foreach ($arrStyle as $key => $val)
-	{
-		if(!empty($val))
-		{
-			$style = $style.$key.':"'.$val.'";';
 		}
 	}
 }
@@ -1090,7 +1096,7 @@ class CHead
 */
 class CDocument
 {
-	private $paraArr;
+	private $paraArr;				//记录段落属性的数组
 	function __construct()
 	{
 		$this->paraArr = array();
@@ -1200,10 +1206,10 @@ class CDocument
 */
 class CTree
 {
-	private $sBranchTag;
-	private $iBranchNum;
-	private $sBranchClass;
-	private $arrCheckBranch;
+	private $sBranchTag;				//分支标签前缀
+	private $iBranchNum;				//当前分支编号
+	private $sBranchClass;				//分支的类名
+	private $arrCheckBranch;			//需要设置为打开状态的分支数组
 	
 	/**
 	* __construct 
@@ -1329,12 +1335,12 @@ class CTree
 */
 class CTab
 {
-	private $iMax;
-	private $iCur;
-	private $iHeight;
-	private $iOffset;
-	private $sTabPrefix;
-	private $arrTabList;
+	private $iMax;					//tab编号最大值
+	private $iCur;					//tab序号
+	private $iHeight;				//tab区的高度
+	private $iOffset;				//tab标签定位偏移
+	private $sTabPrefix;			//每个tab的id前缀
+	private $arrTabList;			//tab标签数组
 	
 	/**
 	* __construct 
@@ -1455,18 +1461,18 @@ class CTab
 * @版本			1.0
 */
 class CTable{
-	private $mTd;
-	private $mMaxTd;
-	private $mLineNum;
-	private $mTrMouseOn;
-	private $mTrMouseOut;
-	private $mTdWidth;
-	private $mTableEnd;
-	private $mTdWidArr;
-	private $mTdColorClass;
-	private $mTdColorClassCnt;
-	private $mLineTd;
-	private $mMultiTd;
+	private $mTd;						//当前行所属列
+	private $mMaxTd;					//最大列数
+	private $mLineNum;					//行数
+	private $mTrMouseOn;				//鼠标覆盖行事件
+	private $mTrMouseOut;				//鼠标移开行事件
+	//private $mTdWidth;
+	private $mTableEnd;					//table结束标识
+	private $mTdWidArr;					//宽度数组
+	private $mTdColorClass;				//背景色数组
+	private $mTdColorClassCnt;			//背景色数组大小
+	private $mLineTd;					//当前行的td计数大小
+	private $mMultiTd;					//跨行跨列信息
 	
 	/**
 	* __construct 
@@ -1959,13 +1965,13 @@ class CCloseBlock{
 * @版本			1.0
 */
 class CVerticalRollPlay{
-	private $iRollCnt;
-	private $iHeight;
-	private $iAngle1;
-	private $iAngle2;
-	private $sCycle;
-	private $sAnimationName;
-	private $sBackground;
+	private $iRollCnt;				//独立播放区数量
+	private $iHeight;				//播放区高度
+	private $iAngle1;				//单次旋转角度
+	//private $iAngle2;				//
+	private $sCycle;				//循环播放周期
+	private $sAnimationName;		//动画名称前缀
+	private $sBackground;			//显示区背景色
 	
 	/**
 	* __construct 
@@ -2005,14 +2011,11 @@ class CVerticalRollPlay{
 	{
 		if($this->iRollCnt < 1) return;
 		$this->iAngle1 = 360 / $this->iRollCnt;
-		$this->iAngle2 = 360 / ($this->iRollCnt + 1);
+		//$this->iAngle2 = 360 / ($this->iRollCnt + 1);
 		echo '<style type="text/css">'.PHP_EOL;
 		for($i = 1; $i <= $this->iRollCnt; ++$i)
 		{
 			echo 'div.fastweb_vertical_rollplay_contain>div:nth-child('.(string)$i.'){'.PHP_EOL;
-			//echo '-webkit-transform:rotatex('.(string)($this->iAngle1*($this->iRollCnt - $i)).'deg) translatez('.(string)($this->iHeight/2).'px);'.PHP_EOL;
-			//echo 'transform:rotatex('.(string)($this->iAngle1*($this->iRollCnt - $i)).'deg) translatez('.(string)($this->iHeight/2).'px);}'.PHP_EOL;
-			
 			CompatibleTransform('rotatex('.(string)($this->iAngle1*($this->iRollCnt - $i)).'deg) translatez('.(string)($this->iHeight/2).'px);');
 			echo '}'.PHP_EOL;
 		}
@@ -2020,8 +2023,6 @@ class CVerticalRollPlay{
 		
 		echo 'div.fastweb_vertical_rollplay_contain{'.PHP_EOL;
 		CompatibleAnimation($this->sAnimationName.' '.$this->sCycle.' linear infinite;');
-		//echo '-webkit-animation:'.$this->sAnimationName.' '.$this->sCycle.' linear infinite;'.PHP_EOL;
-		//echo 'animation:'.$this->sAnimationName.' '.$this->sCycle.' linear infinite;'.PHP_EOL;
 		echo '}'.PHP_EOL;
 		
 		echo '@keyframes '.$this->sAnimationName.'{'.PHP_EOL;
@@ -2029,21 +2030,18 @@ class CVerticalRollPlay{
 		for($i = 0; $i < $this->iRollCnt; ++$i)
 		{
 			echo (string)($i*100/$this->iRollCnt).'%{'.PHP_EOL;
-			//transform:rotatex('.(string)($this->iAngle1 * $i).'deg);}'.PHP_EOL;
 			
 			CompatibleTransform('rotatex('.(string)($this->iAngle1 * $i).'deg);');
 			echo '}'.PHP_EOL;
 			
 			//添加过渡比例时的位置，防止一直平滑播放
 			echo (string)(($i + 0.5)*100/$this->iRollCnt).'%{'.PHP_EOL;
-			//transform:rotatex('.(string)($this->iAngle1 * $i).'deg);}'.PHP_EOL;
 			CompatibleTransform('rotatex('.(string)($this->iAngle1 * $i).'deg);');
 			echo '}'.PHP_EOL;
 		}
 		
 		echo '100%{'.PHP_EOL;
 		CompatibleTransform('rotatex(360deg)');
-		//transform:rotatex(360deg)
 		echo '}'.PHP_EOL;
 		echo '}'.PHP_EOL;
 		echo '</style>';
@@ -2110,12 +2108,12 @@ class CVerticalRollPlay{
 * @版本			1.0
 */
 class CHorizontalRollPlay{
-	private $iWidth;
-	private $iHeight;
-	private $sSlide;
-	private $sContain;
-	private $iCnt;
-	private $iRollCycle;
+	private $iWidth;				//显示区宽度
+	private $iHeight;				//显示区高度
+	private $sSlide;				//滑动窗口的类名
+	private $sContain;				//
+	private $iCnt;					//独立显示区数量
+	private $iRollCycle;			//循环播放周期
 
 	/**
 	* __construct 
@@ -2160,7 +2158,6 @@ class CHorizontalRollPlay{
 		echo 'div.'.$this->sContain.' ul.'.$this->sSlide.'{'.PHP_EOL;
 		echo 'width:'.($this->iWidth * $this->iCnt).'px;'.PHP_EOL;
 		CompatibleAnimation($this->sSlide.'_frames '.$this->iRollCycle.' infinite;');
-		//echo 'animation:'.$this->sSlide.'_frames '.$this->iRollCycle.' infinite;'.PHP_EOL;
 		echo '}'.PHP_EOL;
 		
 		echo '@keyframes '.$this->sSlide.'_frames{'.PHP_EOL;
@@ -2239,10 +2236,10 @@ class CHorizontalRollPlay{
 * @版本			1.0
 */
 class CDynamicBackgroundDiv{
-	private $sName;
-	private $arrImg;
-	private $iImgCnt;
-	private $sBottomBackground;
+	private $sName;						//背景模块的类名前缀
+	private $arrImg;					//图层的图片及配置信息
+	private $iImgCnt;					//图层数量
+	private $sBottomBackground;			//底层模块的背景色
 	/**
 	* __construct 
 	* 构造函数
@@ -2250,7 +2247,7 @@ class CDynamicBackgroundDiv{
 	* @access public
 	* @param mixed $width			模块的宽度
 	* @param mixed $height			模块的高度,最好设定像素格式的大小,不能是auto
-	* @param mixed $name			背景模块的类名,一个页面存在多个CDynamicBackgroundDiv时需要指定不同值
+	* @param mixed $name			背景模块的类名前缀,一个页面存在多个CDynamicBackgroundDiv时需要指定不同值
 	* @since 1.0
 	* @return
 	*/
@@ -2481,15 +2478,7 @@ class CDynamicBackgroundDiv{
 				echo 'height:100%;';
 			}
 			CompatibleAnimation($this->sName.'_animation'.(string)$i.' '.$this->arrImg[$i - 1]["cycle"].' linear infinite;');
-			//echo '-webkit-animation: '.$this->sName.'_animation'.(string)$i.' '.$this->arrImg[$i - 1]["cycle"].' linear infinite;'.PHP_EOL;
-			//echo '-moz-animation: '.$this->sName.'_animation'.(string)$i.' '.$this->arrImg[$i - 1]["cycle"].' linear infinite;'.PHP_EOL;
-			//echo '-o-animation: '.$this->sName.'_animation'.(string)$i.' '.$this->arrImg[$i - 1]["cycle"].' linear infinite;'.PHP_EOL;
-			//echo 'animation: '.$this->sName.'_animation'.(string)$i.' '.$this->arrImg[$i - 1]["cycle"].' linear infinite;'.PHP_EOL;
 			CompatibleTransform('translate3d(0, 0, 0);');
-			//echo '-webkit-transform: translate3d(0, 0, 0);'.PHP_EOL;
-			//echo '-ms-transform: translate3d(0, 0, 0);'.PHP_EOL;
-			//echo '-o-transform: translate3d(0, 0, 0);'.PHP_EOL;
-			//echo 'transform: translate3d(0, 0, 0);'.PHP_EOL;
 			echo '}'.PHP_EOL;
 			
 			
@@ -2502,37 +2491,25 @@ class CDynamicBackgroundDiv{
 			echo '@-webkit-keyframes '.$this->sName.'_animation'.(string)$i.' {'.PHP_EOL;
 			echo '0% {'.PHP_EOL;
 			CompatibleTransform($trans.'('.$this->arrImg[$i - 1]['from'].');');
-			//echo 'transform: '.$trans.'('.$this->arrImg[$i - 1]['from'].');'.PHP_EOL;
-			//echo '-webkit-transform: '.$trans.'('.$this->arrImg[$i - 1]['from'].');'.PHP_EOL;
 			echo '}'.PHP_EOL;
 			echo '100% {'.PHP_EOL;
 			CompatibleTransform($trans.'('.$this->arrImg[$i - 1]['to'].');');
-			//echo 'transform: '.$trans.'('.$this->arrImg[$i - 1]['to'].');'.PHP_EOL;
-			//echo '-webkit-transform: '.$trans.'('.$this->arrImg[$i - 1]['to'].');'.PHP_EOL;
 			echo '}'.PHP_EOL;
 			echo '}'.PHP_EOL;
 			echo '@-moz-keyframes '.$this->sName.'_animation'.(string)$i.' {'.PHP_EOL;
 			echo '0% {'.PHP_EOL;
 			CompatibleTransform($trans.'('.$this->arrImg[$i - 1]['from'].');');
-			//echo 'transform: '.$trans.'('.$this->arrImg[$i - 1]['from'].');'.PHP_EOL;
-			//echo '-webkit-transform: '.$trans.'('.$this->arrImg[$i - 1]['from'].');'.PHP_EOL;
 			echo '}'.PHP_EOL;
 			echo '100% {'.PHP_EOL;
 			CompatibleTransform($trans.'('.$this->arrImg[$i - 1]['to'].');');
-			//echo 'transform: '.$trans.'('.$this->arrImg[$i - 1]['to'].');'.PHP_EOL;
-			//echo '-webkit-transform: '.$trans.'('.$this->arrImg[$i - 1]['to'].');'.PHP_EOL;
 			echo '}'.PHP_EOL;
 			echo '}'.PHP_EOL;
 			echo '@keyframes '.$this->sName.'_animation'.(string)$i.' {'.PHP_EOL;
 			echo '0% {'.PHP_EOL;
 			CompatibleTransform($trans.'('.$this->arrImg[$i - 1]['from'].');');
-			//echo 'transform: '.$trans.'('.$this->arrImg[$i - 1]['from'].');'.PHP_EOL;
-			//echo '-webkit-transform: '.$trans.'('.$this->arrImg[$i - 1]['from'].');'.PHP_EOL;
 			echo '}'.PHP_EOL;
 			echo '100% {'.PHP_EOL;
 			CompatibleTransform($trans.'('.$this->arrImg[$i - 1]['to'].');');
-			//echo 'transform: '.$trans.'('.$this->arrImg[$i - 1]['to'].');'.PHP_EOL;
-			//echo '-webkit-transform: '.$trans.'('.$this->arrImg[$i - 1]['to'].');'.PHP_EOL;
 			echo '}'.PHP_EOL;
 			echo '}'.PHP_EOL;
 		}
@@ -2592,20 +2569,15 @@ class CVerticalRollDiv{
 		echo 'display: inline-block;'.PHP_EOL;
 		echo 'white-space: nowrap;'.PHP_EOL;
 		CompatibleAnimation($this->sRollCycle.' '.$this->sName.'_loop linear infinite normal;');
-		//echo 'animation: '.$this->sRollCycle.' '.$this->sName.'_loop linear infinite normal;'.PHP_EOL;
 		echo '}'.PHP_EOL;
 
 		echo '@keyframes '.$this->sName.'_loop{'.PHP_EOL;
 		echo '0% {'.PHP_EOL;
 		CompatibleTransform('translateY('.$this->iHeight.');');
-		//echo 'transform: translateY('.$this->iHeight.');'.PHP_EOL;
-		//echo '-webkit-transform: translateY('.$this->iHeight.');'.PHP_EOL;
 		echo '}'.PHP_EOL;
 		echo '100% {'.PHP_EOL;
 		CompatibleTransform('translateX(-'.$this->iHeight.');');
 		CompatibleTransform('translateY(-'.$this->iHeight.');');
-		//echo 'transform: translateX(-'.$this->iHeight.');'.PHP_EOL;
-		//echo '-webkit-transform: translateY(-'.$this->iHeight.');'.PHP_EOL;
 		echo '}'.PHP_EOL;
 		echo '}'.PHP_EOL;
 		
@@ -2663,19 +2635,14 @@ class CHorizontalRollDiv{
 		echo 'display: inline-block;'.PHP_EOL;
 		echo 'white-space: nowrap;'.PHP_EOL;
 		CompatibleAnimation($this->sRollCycle.' '.$this->sName.'_loop linear infinite normal;');
-		//echo 'animation: '.$this->sRollCycle.' '.$this->sName.'_loop linear infinite normal;'.PHP_EOL;
 		echo '}'.PHP_EOL;
 
 		echo '@keyframes '.$this->sName.'_loop{'.PHP_EOL;
 		echo '0% {'.PHP_EOL;
 		CompatibleTransform('translateX('.$this->iWidth.');');
-		//echo 'transform: translateX('.$this->iWidth.');'.PHP_EOL;
-		//echo '-webkit-transform: translateX('.$this->iWidth.');'.PHP_EOL;
 		echo '}'.PHP_EOL;
 		echo '100% {'.PHP_EOL;
 		CompatibleTransform('translateX(-'.$this->iWidth.');');
-		//echo 'transform: translateX(-'.$this->iWidth.');'.PHP_EOL;
-		//echo '-webkit-transform: translateX(-'.$this->iWidth.');'.PHP_EOL;
 		echo '}'.PHP_EOL;
 		echo '}'.PHP_EOL;
 		

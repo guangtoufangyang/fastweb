@@ -17,10 +17,11 @@ StartDiv(array("class" => "fastweb_div_frame"));
 		EndDiv();
 		
 		StartDiv(array("style" => "width:73%;float:right;"));
+		
 			StartDiv(array("style" => "width:100%;"));
 				DisplayText("tab1");
 			EndDiv();
-		
+			
 			StartDiv(array("style" => "width:100%;"));
 				$tab = new CTab(array("水平菜单", "新闻", "垂直菜单", "单选框", "多选框", "播放", "带链接播放"), "300px");
 				$tab->StartTab();
@@ -56,7 +57,7 @@ StartDiv(array("class" => "fastweb_div_frame"));
 			EndDiv();
 			
 			StartDiv(array("class" => "fastweb_align_left", "style" => "width:100%;"));
-				StartFieldset(array("class" => "fastweb_fieldset_style1", "style" => "padding-left:50px;"),  "页面代码");
+				StartFieldset(array("class" => "fastweb_fieldset_style1", "style" => "padding-left:50px;word-wrap:break-word;word-break:break-all;"),  "页面代码");
 				DisplayCode(basename(__FILE__));
 				EndFieldset();
 			EndDiv();
