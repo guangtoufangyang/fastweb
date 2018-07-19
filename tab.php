@@ -59,7 +59,7 @@ StartDiv(array("class" => "fastweb_div_frame"));
 			
 			AddH3(array("style" => "text-align:left;line-height:50px;"), "选项卡2");
 			StartDiv(array("style" => "width:100%;"));
-				$tab = new CTabByJs(array("水平菜单", "新闻", "垂直菜单", "单选框", "多选框", "播放", "带链接播放"), "auto", 1, "fastweb_tab1_", 0.2);
+				$tab = new CTabByJs(array("水平菜单", "新闻", "垂直菜单", "单选框", "多选框", "播放", "带链接播放"), "auto", 1, "fastweb_tab1_", 0);
 				$tab->StartTab();
 				DisplayMenuH("liH");
 				$tab->EndTab();
@@ -94,7 +94,7 @@ StartDiv(array("class" => "fastweb_div_frame"));
 			
 			AddH3(array("style" => "text-align:left;line-height:50px;"), "选项卡3");
 			StartDiv(array("style" => "width:100%;"));
-				$tab = new CTabByJs(array("水平菜单", "新闻", "垂直菜单", "单选框", "多选框", "播放", "带链接播放"), "auto", 2, "fastweb_tab2_", 0.2);
+				$tab = new CTabByJs(array("水平菜单", "新闻", "垂直菜单", "单选框", "多选框", "播放", "带链接播放"), "auto", 2, "fastweb_tab2_", 0);
 				$tab->StartTab();
 				DisplayMenuH("liH");
 				$tab->EndTab();

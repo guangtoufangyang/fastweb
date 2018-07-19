@@ -1354,7 +1354,7 @@ class CTab
 	* @since 1.0
 	* @return
 	*/
-	function __construct($arr, $height = "400px", $sTabPrefix = "fastweb_tab_box_tab", $offset = 0.3)
+	function __construct($arr, $height = "400px", $sTabPrefix = "fastweb_tab_box_tab", $offset = 0)
 	{
 		$this->iMax = count($arr);
 		$this->iCur = 0;
