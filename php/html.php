@@ -1357,7 +1357,7 @@ class CTab
 	function __construct($arr, $height = "400px", $sTabPrefix = "fastweb_tab_box_tab", $offset = 0.3)
 	{
 		$this->iMax = count($arr);
-		$this->iCur = 1;
+		$this->iCur = 0;
 		$this->sTabPrefix = $sTabPrefix;
 		$this->iHeight = $height;
 		$this->iOffset = $offset;
@@ -1468,6 +1468,7 @@ class CTabByJs
 	private $iOffset;				//tab标签定位偏移
 	private $sTabPrefix;			//每个tab的id前缀
 	private $arrTabList;			//tab标签数组
+	private $iMenuPos;				//tab标签位置，1:上，2:下，3:左，4:右
 	
 	/**
 	* __construct 
@@ -1481,34 +1482,104 @@ class CTabByJs
 	* @since 1.0
 	* @return
 	*/
-	function __construct($arr, $height = "400px", $sTabPrefix = "fastweb_tab_box_by_js", $offset = 0)
+	function __construct($arr, $height = "400px", $menuPos = 1, $sTabPrefix = "fastweb_tab_box_by_js", $offset = 0)
 	{
 		$this->iMax = count($arr);
-		$this->iCur = 1;
+		$this->iCur = 0;
 		$this->sTabPrefix = $sTabPrefix;
 		$this->iHeight = $height;
 		$this->iOffset = $offset;
 		$this->arrTabList = $arr;
+		if(($menuPos < 1) || ($menuPos > 4 ))
+		{
+			$this->iMenuPos = 1;
+		}
+		else
+		{
+			$this->iMenuPos = $menuPos;
+		}
 		
 		StartDiv(array("id" => $sTabPrefix));
-		StartUl(array("id" => $sTabPrefix."_list", "class" => $sTabPrefix."_ul"));
-		
-		foreach ($arr as $key => $val)
+		if(1 == $this->iMenuPos)
 		{
-			if(1 == $key)
-			{
-				AddLi(array("class" => $sTabPrefix."_li active"), $val);
-			}
-			else
-			{
-				AddLi(array("class" => $sTabPrefix."_li"), $val);
-			}
+			StartSimpleDiv(array());
 		}
-		EndUl();
+		else if(3 == $this->iMenuPos)
+		{
+			StartSimpleDiv(array("style" => "float:left;width:15%;"));
+		}
+		
+		if((1 == $this->iMenuPos) || (3 == $this->iMenuPos))
+		{
+			StartUl(array("id" => $sTabPrefix."_list", "class" => $sTabPrefix."_ul"));
+			
+			foreach ($arr as $key => $val)
+			{
+				if(0 == $key)
+				{
+					AddLi(array("class" => $sTabPrefix."_li active"), $val);
+				}
+				else
+				{
+					AddLi(array("class" => $sTabPrefix."_li"), $val);
+				}
+			}
+			EndUl();
+			EndDiv();
+		}
+		
+		if(1 == $this->iMenuPos)
+		{
+			StartSimpleDiv(array());
+		}
+		else if(2 == $this->iMenuPos)
+		{
+			StartSimpleDiv(array());
+		}
+		else if(3 == $this->iMenuPos)
+		{
+			StartSimpleDiv(array("style" => "float:right;width:85%;"));
+		}
+		else if(4 == $this->iMenuPos)
+		{
+			StartSimpleDiv(array("style" => "float:left;width:85%;"));
+		}
+		
 	}
 	
 	function __destruct()
 	{
+		EndDiv();
+		
+		if(2 == $this->iMenuPos)
+		{
+			StartSimpleDiv(array());
+		}
+		else if(4 == $this->iMenuPos)
+		{
+			StartSimpleDiv(array("style" => "float:right;width:15%;"));
+		}
+		
+		if((2 == $this->iMenuPos) || (4 == $this->iMenuPos))
+		{
+			StartUl(array("id" => $this->sTabPrefix."_list", "class" => $this->sTabPrefix."_ul"));
+			
+			foreach ($this->arrTabList as $key => $val)
+			{
+				if(0 == $key)
+				{
+					AddLi(array("class" => $this->sTabPrefix."_li active"), $val);
+				}
+				else
+				{
+					AddLi(array("class" => $this->sTabPrefix."_li"), $val);
+				}
+			}
+			EndUl();
+			EndDiv();
+		}
+		
+		
 		EndDiv();
 		$this->TabCss();
 		$this->TabJs();
@@ -1596,26 +1667,42 @@ class CTabByJs
 		echo 'li.'.$this->sTabPrefix.'_li {'.PHP_EOL ;
 		echo 'list-style:none;'.PHP_EOL ;
 		echo 'float:left;'.PHP_EOL ;
-		echo 'width:90px;'.PHP_EOL ;
+		if((3 == $this->iMenuPos) || (4 == $this->iMenuPos))
+		{
+			echo 'width:100%;'.PHP_EOL ;
+			echo 'border-bottom:1px solid #ffccff;'.PHP_EOL ;
+		}
+		else
+		{
+			echo 'width:'.(100/$this->iMax - $this->iOffset).'%;'.PHP_EOL;
+			echo 'border-right:1px solid #ffccff;'.PHP_EOL ;
+		}
+		//echo 'width:90px;'.PHP_EOL ;
 		echo 'height:30px;'.PHP_EOL ;
-		echo 'margin-left:2px;'.PHP_EOL ;
-		echo 'border:1px solid #ffccff;'.PHP_EOL ;
+		//echo 'margin-left:2px;'.PHP_EOL ;
+		//echo 'border:1px solid #ffccff;'.PHP_EOL ;
 		echo 'text-align:center;'.PHP_EOL ;
-		echo 'background-color:#fff;'.PHP_EOL ;
+		echo 'background-color:#ff0;'.PHP_EOL ;
 		echo 'cursor:pointer;'.PHP_EOL ;
 		echo '}'.PHP_EOL ;
 		echo '#'.$this->sTabPrefix.'_list .active {'.PHP_EOL ;
-		echo 'border-top:2px solid red;'.PHP_EOL ;
+		//echo 'border-top:2px solid red;'.PHP_EOL ;
 		//echo 'border-bottom:2px solid #fff;'.PHP_EOL ;
+		echo 'background-color:#f0f;'.PHP_EOL ;
+		echo '}'.PHP_EOL ;
+		echo 'li.'.$this->sTabPrefix.'_li:hover {'.PHP_EOL ;
+		//echo 'border-top:2px solid red;'.PHP_EOL ;
+		//echo 'border-bottom:2px solid #fff;'.PHP_EOL ;
+		echo 'background-color:#0ff;'.PHP_EOL ;
 		echo '}'.PHP_EOL ;
 		//echo '#'.$this->sTabPrefix.' div {'.PHP_EOL ; 
 		echo 'div[name="'.$this->sTabPrefix.'_tab_name"]{'.PHP_EOL ; 		
 		echo 'width:100%;'.PHP_EOL ;
 		echo 'height:'.$this->iHeight.';'.PHP_EOL ;
-		echo 'margin-top:3px;'.PHP_EOL ;
+		//echo 'margin-top:3px;'.PHP_EOL ;
 		//echo 'margin-left:34px;'.PHP_EOL ;
 		//echo 'padding:15px;'.PHP_EOL ;
-		echo 'border:1px solid #369;'.PHP_EOL ;
+		//echo 'border:1px solid #369;'.PHP_EOL ;
 		echo '} '.PHP_EOL ;
 		echo '#'.$this->sTabPrefix.' .hide{'.PHP_EOL ;
 		echo 'display:none;'.PHP_EOL ;
@@ -1637,7 +1724,7 @@ class CTabByJs
 	*/
 	function StartTab()
 	{
-		if(1 == $this->iCur)
+		if(0 == $this->iCur)
 		{
 			StartDiv(array("class" => "hide active", "name" => $this->sTabPrefix."_tab_name"));
 		}

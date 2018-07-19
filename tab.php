@@ -22,8 +22,9 @@ StartDiv(array("class" => "fastweb_div_frame"));
 				DisplayText("tab1");
 			EndDiv();
 			
+			AddH3(array("style" => "text-align:left;line-height:50px;"), "选项卡1");
 			StartDiv(array("style" => "width:100%;"));
-				$tab = new CTab(array("水平菜单", "新闻", "垂直菜单", "单选框", "多选框", "播放", "带链接播放"), "300px");
+				$tab = new CTab(array("水平菜单", "新闻", "垂直菜单", "单选框", "多选框", "播放", "带链接播放"), "300px", 3);
 				$tab->StartTab();
 				DisplayMenuH("liH");
 				$tab->EndTab();
@@ -56,8 +57,114 @@ StartDiv(array("class" => "fastweb_div_frame"));
 				ClearFloat();	
 			EndDiv();
 			
+			AddH3(array("style" => "text-align:left;line-height:50px;"), "选项卡2");
 			StartDiv(array("style" => "width:100%;"));
-				$tab = new CTabByJs(array("水平菜单", "新闻", "垂直菜单", "单选框", "多选框", "播放", "带链接播放"), "auto");
+				$tab = new CTabByJs(array("水平菜单", "新闻", "垂直菜单", "单选框", "多选框", "播放", "带链接播放"), "auto", 1, "fastweb_tab1_", 0.2);
+				$tab->StartTab();
+				DisplayMenuH("liH");
+				$tab->EndTab();
+				
+				$tab->StartTab();
+				DisplayNew("fastweb");
+				$tab->EndTab();
+				
+				$tab->StartTab();
+				DisplayMenuV("liH");
+				$tab->EndTab();
+				
+				$tab->StartTab();
+				DisplayOptions("option");
+				$tab->EndTab();
+				
+				$tab->StartTab();
+				DisplayCheckbox("checkbox");
+				$tab->EndTab();
+				
+				$tab->StartTab();
+				AddRollPlayImg(array(SITE_URL."image/fastweb.png",SITE_URL."image/fastweb.png",SITE_URL."image/fastweb.png"));
+				$tab->EndTab();
+				
+				$tab->StartTab();
+
+				$tab->EndTab();
+				
+				unset($tab);
+				ClearFloat();	
+			EndDiv();
+			
+			AddH3(array("style" => "text-align:left;line-height:50px;"), "选项卡3");
+			StartDiv(array("style" => "width:100%;"));
+				$tab = new CTabByJs(array("水平菜单", "新闻", "垂直菜单", "单选框", "多选框", "播放", "带链接播放"), "auto", 2, "fastweb_tab2_", 0.2);
+				$tab->StartTab();
+				DisplayMenuH("liH");
+				$tab->EndTab();
+				
+				$tab->StartTab();
+				DisplayNew("fastweb");
+				$tab->EndTab();
+				
+				$tab->StartTab();
+				DisplayMenuV("liH");
+				$tab->EndTab();
+				
+				$tab->StartTab();
+				DisplayOptions("option");
+				$tab->EndTab();
+				
+				$tab->StartTab();
+				DisplayCheckbox("checkbox");
+				$tab->EndTab();
+				
+				$tab->StartTab();
+				AddRollPlayImg(array(SITE_URL."image/fastweb.png",SITE_URL."image/fastweb.png",SITE_URL."image/fastweb.png"));
+				$tab->EndTab();
+				
+				$tab->StartTab();
+
+				$tab->EndTab();
+				
+				unset($tab);
+				ClearFloat();	
+			EndDiv();
+			
+			AddH3(array("style" => "text-align:left;line-height:50px;"), "选项卡4");
+			StartDiv(array("style" => "width:100%;"));
+				$tab = new CTabByJs(array("水平菜单", "新闻", "垂直菜单", "单选框", "多选框", "播放", "带链接播放"), "auto", 3, "fastweb_tab3_");
+				$tab->StartTab();
+				DisplayMenuH("liH");
+				$tab->EndTab();
+				
+				$tab->StartTab();
+				DisplayNew("fastweb");
+				$tab->EndTab();
+				
+				$tab->StartTab();
+				DisplayMenuV("liH");
+				$tab->EndTab();
+				
+				$tab->StartTab();
+				DisplayOptions("option");
+				$tab->EndTab();
+				
+				$tab->StartTab();
+				DisplayCheckbox("checkbox");
+				$tab->EndTab();
+				
+				$tab->StartTab();
+				AddRollPlayImg(array(SITE_URL."image/fastweb.png",SITE_URL."image/fastweb.png",SITE_URL."image/fastweb.png"));
+				$tab->EndTab();
+				
+				$tab->StartTab();
+
+				$tab->EndTab();
+				
+				unset($tab);
+				ClearFloat();	
+			EndDiv();
+			
+			AddH3(array("style" => "text-align:left;line-height:50px;"), "选项卡5");
+			StartDiv(array("style" => "width:100%;"));
+				$tab = new CTabByJs(array("水平菜单", "新闻", "垂直菜单", "单选框", "多选框", "播放", "带链接播放"), "auto", 4, "fastweb_tab4_");
 				$tab->StartTab();
 				DisplayMenuH("liH");
 				$tab->EndTab();
