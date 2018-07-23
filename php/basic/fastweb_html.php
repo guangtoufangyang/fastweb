@@ -698,6 +698,19 @@ function EndPre()
 	echo '</pre>'.PHP_EOL;
 }
 
+function StartP($arrAttr = array())
+{
+	if(!is_array($arrAttr)) return;
+	echo '<p';
+	ShowAttr($arrAttr);
+	echo '> '.PHP_EOL;
+}
+
+function EndP()
+{
+	echo '</p>'.PHP_EOL;
+}
+
 function StartTextarea($arrAttr = array())
 {
 	if(!is_array($arrAttr)) return;
