@@ -75,9 +75,18 @@ function AddText($text, $pos = 0, $fontNum = 0, $fontSize = 24, $lineDouble = 1.
 	EndP();
 }
 
-function AddTextByClass($text, $c = 'fastweb_p_text_style1')
+function AddTextByClass($text, $pos = 0, $c = 'fastweb_p_text_style1')
 {
-	StartP(array("class" => $c));
+	$textAlign = 'text-align:left;';
+	if(1 == $pos)
+	{
+		$textAlign = 'text-align:center;';
+	}
+	else if(2 == $pos)
+	{
+		$textAlign = 'text-align:right;';
+	}
+	StartP(array("class" => $c, "style" => $textAlign));
 	echo $text;
 	EndP();
 }

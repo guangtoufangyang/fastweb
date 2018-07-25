@@ -16,7 +16,9 @@ StartDiv(array("class" => "fastweb_div_frame"));
 		
 		StartDiv(array("style" => "width:73%;float:right;"));
 			StartDiv(array("style" => "width:100%;"));
-				DisplayText("crumb1");
+				//DisplayText("crumb1");
+				AddTextByClass("AddCrumb添加面包屑导航", 1, "fastweb_p_title_style1");
+				AddTextByClass(CHINESE_BLANK.CHINESE_BLANK.'范例:AddCrumb(array(array("href" => "#", "text" => "首页"), array("href" => "#", "text" => "频道"), array("href" => "#", "text" => "栏目"), array( "text" => "fastweb")))。');
 			EndDiv();
 		
 			StartDiv(array("style" => "width:100%;"));

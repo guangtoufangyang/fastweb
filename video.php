@@ -16,7 +16,9 @@ StartDiv(array("class" => "fastweb_div_frame"));
 		
 		StartDiv(array("style" => "width:73%;float:right;"));
 			StartDiv(array("style" => "width:100%;"));
-				DisplayText("video1");
+				AddTextByClass("AddVideoSwf添加swf视频", 1, "fastweb_p_title_style1");
+				AddTextByClass(CHINESE_BLANK.CHINESE_BLANK.'AddVideoSwf($src, $height, $width)指定地址|高度|宽度添加一个视频。');
+				
 			EndDiv();
 		
 			StartDiv(array("style" => "width:100%;"));

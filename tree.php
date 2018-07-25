@@ -16,7 +16,13 @@ StartDiv(array("class" => "fastweb_div_frame"));
 		
 		StartDiv(array("style" => "width:73%;float:right;"));
 			StartDiv(array("style" => "width:100%;"));
-				DisplayText("tree1");
+				//DisplayText("tree1");
+				AddTextByClass("CTree生成无限级树", 1, "fastweb_p_title_style1");
+				
+				AddTextByClass(CHINESE_BLANK.CHINESE_BLANK.'new CTree($branchTag, $checkBranchArr, $branchClass)开始构造一颗树。如果一个页面存在多个树，需指定不同的$branchTag，$checkBranchArr标识为打开状态的树干，$branchClass支持"fastweb_tree_branch"和"fastweb_tree_nav"。');
+				AddTextByClass(CHINESE_BLANK.CHINESE_BLANK.'CTree::StartBranch($text, $href)开始一个树干。');
+				AddTextByClass(CHINESE_BLANK.CHINESE_BLANK.'CTree::AddLeaf($text, $href)添加叶子节点。');
+				AddTextByClass(CHINESE_BLANK.CHINESE_BLANK.'CTree::EndBranch()结束一个树干。');
 			EndDiv();
 		
 			StartDiv(array("style" => "width:100%;"));
