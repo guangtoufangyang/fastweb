@@ -15,8 +15,9 @@ StartDiv(array("class" => "fastweb_div_frame"));
 		EndDiv();
 		
 		StartDiv(array("style" => "width:73%;float:right;"));
+			AddText(CHINESE_BLANK.CHINESE_BLANK.'AddText($text, $pos = 0, $fontNum = 0, $fontSize = 24, $lineDouble = 1.2)用于添加一段文字,$text表示文字内容,$pos参数表示居左(0)|居中(1)|居右(2),$fontNum表示字体编号,$foneSize表示字体大小,$lineDouble表示行高与字号的倍数。', 0, 2, 24, 1.4);
 			StartDiv(array("style" => "width:100%;"));
-				AddText("春江花月夜");
+				AddText("春江花月夜", 1, 0, 50, 2);
 				AddText("【作者】张若虚 【朝代】唐", 1, 1, 30, 1.5);
 				AddText("春江潮水连海平，海上明月共潮生。", 2, 2, 30);
 				AddText("滟滟随波千万里，何处春江无月明！", 1, 3, 20);

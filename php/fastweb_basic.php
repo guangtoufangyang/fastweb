@@ -11,6 +11,7 @@
 
 require_once rtrim($_SERVER['DOCUMENT_ROOT'],'/').'/fastweb/php/basic/fastweb_config.php';
 require_once rtrim($_SERVER['DOCUMENT_ROOT'],'/').'/fastweb/php/basic/fastweb_html.php';
+require_once rtrim($_SERVER['DOCUMENT_ROOT'],'/').'/fastweb/php/basic/fastweb_const.php';
 require_once rtrim($_SERVER['DOCUMENT_ROOT'],'/').'/fastweb/php/basic/fastweb_compatible.php';
 require_once rtrim($_SERVER['DOCUMENT_ROOT'],'/').'/fastweb/php/basic/fastweb_function.php';
 require_once rtrim($_SERVER['DOCUMENT_ROOT'],'/').'/fastweb/php/basic/fastweb_event.php';
