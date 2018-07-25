@@ -16,6 +16,7 @@ StartDiv(array("class" => "fastweb_div_frame"));
 		
 		StartDiv(array("style" => "width:73%;float:right;"));
 			StartDiv(array("style" => "width:100%;"));
+				//AddTextByClass(CHINESE_BLANK.CHINESE_BLANK.'AddPageTurningBySize($currNum, $urlPrefix, $globalMax = 100)指定当前页码、url前缀、最大页面生成翻页。');
 				DisplayText("page1");
 			EndDiv();
 		

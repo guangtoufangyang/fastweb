@@ -16,7 +16,8 @@ StartDiv(array("class" => "fastweb_div_frame"));
 		
 		StartDiv(array("style" => "width:73%;float:right;"));
 			StartDiv(array("style" => "width:100%;"));
-				DisplayText("search1");
+				//DisplayText("search1");
+				AddTextByClass(CHINESE_BLANK.CHINESE_BLANK.'AddSearchBar($searchUrl, $btText, $name, $method, $placeholder, $style)用于生成一个搜索框，$searchUrl表示触发的url；$btText表示搜索按钮上的文字，为空则将展示一个放大镜按钮；$name表示提交后的参数名称；$method填写post或者get；$placeholder表示默认占位符；$style目前支持fastweb_search_bar_style1和fastweb_search_bar_style2。');
 			EndDiv();
 		
 			StartDiv(array("style" => "width:100%;"));

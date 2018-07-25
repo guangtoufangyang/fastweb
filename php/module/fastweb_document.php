@@ -75,6 +75,13 @@ function AddText($text, $pos = 0, $fontNum = 0, $fontSize = 24, $lineDouble = 1.
 	EndP();
 }
 
+function AddTextByClass($text, $c = 'fastweb_p_text_style1')
+{
+	StartP(array("class" => $c));
+	echo $text;
+	EndP();
+}
+
 /**
 * 文章类
 *
