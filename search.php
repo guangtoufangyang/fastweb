@@ -22,16 +22,20 @@ StartDiv(array("class" => "fastweb_div_frame"));
 			EndDiv();
 		
 			StartDiv(array("style" => "width:100%;"));
+				AddTextByClass(CHINESE_BLANK.CHINESE_BLANK.'范例：AddSearchBar("", "")。');
 				AddSearchBar("", "");
 			EndDiv();
 			StartDiv(array("style" => "width:100%;"));
+				AddTextByClass(CHINESE_BLANK.CHINESE_BLANK.'范例：AddSearchBar("", "搜")。');
 				AddSearchBar("", "搜");
 			EndDiv();
 			
 			StartDiv(array("style" => "width:100%;"));
+				AddTextByClass(CHINESE_BLANK.CHINESE_BLANK.'范例：AddSearchBar("", "", "name", "post", "搜索文字", "fastweb_search_bar_style2")。');
 				AddSearchBar("", "", "name", "post", "搜索文字", "fastweb_search_bar_style2");
 			EndDiv();
 			StartDiv(array("style" => "width:100%;"));
+				AddTextByClass(CHINESE_BLANK.CHINESE_BLANK.'范例：AddSearchBar("", "search", "name", "post", "搜索文字", "fastweb_search_bar_style2")。');
 				AddSearchBar("", "search", "name", "post", "搜索文字", "fastweb_search_bar_style2");
 			EndDiv();
 			

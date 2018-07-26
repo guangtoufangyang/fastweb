@@ -18,6 +18,7 @@ StartDiv(array("class" => "fastweb_div_frame"));
 			StartDiv(array("style" => "width:100%;"));
 				AddTextByClass("AddVideoSwf添加swf视频", 1, "fastweb_p_title_style1");
 				AddTextByClass(CHINESE_BLANK.CHINESE_BLANK.'AddVideoSwf($src, $height, $width)指定地址|高度|宽度添加一个视频。');
+				AddTextByClass(CHINESE_BLANK.CHINESE_BLANK.'范例：AddVideoSwf(SITE_URL."video/100pian.swf", 360, 480)。');
 				
 			EndDiv();
 		

@@ -16,7 +16,12 @@ StartDiv(array("class" => "fastweb_div_frame"));
 		
 		StartDiv(array("style" => "width:73%;float:right;"));
 			StartDiv(array("style" => "width:100%;"));
-				DisplayText("table1");
+				//DisplayText("table1");
+				AddTextByClass("CTable用于创建表格", 1, "fastweb_p_title_style1");
+				AddTextByClass(CHINESE_BLANK.CHINESE_BLANK.'new CTable($max, $c, $style, $summary)创建一个表格，$max为表格列数，$c为table的类，$style为自定义的表格样式，$summary为表格的summary属性。');
+				
+				AddTextByClass("table使用方法(1)", 1, "fastweb_p_title_style1");
+				AddTextByClass(CHINESE_BLANK.CHINESE_BLANK.'CTable::SetTdColor(array());指定每一行的背景颜色');
 			EndDiv();
 		
 			StartDiv(array("style" => "width:100%;"));
@@ -47,7 +52,10 @@ StartDiv(array("class" => "fastweb_div_frame"));
 			EndDiv();
 			
 			StartDiv(array("style" => "width:100%;"));
-				DisplayText("table2");
+				//DisplayText("table2");
+				AddTextByClass("table使用方法(2)", 1, "fastweb_p_title_style1");
+				AddTextByClass(CHINESE_BLANK.CHINESE_BLANK.'CTable::SetTrMouse();设置鼠标滑过/离开时的行背景色');
+				AddTextByClass(CHINESE_BLANK.CHINESE_BLANK.'CTable::SetWidthArr();设置每列的宽度');
 			EndDiv();
 			
 			StartDiv(array("style" => "width:100%;"));
@@ -71,7 +79,9 @@ StartDiv(array("class" => "fastweb_div_frame"));
 			EndDiv();
 
 			StartDiv(array("style" => "width:100%;"));
-				DisplayText("table3");
+				//DisplayText("table3");
+				AddTextByClass("table使用方法(3)", 1, "fastweb_p_title_style1");
+				AddTextByClass(CHINESE_BLANK.CHINESE_BLANK.'CTable::AddTd();可指定占多行多列');
 			EndDiv();
 
 			StartDiv(array("style" => "width:100%;"));

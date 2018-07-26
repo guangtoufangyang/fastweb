@@ -17,7 +17,11 @@ StartDiv(array("class" => "fastweb_div_frame"));
 		StartDiv(array("style" => "width:73%;float:right;"));
 			StartDiv(array("style" => "width:100%;"));
 				//AddTextByClass(CHINESE_BLANK.CHINESE_BLANK.'AddPageTurningBySize($currNum, $urlPrefix, $globalMax = 100)指定当前页码、url前缀、最大页面生成翻页。');
-				DisplayText("page1");
+				//DisplayText("page1");
+				
+				AddTextByClass("AddPageTurningBySize翻页", 1, "fastweb_p_title_style1");
+				AddTextByClass(CHINESE_BLANK.CHINESE_BLANK.'AddPageTurningBySize($currNum, $urlPrefix, $globalMax)指定当前页面、翻页url前缀、最大页码数生成翻页代码。');
+				AddTextByClass(CHINESE_BLANK.CHINESE_BLANK.'范例：AddPageTurningBySize(isset($paramInfo["page"]) ? $paramInfo["page"] : 1, SITE_URL."page.php?page=")。');
 			EndDiv();
 		
 			StartDiv(array("style" => "width:100%;"));
@@ -27,7 +31,10 @@ StartDiv(array("class" => "fastweb_div_frame"));
 			EndDiv();
 			
 			StartDiv(array("style" => "width:100%;"));
-				DisplayText("page2");
+				//DisplayText("page2");
+				AddTextByClass("AddPageTurning翻页", 1, "fastweb_p_title_style1");
+				AddTextByClass(CHINESE_BLANK.CHINESE_BLANK.'AddPageTurning($minNum, $maxNum, $currNum, $urlPrefix, $globalMax)指定显示最小页码、显示最大页码、当前页码、翻页url前缀、最大页码数生成翻页代码。');
+				AddTextByClass(CHINESE_BLANK.CHINESE_BLANK.'范例：AddPageTurning(5, 12, isset($paramInfo["page"]) ? $paramInfo["page"] : 8, SITE_URL."page.php?page=")。');
 			EndDiv();
 			
 			StartDiv(array("style" => "width:100%;"));
