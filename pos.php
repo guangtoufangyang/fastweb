@@ -1,6 +1,6 @@
 
 <?php
-require_once rtrim($_SERVER['DOCUMENT_ROOT'],'/').'/fastweb/php/display.php';
+require_once rtrim($_SERVER['DOCUMENT_ROOT'],'/').'/fastweb/php/fastweb_display.php';
 DisplayHead($defaultHeadConfig);
 
 ParamInfo($paramInfo);
@@ -16,7 +16,10 @@ StartDiv(array("class" => "fastweb_div_frame"));
 		
 		StartDiv(array("style" => "width:73%;float:right;"));
 			StartDiv(array("style" => "width:100%;"));
-				DisplayText("pos1");
+				if(DataGetByKey("pos1", $data))
+				{
+					AddDoc($data);
+				}
 			EndDiv();
 			
 			StartDiv(array("class" => "fastweb_align_left", "style" => "width:100%;"));

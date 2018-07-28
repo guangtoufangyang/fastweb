@@ -1,6 +1,6 @@
 
 <?php
-require_once rtrim($_SERVER['DOCUMENT_ROOT'],'/').'/fastweb/php/display.php';
+require_once rtrim($_SERVER['DOCUMENT_ROOT'],'/').'/fastweb/php/fastweb_display.php';
 DisplayHead($defaultHeadConfig);
 
 ParamInfo($paramInfo);

@@ -17,6 +17,9 @@ require_once rtrim($_SERVER['DOCUMENT_ROOT'],'/').'/fastweb/php/display/display_
 require_once rtrim($_SERVER['DOCUMENT_ROOT'],'/').'/fastweb/php/display/display_crumb.php';
 require_once rtrim($_SERVER['DOCUMENT_ROOT'],'/').'/fastweb/php/display/display_menu.php';
 
+require_once rtrim($_SERVER['DOCUMENT_ROOT'],'/').'/fastweb/php/display/display_demo.php';
+require_once rtrim($_SERVER['DOCUMENT_ROOT'],'/').'/fastweb/php/display/normal.php';
+
 
 
 ?>

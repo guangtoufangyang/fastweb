@@ -18,8 +18,6 @@ require_once rtrim($_SERVER['DOCUMENT_ROOT'],'/').'/fastweb/php/module/fastweb_c
 require_once rtrim($_SERVER['DOCUMENT_ROOT'],'/').'/fastweb/php/module/fastweb_document.php';
 require_once rtrim($_SERVER['DOCUMENT_ROOT'],'/').'/fastweb/php/module/fastweb_head.php';
 require_once rtrim($_SERVER['DOCUMENT_ROOT'],'/').'/fastweb/php/module/fastweb_popup.php';
-require_once rtrim($_SERVER['DOCUMENT_ROOT'],'/').'/fastweb/php/module/fastweb_news.php';
-require_once rtrim($_SERVER['DOCUMENT_ROOT'],'/').'/fastweb/php/module/fastweb_page.php';
 
 
 ?>

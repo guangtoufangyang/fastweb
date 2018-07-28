@@ -1,6 +1,19 @@
 <?php
 
 
+/**
+* 基础的html封装
+* 
+* 对基本的html标签的封装
+* @作者			光头放羊<bingzhao456@163.com>
+* @版本			1.0
+*/
+
+require_once rtrim($_SERVER['DOCUMENT_ROOT'],'/').'/fastweb/php/fastweb_basic.php';
+
+/*
+*测试数据
+*/
 $dataTable = array(
 	"libai" => '
 		{"title":"静夜思", "author":"李白", "paragraph":["床前明月光，", "疑是地上霜，", "举头望明月，", "低头思故乡。"]}
@@ -71,12 +84,6 @@ $dataTable = array(
 		{"paragraph":["DisplayText2每行显示多条记录"]}
 	',
 	
-	
-	
-
-	
-	
-	/*"libai" => array("title" => "静夜思", "author" => "李白", "paragraph" => array("床前明月光，", "疑是地上霜，", "举头望明月，", "低头思故乡。")),*/
 	"fastweb" => array("title" => "title", "info" => array(array("link" => "#", "text" => "fastweb"), array("link" => "#", "text" => "fastweb"),array("link" => "#", "text" => "fastweb"),array("link" => "#", "text" => "fastweb"),array("link" => "#", "text" => "fastweb"),array("link" => "#", "text" => "fastweb"))),
 	"liH" => array(array("name" => "菜单1", "list" => array(array("name" => "子菜单11", "link" => "#"),array("name" => "子菜单12", "link" => "#"),array("name" => "子菜单13", "link" => "#"))),array("name" => "菜单2", "list" => array(array("name" => "子菜单21", "link" => "#"),array("name" => "子菜单22", "link" => "#"),array("name" => "子菜单23", "link" => "#"))),array("name" => "菜单3", "list" => array(array("name" => "子菜单31", "link" => "#"),array("name" => "子菜单32", "link" => "#"),array("name" => "子菜单33", "link" => "#")))),
 	"option" => array(array("value" => "v1", "text" => "选项1"),array("value" => "v2", "text" => "选项2"),array("value" => "v3", "text" => "选项3")),
@@ -85,42 +92,30 @@ $dataTable = array(
 	
 );
 
-$funcList = '
-	[
-	{"name":"branch", "text":"首页", "href":"index.php", "leaf":[]},
-	{"name":"branch", "text":"基本功能", "leaf":[
-		{"name":"leaf", "text":"table", "href":"table.php"}
-	]},
-	{"name":"branch", "text":"功能模块", "leaf":[
-		{"name":"leaf", "text":"翻页", "href":"page.php"},
-		{"name":"leaf", "text":"树", "href":"tree.php"},
-		{"name":"leaf", "text":"添加视频", "href":"video.php"},
-		{"name":"leaf", "text":"面包屑", "href":"crumb.php"},
-		{"name":"leaf", "text":"tab模块", "href":"tab.php"},
-		{"name":"leaf", "text":"文章模块", "href":"doc.php"},
-		{"name":"leaf", "text":"菜单模块", "href":"menu.php"},
-		{"name":"leaf", "text":"搜索框", "href":"search.php"},
-		{"name":"leaf", "text":"弹窗", "href":"popup.php"},
-		{"name":"leaf", "text":"新闻", "href":"new.php"},
-		{"name":"leaf", "text":"滚动播放", "href":"rollplay.php"},
-		{"name":"leaf", "text":"添加文本", "href":"document.php"},
-		{"name":"leaf", "text":"点击关闭模块", "href":"close.php"}
-	]},
-	{"name":"branch", "text":"属性", "leaf":[
-		{"name":"leaf", "text":"固定位置", "href":"pos.php"},
-		{"name":"leaf", "text":"透明度", "href":"opacity.php"}
-	]}
-	]
-	';
-	//{"name":"branch", "text":"一个混乱的页面", "href":"index1.php", "leaf":[]}
-
-
-function DataGetByKey($k, &$data)
+/**
+* DataGetByKey 
+* 根据key获取数据
+*
+* @access
+* @param mixed $k			数据key值
+* @param mixed $data		获取的数据
+* @since 1.0
+* @return					true:获取数据成功;false:获取数据失败.
+*/
+function DataGetByKey($k, &$data, $decode = true)
 {
 	global $dataTable;
 	if(array_key_exists($k, $dataTable))
 	{
-		$data = $dataTable[$k];
+		if($decode)
+		{
+			$data = json_decode($dataTable[$k], true);
+		}
+		else
+		{
+			$data = $dataTable[$k];
+		}
+		
 		return true;
 	}
 	

@@ -1,6 +1,6 @@
 
 <?php
-require_once rtrim($_SERVER['DOCUMENT_ROOT'],'/').'/fastweb/php/display.php';
+require_once rtrim($_SERVER['DOCUMENT_ROOT'],'/').'/fastweb/php/fastweb_display.php';
 $headArr = $defaultHeadConfig;
 $headArr["base"] = SITE_URL."tab.php";
 DisplayHead($headArr);
@@ -19,7 +19,10 @@ StartDiv(array("class" => "fastweb_div_frame"));
 		StartDiv(array("style" => "width:73%;float:right;"));
 		
 			StartDiv(array("style" => "width:100%;"));
-				DisplayText("tab1");
+				if(DataGetByKey("tab1", $data))
+				{
+					AddDoc($data);
+				}
 			EndDiv();
 			
 			AddH3(array("style" => "text-align:left;line-height:50px;"), "选项卡1");
