@@ -103,12 +103,10 @@ function DisplayTop()
 */
 function DisplayText($k)
 {
-	if(!DataGetByKey($k, $data))
+	if(DataGetByKey($k, $data))
 	{
-		return;
+		AddDoc($data);
 	}
-	
-	AddDoc($data);
 }
 
 /**
@@ -122,11 +120,10 @@ function DisplayText($k)
 */
 function DisplayNew($k)
 {
-	if(!DataGetByKey($k, $data, false))
+	if(DataGetByKey($k, $data, false))
 	{
-		return;
+		AddNew($data);
 	}
-	AddNew($data);
 }
 
 /**
@@ -141,11 +138,10 @@ function DisplayNew($k)
 */
 function DisplayNew2($k, $cnt)
 {
-	if(!DataGetByKey($k, $data, false))
+	if(DataGetByKey($k, $data, false))
 	{
-		return;
+		AddNew2($data, $cnt);
 	}
-	AddNew2($data, $cnt);
 }
 
 /**
@@ -159,13 +155,10 @@ function DisplayNew2($k, $cnt)
 */
 function DisplayMenuH($k)
 {
-	if(!DataGetByKey($k, $data, false))
+	if(DataGetByKey($k, $data, false))
 	{
-		return;
+		AddMenuH($data);
 	}
-	
-	AddMenuH($data);
-
 }
 
 /**
@@ -179,13 +172,11 @@ function DisplayMenuH($k)
 */
 function DisplayMenuV($k)
 {
-	if(!DataGetByKey($k, $data, false))
+	if(DataGetByKey($k, $data, false))
 	{
-		return;
+		AddMenuV($data);
+		ClearFloat();
 	}
-	
-	AddMenuV($data);
-	ClearFloat();
 }
 
 /**
@@ -199,12 +190,10 @@ function DisplayMenuV($k)
 */
 function DisplayOptions($k)
 {
-	if(!DataGetByKey($k, $data, false))
+	if(DataGetByKey($k, $data, false))
 	{
-		return;
+		AddSelect(array(), $data);
 	}
-	
-	AddSelect(array(), $data);
 }
 
 /**
@@ -218,14 +207,12 @@ function DisplayOptions($k)
 */
 function DisplayCheckbox($k)
 {
-	if(!DataGetByKey($k, $data, false))
+	if(DataGetByKey($k, $data, false))
 	{
-		return;
-	}
-	
-	foreach ($data as $val)
-	{
-		AddCheckBox($val, $val["text"]);
+		foreach ($data as $val)
+		{
+			AddCheckBox($val, $val["text"]);
+		}
 	}
 }
 
