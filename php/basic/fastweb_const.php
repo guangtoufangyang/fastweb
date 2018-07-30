@@ -12,4 +12,9 @@
 
 define("CHINESE_BLANK","&#12288;",TRUE);
 
+define("FLOAT_NONE",	0, TRUE);
+define("FLOAT_LEFT",	1, TRUE);
+define("FLOAT_RIGHT",	2, TRUE);
+
+
 ?>

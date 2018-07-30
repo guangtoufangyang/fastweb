@@ -11,6 +11,10 @@
 
 require_once rtrim($_SERVER['DOCUMENT_ROOT'],'/').'/fastweb/php/fastweb_basic.php';
 
+$fastweb_tree_class = array(
+	0 => "fastweb_tree_branch",
+	1 => "fastweb_tree_nav"
+);
 
 /**
 * 树形菜单类
@@ -37,11 +41,12 @@ class CTree
 	* @since 1.0
 	* @return
 	*/
-	function __construct($branchTag, $checkBranchArr = array(), $branchClass = "fastweb_tree_branch")
+	function __construct($branchTag, $checkBranchArr = array(), $branchClassNum = 0 /*"fastweb_tree_branch"*/ )
 	{
+		global $fastweb_tree_class;
 		$this->iBranchNum = 1;
 		$this->sBranchTag = $branchTag;
-		$this->sBranchClass = $branchClass;
+		$this->sBranchClass = $fastweb_tree_class[$branchClassNum % count($fastweb_tree_class)] ;//$branchClass;
 		$this->arrCheckBranch = $checkBranchArr;
 		StartOl(array("class" => "fastweb_tree"));
 	}

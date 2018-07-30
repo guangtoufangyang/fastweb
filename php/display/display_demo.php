@@ -53,7 +53,7 @@ function DisplayFastwebFunclist($openNode)
 {
 	global $funcList;
 	$data = json_decode($funcList, true);
-	$tree = new CTree("funclist_", array($openNode), "fastweb_tree_nav");
+	$tree = new CTree("funclist_", array($openNode), 1);
 	$tree->AddTreeData($data);
 	unset($tree);
 }

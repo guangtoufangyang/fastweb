@@ -11,7 +11,7 @@ DisplayTop();
 StartDiv(array("class" => "fastweb_div_frame"));
 	StartDiv(array("class" => "fastweb_div_middle"));
 		StartDiv(array("style" => "width:23%;float:left;"));
-			$tree = new CTree("funclist_", array("基本功能", "功能模块"), "fastweb_tree_nav");
+			$tree = new CTree("funclist_", array("基本功能", "功能模块"), 1);
 			$data = json_decode($funcList, true);
 			$tree->AddTreeData($data);
 			unset($tree);

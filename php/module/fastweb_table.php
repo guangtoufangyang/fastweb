@@ -11,6 +11,9 @@
 
 require_once rtrim($_SERVER['DOCUMENT_ROOT'],'/').'/fastweb/php/fastweb_basic.php';
 
+$fastweb_table_class = array(
+	0 => "fastweb_table_style1"
+);
 
 /**
 * 表格类
@@ -45,14 +48,15 @@ class CTable{
 	* @since 1.0
 	* @return
 	*/
-	function __construct($max=3, $c = "fastweb_table_style1", $style="", $summary=""){
+	function __construct($max=3, $classNum = 0 /*= "fastweb_table_style1"*/, $style="", $summary=""){
+		global $fastweb_table_class;
 		$this->mTd = 0;
 		$this->mTableEnd = 0;
 		$this->mLineNum = 0;
 		$this->mLineTd = 0;
 		$this->mMultiTd = array();
 		$this->mMaxTd = $max;
-		echo '<table summary = "'.$summary.'" class="'.$c.'" style="'.$style.'">'.PHP_EOL ;
+		echo '<table summary = "'.$summary.'" class="'.$fastweb_table_class[$classNum % count($fastweb_table_class)].'" style="'.$style.'">'.PHP_EOL ;
 		if($this->mMaxTd <= 0)
 		{
 			$this->mMaxTd = 3;
